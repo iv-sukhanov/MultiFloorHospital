@@ -4,43 +4,44 @@ import java.awt.*;
 import javax.swing.*;
 
 public class MultiFloorHospital {
-    public static void main(String[] args) {
-        JFrame frame = new JFrame("MultiFloorHospital");
 
+    private Option[] options;
+
+    public MultiFloorHospital(Option[] options) {
+        this.options = options;
+    }
+
+    public void displayOptions() {
+        JFrame frame = new JFrame("MultiFloorHospital");
+        
         frame.setLayout(new BorderLayout());
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        int frameWidth = (int) (screenSize.width * 0.5);
+        int frameHeight = (int) (screenSize.height * 0.5);
 
         JLabel label = new JLabel("Welcome to the Application! Choose an option:", JLabel.CENTER);
         label.setFont(new Font("Arial", Font.BOLD, 16));
+        label.setPreferredSize(new Dimension(frameWidth, frameHeight / 3));
         frame.add(label, BorderLayout.NORTH);
 
-        JPanel buttonPanel = new JPanel(new FlowLayout());
+        JPanel buttonPanel = new JPanel(new GridLayout(options.length, 1, 10, 20));
 
-        JButton button1 = new JButton("Button 1");
-        JButton button2 = new JButton("Button 2");
-        JButton button3 = new JButton("Button 3");
+        for (Option option : options) {
 
-        button1.addActionListener(e -> {
-            JOptionPane.showMessageDialog(frame, "Button 1 clicked!");
-        });
+            if (option == null) {
+                throw new IllegalArgumentException("Option cannot be null");
+            }
 
-        button2.addActionListener(e -> {
-            JOptionPane.showMessageDialog(frame, "Button 2 clicked!");
-        });
+            if (option.getButton() == null) {
+                throw new IllegalArgumentException("Button cannot be null");
+            }
 
-        button3.addActionListener(e -> {
-            JOptionPane.showMessageDialog(frame, "Button 3 clicked!");
-        });
-
-        buttonPanel.add(button1);
-        buttonPanel.add(button2);
-        buttonPanel.add(button3);
+            JButton currentButton = option.getButton();
+            currentButton.addActionListener(e -> option.execute(frame));
+            buttonPanel.add(currentButton);
+        }
 
         frame.add(buttonPanel, BorderLayout.CENTER);
-
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-
-        int frameWidth = (int) (screenSize.width * 0.5);
-        int frameHeight = (int) (screenSize.height * 0.5);
 
         frame.setSize(frameWidth, frameHeight);
 
@@ -48,5 +49,16 @@ public class MultiFloorHospital {
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
+    }
+        
+
+    public static void main(String[] args) {
+
+        MultiFloorHospital multiFloorHospital = new MultiFloorHospital(new Option[] {
+            new AddPatientOption(),
+            new AddEquepmentOption()
+        });
+        
+        multiFloorHospital.displayOptions();
     }
 }
