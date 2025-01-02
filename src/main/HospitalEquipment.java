@@ -1,8 +1,14 @@
 package main;
 
 import java.time.LocalDate;
+import java.util.Map;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 
 public class HospitalEquipment {
+    
+    private static Map<String, List<HospitalEquipment>> equipmentMap = new HashMap<>();
     private static int idCounter = 0;
 
     private String name;
@@ -54,19 +60,24 @@ public class HospitalEquipment {
         this.lastMaintenanceDate = lastMaintenanceDate;
     }
 
-    public HospitalEquipment(String name, String manufacturer, int id, boolean isAvailable, LocalDate lastMaintenanceDate) {
+    public HospitalEquipment(String name, String manufacturer, boolean isAvailable, LocalDate lastMaintenanceDate) {
         this.name = name;
         this.manufacturer = manufacturer;
-        this.id = id;
+        this.id = idCounter++;
         this.isAvailable = isAvailable;
         this.lastMaintenanceDate = lastMaintenanceDate;
+
+        if (!equipmentMap.containsKey(name)) {
+            equipmentMap.put(name, new LinkedList<>());
+        }
+        equipmentMap.get(name).add(this);
     }
 
     public HospitalEquipment(String name, String manufacturer) {
-        this(name, manufacturer, idCounter++, true, LocalDate.now());
+        this(name, manufacturer, true, LocalDate.now());
     }
 
-    public HospitalEquipment() {
-        this("Unknown", "Unknown", idCounter++, true, LocalDate.now());
+    public HospitalEquipment(String name) {
+        this(name, "Unknown");
     }
 }

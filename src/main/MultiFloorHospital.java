@@ -1,13 +1,9 @@
 package main;
-import java.awt.*;
-import java.util.HashMap;
-import java.util.Map;
 
+import java.awt.*;
 import javax.swing.*;
 
 public class MultiFloorHospital {
-    
-    private static final Map<String, String> staticMap = new HashMap<>();
     private static final Option[] options = {
         new AddPatientOption(),
         new AddEquipmentOption()
@@ -54,15 +50,27 @@ public class MultiFloorHospital {
             currentButton.addActionListener(e -> option.execute(frame));
             currentButton.setAlignmentX(Component.CENTER_ALIGNMENT);
             currentButton.setPreferredSize(new Dimension(frameWidth - X_BUTTONS_MARGINS, BUTTONS_HIGHT));
-            currentButton.setMaximumSize(new Dimension(frameWidth - X_BUTTONS_MARGINS, BUTTONS_HIGHT));   // Maximum size
+            currentButton.setMaximumSize(new Dimension(frameWidth - X_BUTTONS_MARGINS, BUTTONS_HIGHT));
             currentButton.setMinimumSize(new Dimension(frameWidth - X_BUTTONS_MARGINS, BUTTONS_HIGHT));
             
             buttonPanel.add(currentButton);
             buttonPanel.add(Box.createRigidArea(new Dimension(X_SPACE_BETWEEN_BUTTONS, Y_SPACE_BETWEEN_BUTTONS)));
         }
-
+        
         frame.add(buttonPanel, BorderLayout.CENTER);
+        
+        JButton exitButton = new JButton("EXIT");
+        JPanel exitPanel = new JPanel();
+        exitButton.setBackground(new Color(255, 0, 0));
+        exitButton.setAlignmentX(JButton.CENTER_ALIGNMENT);
+        exitButton.setPreferredSize(new Dimension(70, 20));
+        exitButton.setMaximumSize(new Dimension(70, 20));
+        exitButton.setMinimumSize(new Dimension(70, 20));
+        exitButton.addActionListener(e -> frame.dispose());
+        exitPanel.add(exitButton);
 
+        frame.add(exitPanel, BorderLayout.SOUTH);        
+        
         frame.setSize(frameWidth, frameHeight);
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
