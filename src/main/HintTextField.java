@@ -1,6 +1,7 @@
 package main;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 
@@ -36,5 +37,10 @@ public class HintTextField extends JTextField {
                 }
             }
         });
+    }
+
+    HintTextField(String hint, Dimension size) {
+        this(hint);
+        setMaximumSize(size);
     }
 }

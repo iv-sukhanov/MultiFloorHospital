@@ -4,12 +4,15 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 
 import javax.swing.*;
 
 public class AddEquipmentOption extends Option {
 
-    private static final int HEIGHT_MARGIN = 30;
+    private static final int TEXT_FIELDS_HIGHT = 20;
+    private static final int HORIZONTAL_MARGIN = 30;
+    private static final int VERTICAL_MARGIN = 20;
     
     public AddEquipmentOption() {
         super(
@@ -33,29 +36,41 @@ public class AddEquipmentOption extends Option {
         equipmentFrame.setSize(mainFrameSize);
         equipmentFrame.setLayout(new BoxLayout(equipmentFrame.getContentPane(), BoxLayout.Y_AXIS));
 
-        JLabel promptLabel = new JLabel("Please fill the fields:");
-        promptLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
+        CenteredLabel promptPanel = new CenteredLabel(
+            "Please enter the following information:",
+            new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT)
+        );
+        promptPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
 
-        HintTextField nameField = new HintTextField("Enter the name of the equipment");
-        nameField.setAlignmentX(JTextField.LEFT_ALIGNMENT);
-        nameField.setPreferredSize(new Dimension((int)mainFrameSize.getWidth() - 60, 20));
-        nameField.setMinimumSize(new Dimension((int)mainFrameSize.getWidth() - 60, 20));
-        nameField.setMaximumSize(new Dimension((int)mainFrameSize.getWidth() - 60, 20));
+        HintTextField nameField = new HintTextField(
+            "Enter the name of the equipment",
+            new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT)
+        );
+        CenteredElementPanel namePanel = new CenteredElementPanel(
+            nameField, 
+            HORIZONTAL_MARGIN, 
+            new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT)
+        );
+        namePanel.setAlignmentX(Component.LEFT_ALIGNMENT);
 
-        HintTextField manufacturerField = new HintTextField("Enter the manufacturer of the equipment");
-        manufacturerField.setAlignmentX(JTextField.LEFT_ALIGNMENT);
-        manufacturerField.setPreferredSize(new Dimension((int)mainFrameSize.getWidth() - 60, 20));
-        manufacturerField.setMinimumSize(new Dimension((int)mainFrameSize.getWidth() - 60, 20));
-        manufacturerField.setMaximumSize(new Dimension((int)mainFrameSize.getWidth() - 60, 20));
+        HintTextField manufacturerField = new HintTextField(
+            "Enter the manufacturer of the equipment",
+            new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT)
+        );
+        CenteredElementPanel manufacturerPanel = new CenteredElementPanel(
+            manufacturerField, 
+            HORIZONTAL_MARGIN, 
+            new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT)
+        );
+        manufacturerPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
 
-        JPanel radioPanel = new JPanel();
-        radioPanel.setLayout(new BoxLayout(radioPanel, BoxLayout.Y_AXIS));
+        JRadioButton availableRadioButton = new JRadioButton("The equipment is available", true);;
+        RadioButtonPanel radioPanel = new RadioButtonPanel(
+            availableRadioButton,
+            HORIZONTAL_MARGIN / 2,
+            new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT)
+        );
         radioPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
-        JRadioButton availableRadioButton = new JRadioButton("The equipment is available", true);
-        availableRadioButton.setAlignmentX(Component.LEFT_ALIGNMENT);
-        // availableRadioButton.setPreferredSize(new Dimension((int)mainFrameSize.getWidth() - 60, 20));
-        // availableRadioButton.setMinimumSize(new Dimension((int)mainFrameSize.getWidth() - 60, 20));
-        // availableRadioButton.setMaximumSize(new Dimension((int)mainFrameSize.getWidth() - 60, 20));
 
         DateSpinner datePanel = new DateSpinner("Enter the last maintenance date:");
 
@@ -87,16 +102,14 @@ public class AddEquipmentOption extends Option {
         navigationPanel.add(backButton);
         navigationPanel.add(confirmButton);
         
-        equipmentFrame.add(Box.createVerticalStrut(30));
-        equipmentFrame.add(promptLabel);
-        equipmentFrame.add(Box.createVerticalStrut(30));
-        equipmentFrame.add(nameField);
-        // equipmentFrame.add(Box.createRigidArea(new Dimension(0, HEIGHT_MARGIN)));
-        equipmentFrame.add(Box.createVerticalStrut(30));        
-        equipmentFrame.add(manufacturerField);
-        // equipmentFrame.add(Box.createRigidArea(new Dimension(0, HEIGHT_MARGIN)));
-        equipmentFrame.add(Box.createVerticalStrut(30));
-        equipmentFrame.add(availableRadioButton);
+        equipmentFrame.add(Box.createVerticalStrut(VERTICAL_MARGIN));
+        equipmentFrame.add(promptPanel);
+        equipmentFrame.add(Box.createVerticalStrut(VERTICAL_MARGIN));
+        equipmentFrame.add(namePanel);
+        equipmentFrame.add(Box.createVerticalStrut(VERTICAL_MARGIN));        
+        equipmentFrame.add(manufacturerPanel);
+        equipmentFrame.add(Box.createVerticalStrut(VERTICAL_MARGIN));
+        equipmentFrame.add(radioPanel);
         // equipmentFrame.add(Box.createRigidArea(new Dimension(0, HEIGHT_MARGIN)));
         // equipmentFrame.add(datePanel);
         // equipmentFrame.add(Box.createRigidArea(new Dimension(0, HEIGHT_MARGIN)));
