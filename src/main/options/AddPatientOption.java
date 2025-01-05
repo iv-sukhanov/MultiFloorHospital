@@ -1,4 +1,4 @@
-package main;
+package main.options;
 
 import javax.swing.*;
 

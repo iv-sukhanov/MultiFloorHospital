@@ -1,4 +1,4 @@
-package main;
+package main.gui;
 
 import java.awt.Dimension;
 import java.util.Calendar;
@@ -19,7 +19,7 @@ public class DateSpinnerPanel extends JPanel {
     private JSpinner dateSpinner;
 
 
-    DateSpinnerPanel(String label, Dimension size, int horizontalMargin) {
+    public DateSpinnerPanel(String label, Dimension size, int horizontalMargin) {
         
         setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
         setMaximumSize(size);

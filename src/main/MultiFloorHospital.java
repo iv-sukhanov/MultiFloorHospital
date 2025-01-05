@@ -3,6 +3,10 @@ package main;
 import java.awt.*;
 import javax.swing.*;
 
+import main.options.AddEquipmentOption;
+import main.options.AddPatientOption;
+import main.options.Option;
+
 public class MultiFloorHospital {
     private static final Option[] options = {
         new AddPatientOption(),

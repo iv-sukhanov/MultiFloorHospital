@@ -1,4 +1,4 @@
-package main;
+package main.gui;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -13,7 +13,7 @@ public class HintTextField extends JTextField {
     private final Color hintColor = Color.GRAY;
     private final Color textColor = Color.BLACK;
     
-    HintTextField(String hint) {
+    public HintTextField(String hint) {
         super("");
         setForeground(hintColor);
         setText(hint);
@@ -39,7 +39,7 @@ public class HintTextField extends JTextField {
         });
     }
 
-    HintTextField(String hint, Dimension size) {
+    public HintTextField(String hint, Dimension size) {
         this(hint);
         setMaximumSize(size);
     }

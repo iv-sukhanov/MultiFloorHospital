@@ -1,4 +1,4 @@
-package main;
+package main.gui;
 
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -17,5 +17,4 @@ public class CenteredLabel extends JPanel {
         this(text);
         setMaximumSize(size);
     }
-    
 }

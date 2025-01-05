@@ -1,10 +1,19 @@
-package main;
+package main.options;
 
 import java.awt.Component;
 import java.awt.Dimension;
 import java.time.ZoneId;
 
 import javax.swing.*;
+
+import main.entities.HospitalEquipment;
+import main.gui.CenteredElementPanel;
+import main.gui.CenteredLabel;
+import main.gui.DateSpinnerPanel;
+import main.gui.FillerPannel;
+import main.gui.HintTextField;
+import main.gui.NavigationButtonsPanel;
+import main.gui.RadioButtonPanel;
 
 public class AddEquipmentOption extends Option {
 
