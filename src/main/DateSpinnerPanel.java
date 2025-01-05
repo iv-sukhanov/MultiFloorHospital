@@ -25,8 +25,7 @@ public class DateSpinnerPanel extends JPanel {
             new Date(), null, Calendar.getInstance().getTime(), Calendar.MONTH
         );
         JSpinner dateSpinner = new JSpinner(dateModel);
-        DateEditor dateEditor = new DateEditor(dateSpinner, "dd/MM/yyyy");
-        dateSpinner.setEditor(dateEditor);
+        dateSpinner.setEditor(new DateEditor(dateSpinner, "dd/MM/yyyy"));
         dateSpinner.setMaximumSize(new Dimension(SPINNER_WIDTH, SPINNER_HIGHT));
         
         add(Box.createHorizontalStrut(horizontalMargin));
