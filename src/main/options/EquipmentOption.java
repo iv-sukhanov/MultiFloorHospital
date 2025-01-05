@@ -3,7 +3,6 @@ package main.options;
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.time.ZoneId;
 import java.util.List;
 
@@ -58,18 +57,16 @@ public class EquipmentOption extends Option {
 
     private void listEquipment(JFrame mainFrame) {
 
+        Dimension mainFrameSize = mainFrame.getSize();
+
         JDialog listEquipmentFrame = new JDialog(mainFrame, "Hospital Equipment", true);
         listEquipmentFrame.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-        listEquipmentFrame.setSize(mainFrame.getSize());
+        listEquipmentFrame.setSize(mainFrameSize);
         listEquipmentFrame.setLocationRelativeTo(mainFrame);
         listEquipmentFrame.setLayout(new BorderLayout());
 
         DefaultListModel<String> listModel = new DefaultListModel<>();
-        List<String> names = equipmentList.getNames();
-        for (String name : names) {
-            listModel.addElement(name);
-        }
-
+        fillModel(listModel);
         JList<String> mainList = new JList<>(listModel);
         mainList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         JScrollPane listScrollPane = new JScrollPane(mainList);
@@ -80,34 +77,10 @@ public class EquipmentOption extends Option {
         JScrollPane tableScrollPane = new JScrollPane(detailsTable);
 
         JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, listScrollPane, tableScrollPane);
-        splitPane.setDividerLocation(200); // Divide the window between the two components
+        splitPane.setDividerLocation((int)(mainFrameSize.getWidth() / 4));
         
         listEquipmentFrame.add(splitPane, BorderLayout.CENTER);
         
-        JPanel buttonPanel = new JPanel();
-        buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.X_AXIS));
-        buttonPanel.setMaximumSize(new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT));
-
-        JPanel rightButtonPanel = new JPanel();
-        rightButtonPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
-
-        JPanel leftButtonPanel = new JPanel();
-        leftButtonPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
-
-        JButton addButton = new JButton("Add");
-        JButton deleteButton = new JButton("Delete");
-        JButton backButton = new JButton("Back");
-
-        rightButtonPanel.add(addButton);
-        rightButtonPanel.add(deleteButton);
-        leftButtonPanel.add(backButton);
-        
-        buttonPanel.add(leftButtonPanel);
-        buttonPanel.add(new FillerPannel());
-        buttonPanel.add(rightButtonPanel);
-
-        listEquipmentFrame.add(buttonPanel, BorderLayout.SOUTH);
-
         mainList.addListSelectionListener(new ListSelectionListener() {
             public void valueChanged(ListSelectionEvent e) {
                 if (!e.getValueIsAdjusting()) {
@@ -120,35 +93,35 @@ public class EquipmentOption extends Option {
                 }
             }
         });
-
-        addButton.addActionListener(e -> {
-            listEquipmentFrame.dispose();
-            addEquepment(listEquipmentFrame);
-            super.button.doClick();
-        });
-
-        deleteButton.addActionListener(e -> {
-            String selectedOption = mainList.getSelectedValue();
-            int selectedRow = detailsTable.getSelectedRow();
-            if (selectedOption == null && selectedRow != -1) {
-                int confirmed = JOptionPane.showConfirmDialog(listEquipmentFrame, 
-                    "Are you sure you want to delete " + selectedRow + "th element?",
-                    "Delete Confirmation",
-                    JOptionPane.YES_NO_OPTION);
-
-                if (confirmed == JOptionPane.YES_OPTION) {
-                    equipmentList.remove(selectedOption, selectedRow);
+        
+        NavigationButtonsPanel buttonPanel = new NavigationButtonsPanel(
+            new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT), 
+            e -> {listEquipmentFrame.dispose();}, 
+            e -> {
                     listEquipmentFrame.dispose();
+                    addEquepment(listEquipmentFrame);
                     super.button.doClick();
+                },
+            e -> {
+                    String selectedOption = mainList.getSelectedValue();
+                    int selectedRow = detailsTable.getSelectedRow();
+                    if (selectedOption != null && selectedRow != -1) {
+                        int confirmed = JOptionPane.showConfirmDialog(listEquipmentFrame, 
+                            "Are you sure you want to delete " + selectedRow + "th element?",
+                            "Delete Confirmation",
+                            JOptionPane.YES_NO_OPTION);
+        
+                        if (confirmed == JOptionPane.YES_OPTION) {
+                            equipmentList.remove(selectedOption, selectedRow);
+                            listEquipmentFrame.dispose();
+                            super.button.doClick();
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(listEquipmentFrame, "No item selected to delete.");
+                    }
                 }
-            } else {
-                JOptionPane.showMessageDialog(listEquipmentFrame, "No item selected to delete.");
-            }
-        });
-
-        backButton.addActionListener(e -> {
-            listEquipmentFrame.dispose();
-        });
+        );
+        listEquipmentFrame.add(buttonPanel, BorderLayout.SOUTH);
 
         listEquipmentFrame.setVisible(true);
     }
@@ -232,4 +205,11 @@ public class EquipmentOption extends Option {
         equipmentFrame.setVisible(true);
     }
     
+    private void fillModel(DefaultListModel<String> listModel) {
+        List<String> names = equipmentList.getNames();
+        for (String name : names) {
+            listModel.addElement(name);
+        }
+    }
+
 }
