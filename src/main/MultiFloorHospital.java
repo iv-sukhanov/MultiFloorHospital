@@ -3,14 +3,17 @@ package main;
 import java.awt.*;
 import javax.swing.*;
 
-import main.options.AddEquipmentOption;
+import main.entities.EquipmentList;
 import main.options.AddPatientOption;
+import main.options.EquipmentOption;
 import main.options.Option;
 
 public class MultiFloorHospital {
+    private static final EquipmentList equipmentList = new EquipmentList();
+    
     private static final Option[] options = {
         new AddPatientOption(),
-        new AddEquipmentOption()
+        new EquipmentOption(equipmentList)
     };
 
     static final int Y_SPACE_BETWEEN_BUTTONS = 10;

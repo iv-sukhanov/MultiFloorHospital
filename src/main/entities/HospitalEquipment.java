@@ -1,14 +1,9 @@
 package main.entities;
 
 import java.time.LocalDate;
-import java.util.Map;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
 
 public class HospitalEquipment {
     
-    private static Map<String, List<HospitalEquipment>> equipmentMap = new HashMap<>();
     private static int idCounter = 0;
 
     private String name;
@@ -66,13 +61,6 @@ public class HospitalEquipment {
         this.id = idCounter++;
         this.isAvailable = isAvailable;
         this.lastMaintenanceDate = lastMaintenanceDate;
-
-        if (!equipmentMap.containsKey(name)) {
-            equipmentMap.put(name, new LinkedList<>());
-        }
-        equipmentMap.get(name).add(this);
-
-        System.out.println(this);
     }
 
     public String toString() {
