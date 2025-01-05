@@ -72,7 +72,12 @@ public class AddEquipmentOption extends Option {
         );
         radioPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
 
-        DateSpinner datePanel = new DateSpinner("Enter the last maintenance date:");
+        DateSpinnerPanel datePanel = new DateSpinnerPanel(
+            "Enter the last maintenance date:",
+            new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT),
+            HORIZONTAL_MARGIN    
+        );
+        datePanel.setAlignmentX(Component.LEFT_ALIGNMENT);
 
         JButton backButton = new JButton("Back");
         backButton.setBackground(new Color(255, 0, 0));
@@ -110,6 +115,8 @@ public class AddEquipmentOption extends Option {
         equipmentFrame.add(manufacturerPanel);
         equipmentFrame.add(Box.createVerticalStrut(VERTICAL_MARGIN));
         equipmentFrame.add(radioPanel);
+        equipmentFrame.add(Box.createVerticalStrut(VERTICAL_MARGIN));
+        equipmentFrame.add(datePanel);        
         // equipmentFrame.add(Box.createRigidArea(new Dimension(0, HEIGHT_MARGIN)));
         // equipmentFrame.add(datePanel);
         // equipmentFrame.add(Box.createRigidArea(new Dimension(0, HEIGHT_MARGIN)));
