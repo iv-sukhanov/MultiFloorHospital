@@ -8,11 +8,19 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
 public class RadioButtonPanel extends JPanel {
+
+    private JRadioButton radioButton;
     
-    public RadioButtonPanel(JRadioButton rButton, int horizontalMargin, Dimension size) {
+    public RadioButtonPanel(String text, boolean isSelected, int horizontalMargin, Dimension size) {
+        this.radioButton = new JRadioButton(text, isSelected);
+        
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setMaximumSize(size);
         add(Box.createHorizontalStrut(horizontalMargin));
-        add(rButton);
+        add(this.radioButton);
+    }
+
+    public boolean isSelected() {
+        return radioButton.isSelected();
     }
 }

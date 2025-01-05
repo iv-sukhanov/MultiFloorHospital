@@ -71,6 +71,13 @@ public class HospitalEquipment {
             equipmentMap.put(name, new LinkedList<>());
         }
         equipmentMap.get(name).add(this);
+
+        System.out.println(this);
+    }
+
+    public String toString() {
+        return "HospitalEquipment [name=" + name + ", manufacturer=" + manufacturer + ", id=" + id + ", isAvailable="
+                + isAvailable + ", lastMaintenanceDate=" + lastMaintenanceDate + "]";
     }
 
     public HospitalEquipment(String name, String manufacturer) {

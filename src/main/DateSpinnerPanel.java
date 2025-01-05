@@ -14,8 +14,10 @@ import javax.swing.SpinnerDateModel;
 
 public class DateSpinnerPanel extends JPanel {
 
-    static final int SPINNER_WIDTH = 150;
-    static final int SPINNER_HIGHT = 40;
+    private static final int SPINNER_WIDTH = 150;
+    private static final int SPINNER_HIGHT = 40;
+    private JSpinner dateSpinner;
+
 
     DateSpinnerPanel(String label, Dimension size, int horizontalMargin) {
         
@@ -24,13 +26,17 @@ public class DateSpinnerPanel extends JPanel {
         SpinnerDateModel dateModel = new SpinnerDateModel(
             new Date(), null, Calendar.getInstance().getTime(), Calendar.MONTH
         );
-        JSpinner dateSpinner = new JSpinner(dateModel);
+        dateSpinner = new JSpinner(dateModel);
         dateSpinner.setEditor(new DateEditor(dateSpinner, "dd/MM/yyyy"));
         dateSpinner.setMaximumSize(new Dimension(SPINNER_WIDTH, SPINNER_HIGHT));
-        
+
         add(Box.createHorizontalStrut(horizontalMargin));
         add(new JLabel(label));
         add(Box.createHorizontalStrut(horizontalMargin));
         add(dateSpinner);
+    }
+
+    public Date getDate() {
+        return ((SpinnerDateModel)(dateSpinner.getModel())).getDate();
     }
 }
