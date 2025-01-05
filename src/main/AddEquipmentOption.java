@@ -38,7 +38,6 @@ public class AddEquipmentOption extends Option {
             "Please enter the following information:",
             new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT)
         );
-        promptPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
 
         CenteredElementPanel namePanel = new CenteredElementPanel(
             new HintTextField(
@@ -48,7 +47,6 @@ public class AddEquipmentOption extends Option {
             HORIZONTAL_MARGIN, 
             new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT)
         );
-        namePanel.setAlignmentX(Component.LEFT_ALIGNMENT);
 
         CenteredElementPanel manufacturerPanel = new CenteredElementPanel(
             new HintTextField(
@@ -58,7 +56,6 @@ public class AddEquipmentOption extends Option {
             HORIZONTAL_MARGIN, 
             new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT)
         );
-        manufacturerPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
 
         RadioButtonPanel radioPanel = new RadioButtonPanel(
             "The equipment is available", 
@@ -66,14 +63,12 @@ public class AddEquipmentOption extends Option {
             HORIZONTAL_MARGIN / 2,
             new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT)
         );
-        radioPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
 
         DateSpinnerPanel datePanel = new DateSpinnerPanel(
             "Enter the last maintenance date:",
             new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT),
             HORIZONTAL_MARGIN    
         );
-        datePanel.setAlignmentX(Component.LEFT_ALIGNMENT);
 
         NavigationButtonsPanel navigationPanel = new NavigationButtonsPanel(
             new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT), 
@@ -88,20 +83,22 @@ public class AddEquipmentOption extends Option {
                 equipmentFrame.dispose();
             }
         );
-        navigationPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
 
-        equipmentFrame.add(Box.createVerticalStrut(VERTICAL_MARGIN));
-        equipmentFrame.add(promptPanel);
-        equipmentFrame.add(Box.createVerticalStrut(VERTICAL_MARGIN));
-        equipmentFrame.add(namePanel);
-        equipmentFrame.add(Box.createVerticalStrut(VERTICAL_MARGIN));        
-        equipmentFrame.add(manufacturerPanel);
-        equipmentFrame.add(Box.createVerticalStrut(VERTICAL_MARGIN));
-        equipmentFrame.add(radioPanel);
-        equipmentFrame.add(Box.createVerticalStrut(VERTICAL_MARGIN));
-        equipmentFrame.add(datePanel);        
-        equipmentFrame.add(new FillerPannel());
-        equipmentFrame.add(navigationPanel);        
+        JPanel elementsToDisplay[] = {
+            promptPanel,
+            namePanel,
+            manufacturerPanel,
+            radioPanel,
+            datePanel,
+            new FillerPannel(),
+            navigationPanel
+        };
+
+        for (JPanel panel : elementsToDisplay) {
+            panel.setAlignmentX(Component.LEFT_ALIGNMENT);
+            equipmentFrame.add(Box.createVerticalStrut(VERTICAL_MARGIN));
+            equipmentFrame.add(panel);
+        }      
 
         equipmentFrame.setLocationRelativeTo(mainFrame);
         equipmentFrame.setVisible(true);
