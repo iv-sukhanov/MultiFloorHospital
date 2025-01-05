@@ -44,4 +44,19 @@ public class EquipmentList {
     public boolean containsKey(String name) {
         return equipmentMap.containsKey(name);
     }
+
+    public boolean remove(String name, int index) {
+        if (!equipmentMap.containsKey(name)) {
+            return false;
+        }
+        List<HospitalEquipment> currentList = equipmentMap.get(name);
+
+        if (currentList.remove(index) != null) {
+            if (currentList.isEmpty()) {
+                equipmentMap.remove(name);
+            }
+            return true;
+        }
+        return false;
+    }
 }

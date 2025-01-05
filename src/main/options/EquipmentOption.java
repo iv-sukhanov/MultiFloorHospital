@@ -14,6 +14,7 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
@@ -60,6 +61,7 @@ public class EquipmentOption extends Option {
         JDialog listEquipmentFrame = new JDialog(mainFrame, "Hospital Equipment", true);
         listEquipmentFrame.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         listEquipmentFrame.setSize(mainFrame.getSize());
+        listEquipmentFrame.setLocationRelativeTo(mainFrame);
         listEquipmentFrame.setLayout(new BorderLayout());
 
         DefaultListModel<String> listModel = new DefaultListModel<>();
@@ -83,14 +85,27 @@ public class EquipmentOption extends Option {
         listEquipmentFrame.add(splitPane, BorderLayout.CENTER);
         
         JPanel buttonPanel = new JPanel();
-        buttonPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
+        buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.X_AXIS));
+        buttonPanel.setMaximumSize(new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT));
+
+        JPanel rightButtonPanel = new JPanel();
+        rightButtonPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
+
+        JPanel leftButtonPanel = new JPanel();
+        leftButtonPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
 
         JButton addButton = new JButton("Add");
         JButton deleteButton = new JButton("Delete");
+        JButton backButton = new JButton("Back");
 
-        buttonPanel.add(addButton);
-        buttonPanel.add(deleteButton);
+        rightButtonPanel.add(addButton);
+        rightButtonPanel.add(deleteButton);
+        leftButtonPanel.add(backButton);
         
+        buttonPanel.add(leftButtonPanel);
+        buttonPanel.add(new FillerPannel());
+        buttonPanel.add(rightButtonPanel);
+
         listEquipmentFrame.add(buttonPanel, BorderLayout.SOUTH);
 
         mainList.addListSelectionListener(new ListSelectionListener() {
@@ -110,6 +125,29 @@ public class EquipmentOption extends Option {
             listEquipmentFrame.dispose();
             addEquepment(listEquipmentFrame);
             super.button.doClick();
+        });
+
+        deleteButton.addActionListener(e -> {
+            String selectedOption = mainList.getSelectedValue();
+            int selectedRow = detailsTable.getSelectedRow();
+            if (selectedOption == null && selectedRow != -1) {
+                int confirmed = JOptionPane.showConfirmDialog(listEquipmentFrame, 
+                    "Are you sure you want to delete " + selectedRow + "th element?",
+                    "Delete Confirmation",
+                    JOptionPane.YES_NO_OPTION);
+
+                if (confirmed == JOptionPane.YES_OPTION) {
+                    equipmentList.remove(selectedOption, selectedRow);
+                    listEquipmentFrame.dispose();
+                    super.button.doClick();
+                }
+            } else {
+                JOptionPane.showMessageDialog(listEquipmentFrame, "No item selected to delete.");
+            }
+        });
+
+        backButton.addActionListener(e -> {
+            listEquipmentFrame.dispose();
         });
 
         listEquipmentFrame.setVisible(true);
