@@ -5,6 +5,8 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
@@ -103,9 +105,12 @@ public class AddEquipmentOption extends Option {
             equipmentFrame.dispose();
         });
 
-        JPanel navigationPanel = new JPanel();
-        navigationPanel.add(backButton);
-        navigationPanel.add(confirmButton);
+        NavigationButtonsPanel navigationPanel = new NavigationButtonsPanel(
+            new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT), 
+            e -> {equipmentFrame.dispose();}, 
+            e -> {equipmentFrame.dispose();}
+        );
+        navigationPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
         
         equipmentFrame.add(Box.createVerticalStrut(VERTICAL_MARGIN));
         equipmentFrame.add(promptPanel);
@@ -117,10 +122,9 @@ public class AddEquipmentOption extends Option {
         equipmentFrame.add(radioPanel);
         equipmentFrame.add(Box.createVerticalStrut(VERTICAL_MARGIN));
         equipmentFrame.add(datePanel);        
-        // equipmentFrame.add(Box.createRigidArea(new Dimension(0, HEIGHT_MARGIN)));
-        // equipmentFrame.add(datePanel);
-        // equipmentFrame.add(Box.createRigidArea(new Dimension(0, HEIGHT_MARGIN)));
-        // equipmentFrame.add(navigationPanel);
+        equipmentFrame.add(Box.createVerticalStrut(VERTICAL_MARGIN * 2));
+        equipmentFrame.add(navigationPanel);        
+
         equipmentFrame.setLocationRelativeTo(mainFrame);
         equipmentFrame.setVisible(true);
     }
