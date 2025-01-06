@@ -5,7 +5,6 @@ import java.awt.Component;
 import java.awt.Dimension;
 
 import javax.swing.Box;
-import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
@@ -14,7 +13,6 @@ import javax.swing.JPanel;
 import main.gui.CenteredElementPanel;
 import main.gui.CenteredLabel;
 import main.gui.DependantFrame;
-import main.gui.FillerPannel;
 import main.gui.HintTextField;
 import main.gui.NavigationButtonsPanel;
 
@@ -97,5 +95,6 @@ public class HospitalStaffOption extends Option {
         }
         
         addStaffFrame.setVisible(true);
+        navigationPanel.requestFocusInWindow();
     }
 }

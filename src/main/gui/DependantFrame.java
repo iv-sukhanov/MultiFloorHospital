@@ -3,7 +3,6 @@ package main.gui;
 import java.awt.Frame;
 import java.awt.LayoutManager;
 
-import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JDialog;
 
