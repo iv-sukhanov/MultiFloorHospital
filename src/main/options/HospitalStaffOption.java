@@ -18,6 +18,7 @@ import javax.swing.JPanel;
 
 import main.gui.CenteredElementPanel;
 import main.gui.CenteredLabel;
+import main.gui.ComboBoxPanel;
 import main.gui.DateSpinnerPanel;
 import main.gui.DependantFrame;
 import main.gui.HintTextField;
@@ -134,22 +135,13 @@ public class HospitalStaffOption extends Option {
             "Email: "
         );
 
-        JPanel genderPanel = new JPanel();
-        genderPanel.setLayout(new BoxLayout(genderPanel, BoxLayout.X_AXIS));
-        genderPanel.setMaximumSize(new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT + 20));
-        genderPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
-        genderPanel.add(Box.createHorizontalStrut(HORIZONTAL_MARGIN));
-        JLabel genderLabel = new JLabel("Please, select the gender of the staff: ");
-        genderLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
-        genderPanel.add(genderLabel);
-        genderPanel.add(Box.createHorizontalStrut(HORIZONTAL_MARGIN));
         String options[] = {"Male", "Female"};
-        JComboBox<String> genderComboBox = new JComboBox<>(options);
-        genderComboBox.setAlignmentX(Component.LEFT_ALIGNMENT);
-        genderPanel.add(genderComboBox);
-        genderPanel.add(Box.createHorizontalStrut(HORIZONTAL_MARGIN));
-
-
+        ComboBoxPanel genderPanel = new ComboBoxPanel(
+            "Please, select the gender of the staff member",
+            options,
+            new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT),
+            HORIZONTAL_MARGIN
+        );
 
         CenteredElementPanel positionPanel = new CenteredElementPanel(
             new HintTextField(
