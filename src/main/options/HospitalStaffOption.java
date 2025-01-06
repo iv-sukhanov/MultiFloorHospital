@@ -3,18 +3,26 @@ package main.options;
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Label;
 
 import javax.swing.Box;
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import main.gui.CenteredElementPanel;
 import main.gui.CenteredLabel;
+import main.gui.DateSpinnerPanel;
 import main.gui.DependantFrame;
 import main.gui.HintTextField;
 import main.gui.NavigationButtonsPanel;
+import main.gui.RadioButtonPanel;
 
 public class HospitalStaffOption extends Option {
 
@@ -45,9 +53,9 @@ public class HospitalStaffOption extends Option {
             new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT),
             e -> {listStaffFrame.dispose();},
             e -> {
-                listStaffFrame.dispose();
+                // listStaffFrame.dispose();
                 addStaff(mainFrame);
-                super.button.doClick();
+                // super.button.doClick();
             },
             e -> {listStaffFrame.dispose();}
         );
@@ -62,6 +70,19 @@ public class HospitalStaffOption extends Option {
             "Add Staff"
         );
 
+        // String name, +
+        // int age, +
+        // LocalDate dateOfBirth, +
+        // String idNumber, +
+        // String phoneNumber, +
+        // String email, +
+        // boolean isMale, +
+        // boolean ownsCar,
+        // String carNumber,
+        // String position, +
+        // boolean available,
+        // Patient patient
+
         CenteredLabel titlePanel = new CenteredLabel(
             "Please, enter the following information", 
             new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT)
@@ -73,7 +94,71 @@ public class HospitalStaffOption extends Option {
                 new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT)
             ),
             HORIZONTAL_MARGIN,
-            new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT)
+            new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT),
+            "Name: "
+        );
+
+        DateSpinnerPanel dateOfBirthPanel = new DateSpinnerPanel(
+            "Please, enter the date of birth of the staff member",
+            new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT),
+            HORIZONTAL_MARGIN
+        );
+
+        CenteredElementPanel idPanel = new CenteredElementPanel(
+            new HintTextField(
+                "Please, enter the id number of the staff member",
+                new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT)
+            ),
+            HORIZONTAL_MARGIN,
+            new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT),
+            "ID nubmer: "
+        );
+
+        CenteredElementPanel telephonePanel = new CenteredElementPanel(
+            new HintTextField(
+                "Please, enter the phone number of the staff member",
+                new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT)
+            ),
+            HORIZONTAL_MARGIN,
+            new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT),
+            "Phone nubmer: "
+        );
+
+        CenteredElementPanel emailPanel = new CenteredElementPanel(
+            new HintTextField(
+                "Please, enter the email of the staff member",
+                new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT)
+            ),
+            HORIZONTAL_MARGIN,
+            new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT),
+            "Email: "
+        );
+
+        JPanel genderPanel = new JPanel();
+        genderPanel.setLayout(new BoxLayout(genderPanel, BoxLayout.X_AXIS));
+        genderPanel.setMaximumSize(new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT + 20));
+        genderPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
+        genderPanel.add(Box.createHorizontalStrut(HORIZONTAL_MARGIN));
+        JLabel genderLabel = new JLabel("Please, select the gender of the staff: ");
+        genderLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
+        genderPanel.add(genderLabel);
+        genderPanel.add(Box.createHorizontalStrut(HORIZONTAL_MARGIN));
+        String options[] = {"Male", "Female"};
+        JComboBox<String> genderComboBox = new JComboBox<>(options);
+        genderComboBox.setAlignmentX(Component.LEFT_ALIGNMENT);
+        genderPanel.add(genderComboBox);
+        genderPanel.add(Box.createHorizontalStrut(HORIZONTAL_MARGIN));
+
+
+
+        CenteredElementPanel positionPanel = new CenteredElementPanel(
+            new HintTextField(
+                "Please, enter the position of the staff member",
+                new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT)
+            ),
+            HORIZONTAL_MARGIN,
+            new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT),
+            "Position: "
         );
 
         NavigationButtonsPanel navigationPanel = new NavigationButtonsPanel(
@@ -85,6 +170,12 @@ public class HospitalStaffOption extends Option {
         JPanel elementsToDisplay[] = {
             titlePanel,
             namePanel,
+            idPanel,
+            telephonePanel,
+            emailPanel,
+            positionPanel,
+            genderPanel,
+            dateOfBirthPanel,
             navigationPanel
         };
 
@@ -95,6 +186,5 @@ public class HospitalStaffOption extends Option {
         }
         
         addStaffFrame.setVisible(true);
-        navigationPanel.requestFocusInWindow();
     }
 }

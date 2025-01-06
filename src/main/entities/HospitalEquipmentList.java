@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 public class HospitalEquipmentList extends Hospital {
-    private static Map<String, List<HospitalEquipment>> equipmentMap = new HashMap<>();
+    private final Map<String, List<HospitalEquipment>> equipmentMap = new HashMap<>();
     
     public HospitalEquipmentList(Hospital hospital) {
         super(hospital);
@@ -21,6 +21,11 @@ public class HospitalEquipmentList extends Hospital {
     }
 
     public void add(HospitalEquipment h) {
+        
+        if (h == null) {
+            return;
+        }
+        
         String name = h.getName();
         
         if (!equipmentMap.containsKey(name)) {
