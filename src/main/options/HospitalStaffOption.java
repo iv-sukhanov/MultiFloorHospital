@@ -3,19 +3,16 @@ package main.options;
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.Label;
+import java.time.ZoneId;
 
 import javax.swing.Box;
-import javax.swing.BoxLayout;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import main.entities.HospitalStaff;
+import main.entities.HospitalStaffList;
 import main.gui.CenteredElementPanel;
 import main.gui.CenteredLabel;
 import main.gui.ComboBoxPanel;
@@ -27,11 +24,14 @@ import main.gui.RadioButtonPanel;
 
 public class HospitalStaffOption extends Option {
 
-    public HospitalStaffOption() {
+    private final HospitalStaffList staffList;
+
+    public HospitalStaffOption(HospitalStaffList staffList) {
         super(
             "HospitalStaffOption", 
             new JButton("Hospital Staff")
         );
+        this.staffList = staffList;
     }
 
     public void execute(JFrame frame) {
@@ -78,10 +78,10 @@ public class HospitalStaffOption extends Option {
         // String phoneNumber, +
         // String email, +
         // boolean isMale, +
-        // boolean ownsCar,
-        // String carNumber,
+        // boolean ownsCar, +
+        // String carNumber, +
         // String position, +
-        // boolean available,
+        // boolean available, 
         // Patient patient
 
         CenteredLabel titlePanel = new CenteredLabel(
@@ -153,10 +153,42 @@ public class HospitalStaffOption extends Option {
             "Position: "
         );
 
+        RadioButtonPanel ownsCarPanel = new RadioButtonPanel(
+            "Owns a car",
+            "Please, enter the car number of the staff member in XXX-000 format",
+            false,
+            HORIZONTAL_MARGIN,
+            new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT)
+        );
+
+        String patients[] = {"One", "Two", "Three"}; //TODO add real patients
+        RadioButtonPanel isAvailablePanel = new RadioButtonPanel(
+            "Is busy right now",
+            patients,
+            false,
+            HORIZONTAL_MARGIN,
+            new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT)
+        );
+
         NavigationButtonsPanel navigationPanel = new NavigationButtonsPanel(
             new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT),
             e -> {addStaffFrame.dispose();},
-            e -> {addStaffFrame.dispose();}
+            e -> {
+                staffList.add(new HospitalStaff(
+                    namePanel.getText(),
+                    dateOfBirthPanel.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), 
+                    idPanel.getText(), 
+                    telephonePanel.getText(), 
+                    emailPanel.getText(), 
+                    genderPanel.getSelectedIndex() == 0, 
+                    ownsCarPanel.isSelected(), 
+                    ownsCarPanel.getText(),
+                    positionPanel.getText(), 
+                    isAvailablePanel.isSelected(), 
+                    null //TODO
+                ));
+                addStaffFrame.dispose();
+            }
         );
 
         JPanel elementsToDisplay[] = {
@@ -166,6 +198,8 @@ public class HospitalStaffOption extends Option {
             telephonePanel,
             emailPanel,
             positionPanel,
+            ownsCarPanel,
+            isAvailablePanel,
             genderPanel,
             dateOfBirthPanel,
             navigationPanel

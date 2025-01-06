@@ -9,6 +9,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class ComboBoxPanel extends JPanel {
+
+    private JComboBox<String> comboBox;
     
     public ComboBoxPanel(String pormpt, String[] options, Dimension size, int hospitalMargin) {
         setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
@@ -17,9 +19,13 @@ public class ComboBoxPanel extends JPanel {
         JLabel genderLabel = new JLabel(pormpt);
         add(genderLabel);
         add(Box.createHorizontalStrut(hospitalMargin / 4));
-        JComboBox<String> genderComboBox = new JComboBox<>(options);
-        add(genderComboBox);
+        this.comboBox = new JComboBox<>(options);
+        add(comboBox);
         add(Box.createHorizontalStrut(hospitalMargin));
+    }
+
+    public int getSelectedIndex() {
+        return comboBox.getSelectedIndex();
     }
 }
     

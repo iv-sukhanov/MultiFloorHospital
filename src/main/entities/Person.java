@@ -113,8 +113,8 @@ public abstract class Person {
 
     public void setCarNumber(String carNumber) {
 
-        if (!carNumber.matches("^[A-Z]{2}-\\d{4}-[A-Z]{2}$")) {
-            throw new IllegalArgumentException("Wrong car number format, it should be XX-0000-XX");
+        if (!carNumber.matches("^[A-Z]{3}-\\d{3}$")) {
+            throw new IllegalArgumentException("Wrong car number format, it should be XXX-000");
         }
 
         this.carNumber = carNumber;
@@ -125,9 +125,9 @@ public abstract class Person {
     private boolean ownsCar;
     private String carNumber;
 
-    public Person(String name, int age, LocalDate dateOfBirth, String idNumber, String phoneNumber, String email, boolean isMale, boolean ownsCar, String carNumber) {
+    public Person(String name, LocalDate dateOfBirth, String idNumber, String phoneNumber, String email, boolean isMale, boolean ownsCar, String carNumber) {
         setName(name);
-        setAge(age);
+        // setAge(age); TODO
         setDateOfBirth(dateOfBirth);
         setIdNumber(idNumber);
         setPhoneNumber(phoneNumber);

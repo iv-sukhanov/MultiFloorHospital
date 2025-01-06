@@ -23,7 +23,6 @@ public class HospitalStaff extends Person {
 
     public HospitalStaff(
             String name,
-            int age,
             LocalDate dateOfBirth,
             String idNumber,
             String phoneNumber,
@@ -35,7 +34,7 @@ public class HospitalStaff extends Person {
             boolean available,
             Patient patient
     ) {
-        super(name, age, dateOfBirth, idNumber, phoneNumber, email, isMale, ownsCar, carNumber);
+        super(name, dateOfBirth, idNumber, phoneNumber, email, isMale, ownsCar, carNumber);
         this.position = position;
         this.available = available;
         this.patient = patient;
