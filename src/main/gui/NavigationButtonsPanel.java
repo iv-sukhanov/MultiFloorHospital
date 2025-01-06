@@ -29,7 +29,7 @@ public class NavigationButtonsPanel extends JPanel {
         confirmButton.setPreferredSize(BUTTON_SIZE);
         confirmButton.setMinimumSize(BUTTON_SIZE);
         confirmButton.addActionListener(confirm);
-
+        
         setLayout(new FlowLayout(FlowLayout.CENTER));
         setSize(size);
         add(backButton);

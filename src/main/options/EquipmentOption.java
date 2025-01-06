@@ -23,7 +23,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
-import main.entities.EquipmentList;
+import main.entities.HospitalEquipmentList;
 import main.entities.HospitalEquipment;
 import main.gui.CenteredElementPanel;
 import main.gui.CenteredLabel;
@@ -35,13 +35,9 @@ import main.gui.RadioButtonPanel;
 
 public class EquipmentOption extends Option {
 
-    private static final int TEXT_FIELDS_HIGHT = 20;
-    private static final int HORIZONTAL_MARGIN = 30;
-    private static final int VERTICAL_MARGIN = 20;
+    private HospitalEquipmentList equipmentList;
 
-    private EquipmentList equipmentList;
-
-    public EquipmentOption(EquipmentList equipmentList) {
+    public EquipmentOption(HospitalEquipmentList equipmentList) {
         super(
             "EquipmentOption", 
             new JButton("Equipment")
@@ -175,11 +171,22 @@ public class EquipmentOption extends Option {
             new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT), 
             e -> {equipmentFrame.dispose();}, 
             e -> {
+
+                if (namePanel.getText().equals("Enter the name of the equipment")) {
+                    JOptionPane.showMessageDialog(equipmentFrame, "Please enter the name of the equipment.");
+                    return;
+                }
+
                 equipmentList.add(new HospitalEquipment(
                     namePanel.getText(),
-                    manufacturerPanel.getText(), 
+                    (
+                        manufacturerPanel.getText().equals("Enter the manufacturer of the equipment") ? 
+                        "Unknown" : 
+                        manufacturerPanel.getText()
+                    ), 
                     radioPanel.isSelected(), 
-                    datePanel.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate()
+                    datePanel.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),
+                    equipmentList
                 ));
                 equipmentFrame.dispose();
             }
@@ -202,6 +209,7 @@ public class EquipmentOption extends Option {
         }      
 
         equipmentFrame.setLocationRelativeTo(mainFrame);
+        //TODO transfer focus from the text fields
         equipmentFrame.setVisible(true);
     }
     

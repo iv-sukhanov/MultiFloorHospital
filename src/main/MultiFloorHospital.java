@@ -3,16 +3,20 @@ package main;
 import java.awt.*;
 import javax.swing.*;
 
-import main.entities.EquipmentList;
-import main.options.AddPatientOption;
-import main.options.EquipmentOption;
-import main.options.Option;
+import main.entities.HospitalEquipmentList;
+import main.options.*;
 
 public class MultiFloorHospital {
-    private static final EquipmentList equipmentList = new EquipmentList();
+    private static final HospitalEquipmentList equipmentList = new HospitalEquipmentList(
+        "Nicosia Hospital", 
+        "Agios Domestios", 
+        "+357 9999 88 77", 
+        "nicosiahospital@gmail.com"
+    );
     
     private static final Option[] options = {
-        new AddPatientOption(),
+        new PatientOption(),
+        new HospitalStaffOption(),
         new EquipmentOption(equipmentList)
     };
 

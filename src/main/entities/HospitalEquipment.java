@@ -2,7 +2,7 @@ package main.entities;
 
 import java.time.LocalDate;
 
-public class HospitalEquipment {
+public class HospitalEquipment extends Hospital{
     
     private static int idCounter = 0;
 
@@ -55,7 +55,9 @@ public class HospitalEquipment {
         this.lastMaintenanceDate = lastMaintenanceDate;
     }
 
-    public HospitalEquipment(String name, String manufacturer, boolean isAvailable, LocalDate lastMaintenanceDate) {
+    public HospitalEquipment(String name, String manufacturer, boolean isAvailable, LocalDate lastMaintenanceDate, Hospital hospital) {
+        super(hospital);
+
         this.name = name;
         this.manufacturer = manufacturer;
         this.id = idCounter++;
@@ -68,11 +70,11 @@ public class HospitalEquipment {
                 + isAvailable + ", lastMaintenanceDate=" + lastMaintenanceDate + "]";
     }
 
-    public HospitalEquipment(String name, String manufacturer) {
-        this(name, manufacturer, true, LocalDate.now());
+    public HospitalEquipment(String name, String manufacturer, Hospital hospital) {
+        this(name, manufacturer, true, LocalDate.now(), hospital);
     }
 
-    public HospitalEquipment(String name) {
-        this(name, "Unknown");
+    public HospitalEquipment(String name, Hospital hospital) {
+        this(name, "Unknown", hospital);
     }
 }

@@ -5,9 +5,17 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-public class EquipmentList {
+public class HospitalEquipmentList extends Hospital {
     private static Map<String, List<HospitalEquipment>> equipmentMap = new HashMap<>();
     
+    public HospitalEquipmentList(Hospital hospital) {
+        super(hospital);
+    }
+
+    public HospitalEquipmentList(String name, String address, String phoneNumber, String email) {
+        super(name, address, phoneNumber, email);
+    }
+
     public int size() {
         return equipmentMap.size();
     }
