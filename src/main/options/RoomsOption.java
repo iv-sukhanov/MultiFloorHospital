@@ -1,6 +1,8 @@
 package main.options;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
 
 import javax.swing.BorderFactory;
 import javax.swing.DefaultListModel;
@@ -8,6 +10,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.ListSelectionModel;
@@ -56,6 +59,12 @@ public class RoomsOption extends Option {
         splitPane.setDividerLocation(frame.getSize().width / 6);
         listFloorsFrame.add(splitPane, BorderLayout.CENTER);
 
+        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        JButton backButton = new JButton("Back");
+        buttonPanel.add(backButton);
+        buttonPanel.setMaximumSize(new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT));
+        listFloorsFrame.add(buttonPanel, BorderLayout.SOUTH);
+
         mainList.addListSelectionListener(e -> {
             if (!e.getValueIsAdjusting()) {
                 int selectedFloor = mainList.getSelectedIndex();
@@ -78,6 +87,10 @@ public class RoomsOption extends Option {
                     );
                 }
             }
+        });
+
+        backButton.addActionListener(e -> {
+            listFloorsFrame.dispose();
         });
 
         listFloorsFrame.setVisible(true);
