@@ -20,7 +20,23 @@ public class HospitalRoom extends Hospital {
         this.roomNumber = roomNumber;
         this.beds = new LinkedList<>();
         for (int i = 0; i < NumberOfBeds; i++) {
-            beds.add(new HospitalBed(hospital));
+            beds.add(new HospitalBed(hospital, i + 1));
         }
+    }
+
+    public String getBedsInfo() {
+        StringBuilder bedsInfo = new StringBuilder();
+        for (HospitalBed bed : beds) {
+            bedsInfo.
+            append("Bed ").
+            append(bed.getBedNumber()).
+            append(" is ").
+            append(
+                bed.isAvailable() ? 
+                "available\n" : 
+                "occupied by " + bed.getPatient().getName() + "\n"
+            );
+        }
+        return bedsInfo.toString();
     }
 }

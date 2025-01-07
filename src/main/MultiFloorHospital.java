@@ -6,14 +6,16 @@ import javax.swing.*;
 import main.entities.*;
 import main.options.*;
 
-public class MultiFloorHospital extends Hospital {
+public class MultiFloorHospital extends Hospital implements HospitalProperties {
     private final HospitalEquipmentList equipmentList = new HospitalEquipmentList(this);
     private final HospitalStaffList staffList = new HospitalStaffList(this);
+    private final HospitalFloorList hospitalFloorList = new HospitalFloorList(this, NUMBER_OF_FLOORS);
     
     private final Option[] options = {
         new PatientOption(),
         new HospitalStaffOption(staffList),
-        new EquipmentOption(equipmentList)
+        new EquipmentOption(equipmentList),
+        new RoomsOption(hospitalFloorList)
     };
 
     static final int Y_SPACE_BETWEEN_BUTTONS = 10;
@@ -25,7 +27,7 @@ public class MultiFloorHospital extends Hospital {
     static final double Y_LABEL_MULTIPLIER = 0.3;
 
     public MultiFloorHospital() {
-        super("MultiFloorHospital", "Nicosia", "+357 22 123456", "hospital@gmail.com");
+        super(HOSPITAL_NAME, HOSPITAL_ADDRESS, HOSPITAL_PHONE, HOSPITAL_EMAIL);
     }
 
     public void displayOptions() {
