@@ -1,6 +1,7 @@
 package main.entities;
 
 import java.time.LocalDate;
+import java.time.Period;
 
 public abstract class Person {
     private String name;
@@ -26,13 +27,8 @@ public abstract class Person {
         return age;
     }
 
-    public void setAge(int age) {
-        
-        if (age < 0) {
-            throw new IllegalArgumentException("Age cannot be negative");
-        }
-        
-        this.age = age;
+    public void setAge() {
+        this.age = Period.between(dateOfBirth, LocalDate.now()).getYears();
     }
 
     public LocalDate getDateOfBirth() {
@@ -71,7 +67,7 @@ public abstract class Person {
 
     public void setPhoneNumber(String phoneNumber) {
 
-        if (!phoneNumber.matches("^(\\+\\d{1,3} )?(\\(\\d{3}\\)|\\d{3})[- ]?\\d{3}[- ]?\\d{4}$")) {
+        if (!phoneNumber.matches("^(\\+\\d{1,3} )? ?\\(?\\d{1,4}\\)?[- ]?\\d{1,4}[- ]?\\d{1,4}$")) {
             throw new IllegalArgumentException("Wrong phone number format");
         } 
 
@@ -113,7 +109,7 @@ public abstract class Person {
 
     public void setCarNumber(String carNumber) {
 
-        if (!carNumber.matches("^[A-Z]{3}-\\d{3}$")) {
+        if (!(carNumber == null) && !carNumber.matches("^[A-Z]{3}-\\d{3}$")) {
             throw new IllegalArgumentException("Wrong car number format, it should be XXX-000");
         }
 
@@ -127,8 +123,8 @@ public abstract class Person {
 
     public Person(String name, LocalDate dateOfBirth, String idNumber, String phoneNumber, String email, boolean isMale, boolean ownsCar, String carNumber) {
         setName(name);
-        // setAge(age); TODO
         setDateOfBirth(dateOfBirth);
+        setAge();
         setIdNumber(idNumber);
         setPhoneNumber(phoneNumber);
         setEmail(email);

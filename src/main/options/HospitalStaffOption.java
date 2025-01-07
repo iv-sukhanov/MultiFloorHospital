@@ -9,7 +9,10 @@ import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 
 import main.entities.HospitalStaff;
 import main.entities.HospitalStaffList;
@@ -50,15 +53,52 @@ public class HospitalStaffOption extends Option {
         listStaffFrame.setLayout(new BorderLayout());
         listStaffFrame.setLocationRelativeTo(mainFrame);
         
+        String[] columnNames = {
+            "Name",
+            "Age",
+            "Date of Birth", 
+            "ID Number", 
+            "Phone Number", 
+            "Email",
+            "Gender",
+            "Owns a car",
+            "Car number",
+            "Position",
+            "Is available",
+            "Patient"
+        };
+
+        Object[][] staffData = staffList.getDetails();
+        JTable staffTable = new JTable(staffData, columnNames);
+        JScrollPane tableScrollPane = new JScrollPane(staffTable);
+        listStaffFrame.add(tableScrollPane, BorderLayout.CENTER);
+
         NavigationButtonsPanel navigationButtonsPanel = new NavigationButtonsPanel(
             new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT),
             e -> {listStaffFrame.dispose();},
             e -> {
-                // listStaffFrame.dispose();
+                listStaffFrame.dispose();
                 addStaff(mainFrame);
-                // super.button.doClick();
+                super.button.doClick();
             },
-            e -> {listStaffFrame.dispose();}
+            e -> {
+                int selectedRow = staffTable.getSelectedRow();
+                    if (selectedRow != -1) {
+                        int confirmed = JOptionPane.showConfirmDialog(listStaffFrame, 
+                            "Are you sure you want to delete " + selectedRow + "th staff member?",
+                            "Delete Confirmation",
+                            JOptionPane.YES_NO_OPTION);
+        
+                        if (confirmed == JOptionPane.YES_OPTION) {
+                            staffList.remove(selectedRow);
+                            listStaffFrame.dispose();
+                            super.button.doClick();
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(listStaffFrame, "No staff member selected to delete.");
+                    }
+                super.button.doClick();
+            }
         );
         listStaffFrame.add(navigationButtonsPanel, BorderLayout.SOUTH);
         listStaffFrame.setVisible(true);
@@ -70,19 +110,6 @@ public class HospitalStaffOption extends Option {
             mainFrame, 
             "Add Staff"
         );
-
-        // String name, +
-        // int age, +
-        // LocalDate dateOfBirth, +
-        // String idNumber, +
-        // String phoneNumber, +
-        // String email, +
-        // boolean isMale, +
-        // boolean ownsCar, +
-        // String carNumber, +
-        // String position, +
-        // boolean available, 
-        // Patient patient
 
         CenteredLabel titlePanel = new CenteredLabel(
             "Please, enter the following information", 
@@ -184,7 +211,7 @@ public class HospitalStaffOption extends Option {
                     ownsCarPanel.isSelected(), 
                     ownsCarPanel.getText(),
                     positionPanel.getText(), 
-                    isAvailablePanel.isSelected(), 
+                    !isAvailablePanel.isSelected(), 
                     null //TODO
                 ));
                 addStaffFrame.dispose();

@@ -68,7 +68,7 @@ public class RadioButtonPanel extends JPanel {
     }
 
     public String getText() {
-        if (textField == null) {
+        if ((textField == null) || !radioButton.isSelected()) {
             return null;
         }
 
