@@ -14,6 +14,18 @@ public class PatientList {
         return patients.size();
     }
 
+    public String[] getPatientNames() {
+        String[] patientNames = new String[size()];
+        for (int i = 0; i < patients.size(); i++) {
+            patientNames[i] = patients.get(i).getName();
+        }
+        return patientNames;
+    }
+
+    public Patient getPatient(int index) {
+        return patients.get(index);
+    }
+
     public String[][] getPatientsDetails() {
         String[][] patientsDetails = new String[size()][14];
         for (int i = 0; i < patients.size(); i++) {

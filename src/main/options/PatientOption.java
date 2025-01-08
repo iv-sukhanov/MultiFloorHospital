@@ -17,14 +17,15 @@ public class PatientOption extends Option {
     private final HospitalStaffList hospitalStaffList; 
     private final HospitalEquipmentList equipmentList; 
     private final HospitalFloorList hospitalFloorList;
-    private final PatientList patientList = new PatientList();
+    private final PatientList patientList;
     
-    public PatientOption(HospitalStaffList hospitalStaffList, HospitalEquipmentList equipmentList, HospitalFloorList hospitalFloorList) {
+    public PatientOption(PatientList patientList, HospitalStaffList hospitalStaffList, HospitalEquipmentList equipmentList, HospitalFloorList hospitalFloorList) {
         super(
             "PatientOption", 
             new JButton("Patients")
         );
 
+        this.patientList = patientList;
         this.hospitalStaffList = hospitalStaffList;
         this.equipmentList = equipmentList;
         this.hospitalFloorList = hospitalFloorList;
@@ -73,7 +74,10 @@ public class PatientOption extends Option {
                 addPatient(mainFrame);
                 super.button.doClick();
             },
-            e -> {listPatientsFrame.dispose();}
+            e -> {
+                //dont forget to close the patient
+                listPatientsFrame.dispose();
+            }
         );
         listPatientsFrame.add(navigationButtonsPanel, BorderLayout.SOUTH);
         listPatientsFrame.setVisible(true);

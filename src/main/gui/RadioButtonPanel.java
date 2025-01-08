@@ -26,8 +26,12 @@ public class RadioButtonPanel extends JPanel {
 
     public RadioButtonPanel(String text, String[] options, boolean isSelected, int horizontalMargin, Dimension size) {
         this.radioButton = new JRadioButton(text, isSelected);
-        this.comboBox = new JComboBox<>(options);
-        
+        this.comboBox = new JComboBox<>();
+        comboBox.addItem("N/A");
+        for (String option : options) {
+            comboBox.addItem(option);
+        }
+
         comboBox.setVisible(false);
         radioButton.addActionListener(e -> {
             comboBox.setVisible(radioButton.isSelected());
@@ -81,14 +85,14 @@ public class RadioButtonPanel extends JPanel {
             return -1;
         }
 
-        return comboBox.getSelectedIndex();
+        return comboBox.getSelectedIndex() - 1;
     }
 
     public String getSelectedItem() {
-        if ((comboBox == null) || !radioButton.isSelected()) {
+        if ((comboBox == null) || !radioButton.isSelected() || comboBox.getSelectedIndex() == 0) {
             return null;
         }
 
-        return (String) comboBox.getSelectedItem();
+        return (String)comboBox.getSelectedItem();
     }
 }

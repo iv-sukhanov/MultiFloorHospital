@@ -67,6 +67,10 @@ public class Patient extends Person {
     ) {
         super(name, dateOfBirth, idNumber, phoneNumber, email, gender, ownsCar, carNumber);
         this.diagnosis = diagnosis;
+        if (assignedDoctor != null) {
+            assignedDoctor.setAvailable(false);
+            assignedDoctor.setPatient(this);
+        }
         this.assignedDoctor = assignedDoctor;
         this.assignedRoom = assignedRoom;
         if (assignedBed != null) {
@@ -80,6 +84,8 @@ public class Patient extends Person {
     }
 
     public void clean() {
+        assignedDoctor.setAvailable(true);
+        assignedDoctor.setPatient(null);
         assignedBed.setAvailable(true);
         assignedEquipment.setAvailable(true);
     }

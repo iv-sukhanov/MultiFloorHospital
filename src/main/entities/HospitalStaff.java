@@ -6,6 +6,15 @@ public class HospitalStaff extends Person {
     
     private String position;
     private boolean available;
+    Patient patient;
+
+    public void setPatient(Patient patient) {
+        this.patient = patient;
+    }
+
+    public void setAvailable(boolean available) {
+        this.available = available;
+    }
 
     public String getPosition() {
         return position;
@@ -19,7 +28,6 @@ public class HospitalStaff extends Person {
         return patient;
     }
 
-    Patient patient;
 
     public HospitalStaff(
             String name,
@@ -37,6 +45,10 @@ public class HospitalStaff extends Person {
         super(name, dateOfBirth, idNumber, phoneNumber, email, isMale, ownsCar, carNumber);
         this.position = position;
         this.available = available;
+        
+        if (patient != null) {
+            patient.setAssignedDoctor(this);
+        }
         this.patient = patient;
     }
 }

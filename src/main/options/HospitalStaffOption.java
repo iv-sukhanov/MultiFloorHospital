@@ -16,6 +16,7 @@ import javax.swing.JTable;
 
 import main.entities.HospitalStaff;
 import main.entities.HospitalStaffList;
+import main.entities.PatientList;
 import main.gui.CenteredElementPanel;
 import main.gui.CenteredLabel;
 import main.gui.ComboBoxPanel;
@@ -28,13 +29,15 @@ import main.gui.RadioButtonPanel;
 public class HospitalStaffOption extends Option {
 
     private final HospitalStaffList staffList;
+    private final PatientList patientList;
 
-    public HospitalStaffOption(HospitalStaffList staffList) {
+    public HospitalStaffOption(HospitalStaffList staffList, PatientList patientList) {
         super(
             "HospitalStaffOption", 
             new JButton("Hospital Staff")
         );
         this.staffList = staffList;
+        this.patientList = patientList;
     }
 
     public void execute(JFrame frame) {
@@ -188,8 +191,8 @@ public class HospitalStaffOption extends Option {
             new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT)
         );
 
-        String patients[] = {"One", "Two", "Three"}; //TODO add real patients
-        RadioButtonPanel isAvailablePanel = new RadioButtonPanel(
+        String patients[] = patientList.getPatientNames();
+            RadioButtonPanel isAvailablePanel = new RadioButtonPanel(
             "Is busy right now",
             patients,
             false,
@@ -212,7 +215,7 @@ public class HospitalStaffOption extends Option {
                     ownsCarPanel.getText(),
                     positionPanel.getText(), 
                     !isAvailablePanel.isSelected(), 
-                    null //TODO
+                    isAvailablePanel.getSelectedIndex() == -1 ? null : patientList.getPatient(isAvailablePanel.getSelectedIndex())
                 ));
                 addStaffFrame.dispose();
             }
