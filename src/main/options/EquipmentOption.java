@@ -7,10 +7,8 @@ import java.time.ZoneId;
 import java.util.List;
 
 import javax.swing.Box;
-import javax.swing.BoxLayout;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
-import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
@@ -28,6 +26,7 @@ import main.entities.HospitalEquipment;
 import main.gui.CenteredElementPanel;
 import main.gui.CenteredLabel;
 import main.gui.DateSpinnerPanel;
+import main.gui.DependantFrame;
 import main.gui.FillerPannel;
 import main.gui.HintTextField;
 import main.gui.NavigationButtonsPanel;
@@ -55,11 +54,12 @@ public class EquipmentOption extends Option {
 
         Dimension mainFrameSize = mainFrame.getSize();
 
-        JDialog listEquipmentFrame = new JDialog(mainFrame, "Hospital Equipment", true);
-        listEquipmentFrame.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-        listEquipmentFrame.setSize(mainFrameSize);
-        listEquipmentFrame.setLocationRelativeTo(mainFrame);
-        listEquipmentFrame.setLayout(new BorderLayout());
+        DependantFrame listEquipmentFrame = new DependantFrame(
+            mainFrame, 
+            "Hospital Equipment", 
+            new BorderLayout()
+        ); 
+
 
         DefaultListModel<String> listModel = new DefaultListModel<>();
         fillModel(listModel);
@@ -95,7 +95,7 @@ public class EquipmentOption extends Option {
             e -> {listEquipmentFrame.dispose();}, 
             e -> {
                     listEquipmentFrame.dispose();
-                    addEquepment(listEquipmentFrame);
+                    addEquepment(mainFrame);
                     super.button.doClick();
                 },
             e -> {
@@ -122,14 +122,12 @@ public class EquipmentOption extends Option {
         listEquipmentFrame.setVisible(true);
     }
 
-    private void addEquepment(JDialog mainFrame) {
+    private void addEquepment(JFrame mainFrame) {
 
-        Dimension mainFrameSize = mainFrame.getSize();
-
-        JDialog equipmentFrame = new JDialog(mainFrame,"Add Equepment", true);
-        equipmentFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        equipmentFrame.setSize(mainFrameSize);
-        equipmentFrame.setLayout(new BoxLayout(equipmentFrame.getContentPane(), BoxLayout.Y_AXIS));
+        DependantFrame equipmentFrame = new DependantFrame(
+            mainFrame, 
+            "Add Equipment" 
+        );
 
         CenteredLabel promptPanel = new CenteredLabel(
             "Please enter the following information:",

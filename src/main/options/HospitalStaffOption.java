@@ -7,7 +7,6 @@ import java.time.ZoneId;
 
 import javax.swing.Box;
 import javax.swing.JButton;
-import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -48,13 +47,11 @@ public class HospitalStaffOption extends Option {
 
     private void listStaff(JFrame mainFrame) {
 
-        Dimension mainFrameSize = mainFrame.getSize();
-
-        JDialog listStaffFrame = new JDialog(mainFrame, "Hospital Staff", true);
-        listStaffFrame.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-        listStaffFrame.setSize(mainFrameSize);
-        listStaffFrame.setLayout(new BorderLayout());
-        listStaffFrame.setLocationRelativeTo(mainFrame);
+        DependantFrame listStaffFrame = new DependantFrame(
+            mainFrame, 
+            "Hospital Staff", 
+            new BorderLayout()
+        );
         
         String[] columnNames = {
             "Name",
