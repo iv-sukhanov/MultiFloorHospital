@@ -203,19 +203,31 @@ public class HospitalStaffOption extends Option {
             new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT),
             e -> {addStaffFrame.dispose();},
             e -> {
-                staffList.add(new HospitalStaff(
-                    namePanel.getText(),
-                    dateOfBirthPanel.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), 
-                    idPanel.getText(), 
-                    telephonePanel.getText(), 
-                    emailPanel.getText(), 
-                    genderPanel.getSelectedIndex() == 0, 
-                    ownsCarPanel.isSelected(), 
-                    ownsCarPanel.getText(),
-                    positionPanel.getText(), 
-                    !isAvailablePanel.isSelected(), 
-                    isAvailablePanel.getSelectedIndex() == -1 ? null : patientList.getPatient(isAvailablePanel.getSelectedIndex())
-                ));
+                try {
+                    staffList.add(new HospitalStaff(
+                        namePanel.getText().equals("Please, enter the full name of the staff member") ?
+                            null :
+                            namePanel.getText(),
+                        dateOfBirthPanel.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), 
+                        idPanel.getText(), 
+                        telephonePanel.getText(), 
+                        emailPanel.getText(), 
+                        genderPanel.getSelectedIndex() == 0, 
+                        ownsCarPanel.isSelected(), 
+                        ownsCarPanel.getText(),
+                        positionPanel.getText().equals("Please, enter the position of the staff member") ?
+                            null :
+                            positionPanel.getText(), 
+                        !isAvailablePanel.isSelected(), 
+                        isAvailablePanel.getSelectedIndex() == -1 ? 
+                            null : 
+                            patientList.getPatient(isAvailablePanel.getSelectedIndex())
+                    ));
+                }
+                catch (IllegalArgumentException exception) {
+                    JOptionPane.showMessageDialog(addStaffFrame, exception.getMessage());
+                    return;
+                }
                 addStaffFrame.dispose();
             }
         );

@@ -6,7 +6,17 @@ public class HospitalStaff extends Person {
     
     private String position;
     private boolean available;
-    Patient patient;
+    private Patient patient;
+        
+
+    public void setPosition(String position) {
+
+        if (position == null || position.isEmpty()) {
+            throw new IllegalArgumentException("Position cannot be empty");
+        }
+
+        this.position = position;
+    }
 
     public void setPatient(Patient patient) {
         this.patient = patient;
@@ -43,12 +53,12 @@ public class HospitalStaff extends Person {
             Patient patient
     ) {
         super(name, dateOfBirth, idNumber, phoneNumber, email, isMale, ownsCar, carNumber);
-        this.position = position;
-        this.available = available;
+        setPosition(position);
+        setAvailable(available);
         
         if (patient != null) {
             patient.setAssignedDoctor(this);
         }
-        this.patient = patient;
+        setPatient(patient);
     }
 }
