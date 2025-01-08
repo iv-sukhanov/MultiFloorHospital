@@ -49,4 +49,8 @@ public class HospitalRoom extends Hospital {
         }
         return availableBeds.toArray(new String[0]);
     }
+
+    public HospitalBed getBed(int bedNumber) {
+        return beds.get(bedNumber);
+    }
 }

@@ -9,6 +9,10 @@ public abstract class Person {
     private LocalDate dateOfBirth;
     private String idNumber;
     private String phoneNumber;
+    private String email;
+    private boolean gender;
+    private boolean ownsCar;
+    private String carNumber;
     
     public String getName() {
         return name;
@@ -115,11 +119,6 @@ public abstract class Person {
 
         this.carNumber = carNumber;
     }
-
-    private String email;
-    private boolean gender;
-    private boolean ownsCar;
-    private String carNumber;
 
     public Person(String name, LocalDate dateOfBirth, String idNumber, String phoneNumber, String email, boolean isMale, boolean ownsCar, String carNumber) {
         setName(name);

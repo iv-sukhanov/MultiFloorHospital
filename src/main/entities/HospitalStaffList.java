@@ -54,6 +54,11 @@ public class HospitalStaffList extends Hospital {
     }
 
     public HospitalStaff get(int index) {
+        
+        if (index < 0 || index >= staffList.size()) {
+            return null;
+        }
+
         return staffList.get(index);
     }
 

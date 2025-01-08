@@ -2,12 +2,14 @@ package main.options;
 
 import javax.swing.*;
 import java.awt.*;
-
+import java.time.ZoneId;
 import java.util.List;
 
 import main.entities.HospitalEquipmentList;
 import main.entities.HospitalFloorList;
 import main.entities.HospitalStaffList;
+import main.entities.Patient;
+import main.entities.PatientList;
 import main.gui.*;
 
 public class PatientOption extends Option {
@@ -15,6 +17,7 @@ public class PatientOption extends Option {
     private final HospitalStaffList hospitalStaffList; 
     private final HospitalEquipmentList equipmentList; 
     private final HospitalFloorList hospitalFloorList;
+    private final PatientList patientList = new PatientList();
     
     public PatientOption(HospitalStaffList hospitalStaffList, HospitalEquipmentList equipmentList, HospitalFloorList hospitalFloorList) {
         super(
@@ -40,10 +43,36 @@ public class PatientOption extends Option {
             new BorderLayout()
         );
 
+        String[] columnNames = {
+            "Name",
+            "Age",
+            "Date of Birth", 
+            "ID Number", 
+            "Phone Number",
+            "Email",
+            "Gender",
+            "Owns a car",
+            "Car number",
+            "Diagnosis",
+            "Assigned Doctor",
+            "Room",
+            "Bed",
+            "Equipment"
+        };
+
+        Object[][] patientsData = patientList.getPatientsDetails();
+        JTable staffTable = new JTable(patientsData, columnNames);
+        JScrollPane tableScrollPane = new JScrollPane(staffTable);
+        listPatientsFrame.add(tableScrollPane, BorderLayout.CENTER);
+
         NavigationButtonsPanel navigationButtonsPanel = new NavigationButtonsPanel(
             new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT),
             e -> {listPatientsFrame.dispose();},
-            e -> {addPatient(mainFrame);},
+            e -> {
+                listPatientsFrame.dispose();
+                addPatient(mainFrame);
+                super.button.doClick();
+            },
             e -> {listPatientsFrame.dispose();}
         );
         listPatientsFrame.add(navigationButtonsPanel, BorderLayout.SOUTH);
@@ -111,6 +140,16 @@ public class PatientOption extends Option {
             "Email: "
         );
 
+        CenteredElementPanel diagnosisPanel = new CenteredElementPanel(
+            new HintTextField(
+                "Please, enter the diagnosis of the patient",
+                new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT)
+            ),
+            HORIZONTAL_MARGIN,
+            new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT),
+            "Diagnosis: "
+        );
+
         String options[] = {"Male", "Female"};
         ComboBoxPanel genderPanel = new ComboBoxPanel(
             "Please, select the gender of the patient",
@@ -157,6 +196,21 @@ public class PatientOption extends Option {
             new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT),
             e -> {addPatientFrame.dispose();},
             e -> {
+                patientList.addPatient(new Patient(
+                    namePanel.getText(),
+                    dateOfBirthPanel.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),
+                    idPanel.getText(),
+                    telephonePanel.getText(),
+                    emailPanel.getText(),
+                    genderPanel.getSelectedIndex() == 0,
+                    ownsCarPanel.isSelected(),
+                    ownsCarPanel.getText(),
+                    diagnosisPanel.getText(),
+                    hospitalStaffList.get(doctorAssigned.getSelectedIndex()),
+                    bedSelectionPanel.getSelectedRoom(hospitalFloorList),
+                    bedSelectionPanel.getSelectedBed(hospitalFloorList),
+                    equipmentList.getFirstUnused(equipmentNeeded.getSelectedItem())
+                ));
                 addPatientFrame.dispose();
             }
         );
@@ -171,6 +225,7 @@ public class PatientOption extends Option {
             ownsCarPanel,
             genderPanel,
             doctorAssigned,
+            diagnosisPanel,
             equipmentNeeded,
             bedSelectionPanel
         };

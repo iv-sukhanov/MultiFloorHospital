@@ -20,6 +20,21 @@ public class HospitalEquipmentList extends Hospital {
         return equipmentMap.size();
     }
 
+    public HospitalEquipment getFirstUnused(String name) {
+        if (!equipmentMap.containsKey(name)) {
+            return null;
+        }
+
+        List<HospitalEquipment> equipmentList = equipmentMap.get(name);
+        for (HospitalEquipment equipment : equipmentList) {
+            if (equipment.isAvailable()) {
+                return equipment;
+            }
+        }
+        return null;
+
+    }
+
     public void add(HospitalEquipment h) {
         
         if (h == null) {
