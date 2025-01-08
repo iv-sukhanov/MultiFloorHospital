@@ -84,8 +84,8 @@ public abstract class Person {
 
     public void setEmail(String email) {
 
-        if (!email.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")) {
-            throw new IllegalArgumentException("Wrong email format, \ntry something like xxxxx@xxxx.xxx");
+        if (email != null && !email.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")) {
+            throw new IllegalArgumentException("Wrong email format, \ntry something like xxxxx@xxxx.xxx\nor leave it empty");
         }
 
         this.email = email;

@@ -15,6 +15,11 @@ public class Patient extends Person {
     }
 
     public void setAssignedRoom(HospitalRoom assignedRoom) {
+
+        if (assignedRoom == null) {
+            throw new IllegalArgumentException("Room should be specified");
+        }
+
         this.assignedRoom = assignedRoom;
     }
 
@@ -39,6 +44,11 @@ public class Patient extends Person {
     }
 
     public void setAssignedBed(HospitalBed assignedBed) {
+
+        if (assignedBed == null) {
+            throw new IllegalArgumentException("Bed sould be specified");
+        }
+
         this.assignedBed = assignedBed;
     }
 
@@ -66,22 +76,22 @@ public class Patient extends Person {
             HospitalEquipment assignedEquipment
     ) {
         super(name, dateOfBirth, idNumber, phoneNumber, email, gender, ownsCar, carNumber);
-        this.diagnosis = diagnosis;
+        setDiagnosis(diagnosis);
         if (assignedDoctor != null) {
             assignedDoctor.setAvailable(false);
             assignedDoctor.setPatient(this);
         }
-        this.assignedDoctor = assignedDoctor;
-        this.assignedRoom = assignedRoom;
+        setAssignedDoctor(assignedDoctor);
+        setAssignedRoom(assignedRoom);
         if (assignedBed != null) {
             assignedBed.setAvailable(false);
             assignedBed.setPatient(this);
         }
-        this.assignedBed = assignedBed;
+        setAssignedBed(assignedBed);
         if (assignedEquipment != null) {
             assignedEquipment.setAvailable(false);
         }
-        this.assignedEquipment = assignedEquipment;
+        setAssignedEquipment(assignedEquipment);
     }
 
     public void clean() {

@@ -214,21 +214,33 @@ public class PatientOption extends Option {
             new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT),
             e -> {addPatientFrame.dispose();},
             e -> {
-                patientList.addPatient(new Patient(
-                    namePanel.getText(),
-                    dateOfBirthPanel.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),
-                    idPanel.getText(),
-                    telephonePanel.getText(),
-                    emailPanel.getText(),
-                    genderPanel.getSelectedIndex() == 0,
-                    ownsCarPanel.isSelected(),
-                    ownsCarPanel.getText(),
-                    diagnosisPanel.getText(),
-                    hospitalStaffList.get(doctorAssigned.getSelectedIndex()),
-                    bedSelectionPanel.getSelectedRoom(hospitalFloorList),
-                    bedSelectionPanel.getSelectedBed(hospitalFloorList),
-                    equipmentList.getFirstUnused(equipmentNeeded.getSelectedItem())
-                ));
+                try {
+                    patientList.addPatient(new Patient(
+                        namePanel.getText().equals("Please, enter the full name of the patient") ?
+                            null :
+                            namePanel.getText(),
+                        dateOfBirthPanel.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),
+                        idPanel.getText(),
+                        telephonePanel.getText(),
+                        emailPanel.getText().equals("Please, enter the email of the patient") ?
+                            null :
+                            emailPanel.getText(),
+                        genderPanel.getSelectedIndex() == 0,
+                        ownsCarPanel.isSelected(),
+                        ownsCarPanel.getText(),
+                        diagnosisPanel.getText().equals("Please, enter the diagnosis of the patient") ?
+                            null :
+                            diagnosisPanel.getText(),
+                        hospitalStaffList.get(doctorAssigned.getSelectedIndex()),
+                        bedSelectionPanel.getSelectedRoom(hospitalFloorList),
+                        bedSelectionPanel.getSelectedBed(hospitalFloorList),
+                        equipmentList.getFirstUnused(equipmentNeeded.getSelectedItem())
+                    ));
+                }
+                catch (IllegalArgumentException exception) {
+                    JOptionPane.showMessageDialog(addPatientFrame, exception.getMessage());
+                    return;
+                }
                 addPatientFrame.dispose();
             }
         );

@@ -42,7 +42,7 @@ public class HospitalStaffList extends Hospital {
             details[i][2] = h.getDateOfBirth().toString();
             details[i][3] = h.getIdNumber();
             details[i][4] = h.getPhoneNumber();
-            details[i][5] = h.getEmail();
+            details[i][5] = h.getEmail() == null ? "N/A" : h.getEmail();
             details[i][6] = h.isGender() ? "Male" : "Female";
             details[i][7] = h.isOwnsCar() ? "Yes" : "No";
             details[i][8] = h.getCarNumber() == null ? "N/A" : h.getCarNumber();

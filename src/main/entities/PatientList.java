@@ -49,11 +49,11 @@ public class PatientList {
             patientsDetails[i][2] = patient.getDateOfBirth().toString();
             patientsDetails[i][3] = patient.getIdNumber();
             patientsDetails[i][4] = patient.getPhoneNumber();
-            patientsDetails[i][5] = patient.getEmail();
+            patientsDetails[i][5] = patient.getEmail() == null ? "N/A" : patient.getEmail();
             patientsDetails[i][6] = patient.isGender() ? "Male" : "Female";
             patientsDetails[i][7] = patient.isOwnsCar() ? "Yes" : "No";
             patientsDetails[i][8] = patient.getCarNumber() == null ? "N/A" : patient.getCarNumber();
-            patientsDetails[i][9] = patient.getDiagnosis();
+            patientsDetails[i][9] = patient.getDiagnosis() == null ? "N/A" : patient.getDiagnosis();
             patientsDetails[i][10] = patient.getAssignedDoctor() == null ? "N/A" : patient.getAssignedDoctor().getName();
             patientsDetails[i][11] = patient.getAssignedRoom() == null ? "N/A" : patient.getAssignedRoom().getRoomNumber();
             patientsDetails[i][12] = patient.getAssignedBed() == null ? "N/A" : String.valueOf(patient.getAssignedBed().getBedNumber());

@@ -211,7 +211,9 @@ public class HospitalStaffOption extends Option {
                         dateOfBirthPanel.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), 
                         idPanel.getText(), 
                         telephonePanel.getText(), 
-                        emailPanel.getText(), 
+                        emailPanel.getText().equals("Please, enter the email of the staff member") ? 
+                            null : 
+                            emailPanel.getText(), 
                         genderPanel.getSelectedIndex() == 0, 
                         ownsCarPanel.isSelected(), 
                         ownsCarPanel.getText(),
