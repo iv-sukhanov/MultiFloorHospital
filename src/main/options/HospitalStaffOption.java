@@ -88,7 +88,7 @@ public class HospitalStaffOption extends Option {
                 int selectedRow = staffTable.getSelectedRow();
                     if (selectedRow != -1) {
                         int confirmed = JOptionPane.showConfirmDialog(listStaffFrame, 
-                            "Are you sure you want to delete " + selectedRow + "th staff member?",
+                            "Are you sure you want to delete " + (selectedRow + 1) + "th staff member?",
                             "Delete Confirmation",
                             JOptionPane.YES_NO_OPTION);
         
@@ -100,7 +100,6 @@ public class HospitalStaffOption extends Option {
                     } else {
                         JOptionPane.showMessageDialog(listStaffFrame, "No staff member selected to delete.");
                     }
-                super.button.doClick();
             }
         );
         listStaffFrame.add(navigationButtonsPanel, BorderLayout.SOUTH);

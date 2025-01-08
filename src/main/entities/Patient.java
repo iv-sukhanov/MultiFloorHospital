@@ -75,6 +75,7 @@ public class Patient extends Person {
         this.assignedRoom = assignedRoom;
         if (assignedBed != null) {
             assignedBed.setAvailable(false);
+            assignedBed.setPatient(this);
         }
         this.assignedBed = assignedBed;
         if (assignedEquipment != null) {
@@ -84,9 +85,19 @@ public class Patient extends Person {
     }
 
     public void clean() {
-        assignedDoctor.setAvailable(true);
-        assignedDoctor.setPatient(null);
-        assignedBed.setAvailable(true);
-        assignedEquipment.setAvailable(true);
+
+        if (assignedDoctor != null) {
+            assignedDoctor.setAvailable(true);
+            assignedDoctor.setPatient(null);
+        }
+
+        if (assignedBed != null) {
+            assignedBed.setAvailable(true);
+            assignedBed.setPatient(null);
+        }
+
+        if (assignedEquipment != null) {
+            assignedEquipment.setAvailable(true);
+        }
     }
 }

@@ -26,6 +26,20 @@ public class PatientList {
         return patients.get(index);
     }
 
+    public boolean removePatient(int index) {
+        
+        if (index < 0 || index >= patients.size()) {
+            return false;
+        }
+
+        Patient patient = patients.remove(index);
+        if (patient != null) {
+            patient.clean();
+            return true;
+        }
+        return false;
+    }
+
     public String[][] getPatientsDetails() {
         String[][] patientsDetails = new String[size()][14];
         for (int i = 0; i < patients.size(); i++) {

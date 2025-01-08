@@ -62,8 +62,8 @@ public class PatientOption extends Option {
         };
 
         Object[][] patientsData = patientList.getPatientsDetails();
-        JTable staffTable = new JTable(patientsData, columnNames);
-        JScrollPane tableScrollPane = new JScrollPane(staffTable);
+        JTable patientsTable = new JTable(patientsData, columnNames);
+        JScrollPane tableScrollPane = new JScrollPane(patientsTable);
         listPatientsFrame.add(tableScrollPane, BorderLayout.CENTER);
 
         NavigationButtonsPanel navigationButtonsPanel = new NavigationButtonsPanel(
@@ -75,8 +75,22 @@ public class PatientOption extends Option {
                 super.button.doClick();
             },
             e -> {
-                //dont forget to close the patient
-                listPatientsFrame.dispose();
+                int selectedRow = patientsTable.getSelectedRow();
+                    if (selectedRow != -1) {
+                        int confirmed = JOptionPane.showConfirmDialog(listPatientsFrame, 
+                            "Are you sure you want to delete " + (selectedRow + 1)  + "th patient?",
+                            "Delete Confirmation",
+                            JOptionPane.YES_NO_OPTION
+                        );
+        
+                        if (confirmed == JOptionPane.YES_OPTION) {
+                            patientList.removePatient(selectedRow);
+                            listPatientsFrame.dispose();
+                            super.button.doClick();
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(listPatientsFrame, "No patient selected to delete.");
+                    }
             }
         );
         listPatientsFrame.add(navigationButtonsPanel, BorderLayout.SOUTH);
