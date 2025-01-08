@@ -118,12 +118,12 @@ public class HospitalStaffOption extends Option {
 
         CenteredElementPanel namePanel = new CenteredElementPanel(
             new HintTextField(
-                "Please, enter the name of the staff member",
+                "Please, enter the full name of the staff member",
                 new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT)
             ),
             HORIZONTAL_MARGIN,
             new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT),
-            "Name: "
+            "Full name: "
         );
 
         DateSpinnerPanel dateOfBirthPanel = new DateSpinnerPanel(

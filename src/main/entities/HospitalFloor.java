@@ -46,4 +46,16 @@ public class HospitalFloor extends Hospital implements HospitalProperties {
         }
         return roomNames;
     }
+
+    public List<String> getAvailableRoomNames() {
+        List<String> roomNames = new LinkedList<>();
+        for (HospitalRoom room : rooms) {
+            
+            if (room.getAvailableBeds().length == 0) {
+                continue;
+            }
+            roomNames.add("Room " + room.getRoomNumber());
+        }
+        return roomNames;
+    }
 }

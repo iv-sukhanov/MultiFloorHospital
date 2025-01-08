@@ -12,7 +12,7 @@ public class MultiFloorHospital extends Hospital implements HospitalProperties {
     private final HospitalFloorList hospitalFloorList = new HospitalFloorList(this, NUMBER_OF_FLOORS);
     
     private final Option[] options = {
-        new PatientOption(),
+        new PatientOption(staffList, equipmentList, hospitalFloorList),
         new HospitalStaffOption(staffList),
         new EquipmentOption(equipmentList),
         new RoomsOption(hospitalFloorList)

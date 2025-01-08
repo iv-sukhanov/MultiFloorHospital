@@ -109,7 +109,7 @@ public abstract class Person {
 
     public void setCarNumber(String carNumber) {
 
-        if (!(carNumber == null) && !carNumber.matches("^[A-Z]{3}-\\d{3}$")) {
+        if (!(carNumber == null) && !carNumber.matches("^[A-Z]{3}[- ]?\\d{3}$")) {
             throw new IllegalArgumentException("Wrong car number format, it should be XXX-000");
         }
 

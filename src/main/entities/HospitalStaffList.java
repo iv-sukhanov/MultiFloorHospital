@@ -56,4 +56,12 @@ public class HospitalStaffList extends Hospital {
     public HospitalStaff get(int index) {
         return staffList.get(index);
     }
+
+    public String[] getStaffNames() {
+        String[] staffNames = new String[staffList.size()];
+        for (int i = 0; i < staffList.size(); i++) {
+            staffNames[i] = staffList.get(i).getName();
+        }
+        return staffNames;
+    }
 }

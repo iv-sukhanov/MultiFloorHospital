@@ -39,4 +39,14 @@ public class HospitalRoom extends Hospital {
         }
         return bedsInfo.toString();
     }
+
+    public String[] getAvailableBeds() {
+        List<String> availableBeds = new LinkedList<>();
+        for (HospitalBed bed : beds) {
+            if (bed.isAvailable()) {
+                availableBeds.add("Bed " + bed.getBedNumber());
+            }
+        }
+        return availableBeds.toArray(new String[0]);
+    }
 }
