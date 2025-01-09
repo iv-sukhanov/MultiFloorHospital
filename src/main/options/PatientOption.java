@@ -3,6 +3,7 @@ package main.options;
 import javax.swing.*;
 import java.awt.*;
 import java.time.ZoneId;
+import java.util.Calendar;
 import java.util.List;
 
 import main.entities.HospitalEquipmentList;
@@ -127,7 +128,9 @@ public class PatientOption extends Option {
         DateSpinnerPanel dateOfBirthPanel = new DateSpinnerPanel(
             "Please, enter the date of birth of the patient",
             new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT),
-            HORIZONTAL_MARGIN
+            HORIZONTAL_MARGIN,
+            null,
+            Calendar.getInstance().getTime()
         );
 
         CenteredElementPanel idPanel = new CenteredElementPanel(

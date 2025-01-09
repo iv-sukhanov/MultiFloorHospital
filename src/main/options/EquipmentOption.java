@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.time.ZoneId;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.swing.Box;
@@ -162,7 +163,9 @@ public class EquipmentOption extends Option {
         DateSpinnerPanel datePanel = new DateSpinnerPanel(
             "Enter the last maintenance date:",
             new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT),
-            HORIZONTAL_MARGIN    
+            HORIZONTAL_MARGIN,
+            null,
+            Calendar.getInstance().getTime()
         );
 
         NavigationButtonsPanel navigationPanel = new NavigationButtonsPanel(

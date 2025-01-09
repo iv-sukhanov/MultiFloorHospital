@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.time.ZoneId;
+import java.util.Calendar;
 
 import javax.swing.Box;
 import javax.swing.JButton;
@@ -130,7 +131,9 @@ public class HospitalStaffOption extends Option {
         DateSpinnerPanel dateOfBirthPanel = new DateSpinnerPanel(
             "Please, enter the date of birth of the staff member",
             new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT),
-            HORIZONTAL_MARGIN
+            HORIZONTAL_MARGIN,
+            null,
+            Calendar.getInstance().getTime()
         );
 
         CenteredElementPanel idPanel = new CenteredElementPanel(

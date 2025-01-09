@@ -19,12 +19,12 @@ public class DateSpinnerPanel extends JPanel {
     private JSpinner dateSpinner;
 
 
-    public DateSpinnerPanel(String label, Dimension size, int horizontalMargin) {
+    public DateSpinnerPanel(String label, Dimension size, int horizontalMargin, Comparable<Date> start, Comparable<Date> end) {
         
         setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
         setMaximumSize(size);
         SpinnerDateModel dateModel = new SpinnerDateModel(
-            new Date(), null, Calendar.getInstance().getTime(), Calendar.MONTH
+            new Date(), start, end, Calendar.MONTH
         );
         dateSpinner = new JSpinner(dateModel);
         dateSpinner.setEditor(new DateEditor(dateSpinner, "dd/MM/yyyy"));
