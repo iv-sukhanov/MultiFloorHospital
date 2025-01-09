@@ -62,4 +62,34 @@ public class NavigationButtonsPanel extends JPanel {
         add(new FillerPannel());
         add(rightButtonPanel);
     }
+
+    public NavigationButtonsPanel(Dimension size, ActionListener back, ActionListener add, ActionListener delete, ActionListener details) {
+        setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
+        setMaximumSize(size);
+
+        JPanel rightButtonPanel = new JPanel();
+        rightButtonPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
+
+        JPanel leftButtonPanel = new JPanel();
+        leftButtonPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
+
+        JButton addButton = new JButton("Add");
+        JButton deleteButton = new JButton("Delete");
+        JButton backButton = new JButton("Back");
+        JButton detailsButton = new JButton("Details");
+
+        addButton.addActionListener(add);
+        deleteButton.addActionListener(delete);
+        backButton.addActionListener(back);
+        detailsButton.addActionListener(details);
+
+        rightButtonPanel.add(detailsButton);
+        rightButtonPanel.add(addButton);
+        rightButtonPanel.add(deleteButton);
+        leftButtonPanel.add(backButton);
+        
+        add(leftButtonPanel);
+        add(new FillerPannel());
+        add(rightButtonPanel);
+    }
 }

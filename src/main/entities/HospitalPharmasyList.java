@@ -43,4 +43,22 @@ public class HospitalPharmasyList extends Hospital {
         }
         return false;
     }
+
+    public String getPharmasyDetails(String name) {
+        if (!pharmasyMap.containsKey(name)) {
+            return null;
+        }
+        List<HospitalPharmasy> currentList = pharmasyMap.get(name);
+        StringBuilder sb = new StringBuilder();
+        for (HospitalPharmasy p : currentList) {
+            sb.append("Name: ").
+                append(name).
+                append(" Price: ").
+                append(p.getPrice()).
+                append(" Expiration date: ").
+                append(p.getExpirationDate().toString()).
+                append('\n');
+        }
+        return sb.toString();
+    }
 }

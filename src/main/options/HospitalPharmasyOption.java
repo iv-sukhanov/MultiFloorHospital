@@ -3,6 +3,7 @@ package main.options;
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.time.ZoneId;
 import java.util.Calendar;
 
@@ -15,6 +16,7 @@ import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 import javax.swing.ListSelectionModel;
 
 import main.entities.HospitalPharmasy;
@@ -84,6 +86,23 @@ public class HospitalPharmasyOption extends Option {
                     } else {
                         JOptionPane.showMessageDialog(listPharmasyFrame, "No item selected to delete.");
                     }
+            },
+            e -> {
+                String selection = mainList.getSelectedValue();
+                if (selection != null) {
+                    JTextArea textArea = new JTextArea(pharmasyList.getPharmasyDetails(selection));
+                    textArea.setFont(new Font("Arial", Font.BOLD, 16));
+                    JScrollPane scrollPane = new JScrollPane(textArea);
+                    JOptionPane.showConfirmDialog(
+                        null,  
+                        scrollPane,    
+                        "Details:", 
+                        JOptionPane.OK_CANCEL_OPTION,
+                        JOptionPane.PLAIN_MESSAGE
+                    );
+                } else {
+                    JOptionPane.showMessageDialog(listPharmasyFrame, "No item selected for details.");
+                }
             }
         );
         listPharmasyFrame.add(navigationPanel, BorderLayout.SOUTH);
