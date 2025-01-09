@@ -121,6 +121,8 @@ public class HospitalStaffOption extends Option {
                 new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT)
             ),
             HORIZONTAL_MARGIN,
+            addStaffFrame.getWidth(),
+            STAFF_WIDTH_DIVISOR,
             new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT),
             "Full name: "
         );
@@ -137,6 +139,8 @@ public class HospitalStaffOption extends Option {
                 new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT)
             ),
             HORIZONTAL_MARGIN,
+            addStaffFrame.getWidth(),
+            STAFF_WIDTH_DIVISOR,
             new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT),
             "ID nubmer: "
         );
@@ -147,6 +151,8 @@ public class HospitalStaffOption extends Option {
                 new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT)
             ),
             HORIZONTAL_MARGIN,
+            addStaffFrame.getWidth(),
+            STAFF_WIDTH_DIVISOR,
             new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT),
             "Phone nubmer: "
         );
@@ -157,6 +163,8 @@ public class HospitalStaffOption extends Option {
                 new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT)
             ),
             HORIZONTAL_MARGIN,
+            addStaffFrame.getWidth(),
+            STAFF_WIDTH_DIVISOR,
             new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT),
             "Email: "
         );
@@ -175,6 +183,8 @@ public class HospitalStaffOption extends Option {
                 new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT)
             ),
             HORIZONTAL_MARGIN,
+            addStaffFrame.getWidth(),
+            STAFF_WIDTH_DIVISOR,
             new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT),
             "Position: "
         );
@@ -184,6 +194,8 @@ public class HospitalStaffOption extends Option {
             "Please, enter the car number of the staff member in XXX-000 format",
             false,
             HORIZONTAL_MARGIN,
+            addStaffFrame.getWidth(),
+            STAFF_WIDTH_DIVISOR,
             new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT)
         );
 
@@ -193,6 +205,8 @@ public class HospitalStaffOption extends Option {
             patients,
             false,
             HORIZONTAL_MARGIN,
+            addStaffFrame.getWidth(),
+            STAFF_WIDTH_DIVISOR,
             new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT)
         );
 

@@ -10,6 +10,8 @@ public abstract class Option {
     protected static final int TEXT_FIELDS_HIGHT = 20;
     protected static final int HORIZONTAL_MARGIN = 30;
     protected static final int VERTICAL_MARGIN = 20;
+    protected static final int STAFF_WIDTH_DIVISOR = 4;
+    protected static final int PATIENT_WIDTH_DIVISOR = 3;
     
     public Option(String name, JButton button) {
         this.name = name;

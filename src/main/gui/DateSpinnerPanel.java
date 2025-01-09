@@ -32,7 +32,7 @@ public class DateSpinnerPanel extends JPanel {
 
         add(Box.createHorizontalStrut(horizontalMargin));
         add(new JLabel(label));
-        add(Box.createHorizontalStrut(horizontalMargin));
+        add(Box.createHorizontalStrut(horizontalMargin / 4));
         add(dateSpinner);
     }
 

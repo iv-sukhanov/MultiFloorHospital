@@ -118,6 +118,8 @@ public class PatientOption extends Option {
                 new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT)
             ),
             HORIZONTAL_MARGIN,
+            addPatientFrame.getWidth(),
+            PATIENT_WIDTH_DIVISOR,
             new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT),
             "Full name: "
         );
@@ -134,6 +136,8 @@ public class PatientOption extends Option {
                 new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT)
             ),
             HORIZONTAL_MARGIN,
+            addPatientFrame.getWidth(),
+            PATIENT_WIDTH_DIVISOR,
             new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT),
             "ID nubmer: "
         );
@@ -144,6 +148,8 @@ public class PatientOption extends Option {
                 new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT)
             ),
             HORIZONTAL_MARGIN,
+            addPatientFrame.getWidth(),
+            PATIENT_WIDTH_DIVISOR,
             new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT),
             "Phone nubmer: "
         );
@@ -154,6 +160,8 @@ public class PatientOption extends Option {
                 new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT)
             ),
             HORIZONTAL_MARGIN,
+            addPatientFrame.getWidth(),
+            PATIENT_WIDTH_DIVISOR,
             new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT),
             "Email: "
         );
@@ -164,6 +172,8 @@ public class PatientOption extends Option {
                 new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT)
             ),
             HORIZONTAL_MARGIN,
+            addPatientFrame.getWidth(),
+            PATIENT_WIDTH_DIVISOR,
             new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT),
             "Diagnosis: "
         );
@@ -181,6 +191,8 @@ public class PatientOption extends Option {
             "Please, enter the car number of the patient in XXX-000 format",
             false,
             HORIZONTAL_MARGIN,
+            addPatientFrame.getWidth(),
+            PATIENT_WIDTH_DIVISOR,
             new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT)
         );
 
@@ -190,6 +202,8 @@ public class PatientOption extends Option {
             doctors,
             false,
             HORIZONTAL_MARGIN,
+            addPatientFrame.getWidth(),
+            PATIENT_WIDTH_DIVISOR,
             new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT)
         );
         
@@ -199,6 +213,8 @@ public class PatientOption extends Option {
             equipment,
             false,
             HORIZONTAL_MARGIN,
+            addPatientFrame.getWidth(),
+            PATIENT_WIDTH_DIVISOR,
             new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT)
         );
 
@@ -248,15 +264,15 @@ public class PatientOption extends Option {
         JPanel elementsToDisplay[] = {
             titlePanel,
             namePanel,
-            dateOfBirthPanel,
             idPanel,
             telephonePanel,
             emailPanel,
-            ownsCarPanel,
-            genderPanel,
-            doctorAssigned,
             diagnosisPanel,
+            ownsCarPanel,
+            doctorAssigned,
             equipmentNeeded,
+            genderPanel,
+            dateOfBirthPanel,
             bedSelectionPanel
         };
 

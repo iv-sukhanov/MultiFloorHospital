@@ -23,6 +23,19 @@ public class CenteredElementPanel extends JPanel {
         add(Box.createHorizontalStrut(margins));
         setMaximumSize(pannelSize);
     }
+
+    public CenteredElementPanel(JTextField textField, int margins, int maxWidth, int divisor, Dimension pannelSize, String prompt) {
+        this.textField = textField;
+        
+        JLabel promptLabel = new JLabel(prompt);
+        setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
+        add(Box.createHorizontalStrut(margins));
+        add(promptLabel);
+        add(Box.createHorizontalStrut(maxWidth / divisor - margins - promptLabel.getPreferredSize().width));
+        add(textField);
+        add(Box.createHorizontalStrut(margins));
+        setMaximumSize(pannelSize);
+    }
     
     public CenteredElementPanel(JTextField textField, int margins) {
         this.textField = textField;

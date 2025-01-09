@@ -20,6 +20,7 @@ public class ComboBoxPanel extends JPanel {
         add(genderLabel);
         add(Box.createHorizontalStrut(hospitalMargin / 4));
         this.comboBox = new JComboBox<>(options);
+        comboBox.setMaximumSize(new Dimension(80, (int)size.getHeight()));
         add(comboBox);
         add(Box.createHorizontalStrut(hospitalMargin));
     }
