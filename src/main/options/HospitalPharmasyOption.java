@@ -3,7 +3,6 @@ package main.options;
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.Font;
 import java.time.ZoneId;
 import java.util.Calendar;
 
@@ -16,7 +15,7 @@ import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
+import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 
 import main.entities.HospitalPharmasy;
@@ -90,11 +89,11 @@ public class HospitalPharmasyOption extends Option {
             e -> {
                 String selection = mainList.getSelectedValue();
                 if (selection != null) {
-                    JTextArea textArea = new JTextArea(pharmasyList.getPharmasyDetails(selection));
-                    textArea.setFont(new Font("Arial", Font.BOLD, 16));
-                    JScrollPane scrollPane = new JScrollPane(textArea);
+                    String[] column = {"#", "Name", "Price", "Expiration Date"};
+                    JTable detailsTable = new JTable(pharmasyList.getPharmasyDetails(selection), column);
+                    JScrollPane scrollPane = new JScrollPane(detailsTable);
                     JOptionPane.showConfirmDialog(
-                        null,  
+                        null,
                         scrollPane,    
                         "Details:", 
                         JOptionPane.OK_CANCEL_OPTION,
