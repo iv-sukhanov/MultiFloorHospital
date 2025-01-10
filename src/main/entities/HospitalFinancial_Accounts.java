@@ -19,4 +19,16 @@ public class HospitalFinancial_Accounts extends Hospital {
     public void setBalance(double balance) {
         this.balance = balance;
     }
+
+    public String[][] getDetails() {
+        
+        String[][] output = new String[financialRecords.size()][3];
+        for (int i = 0; i < financialRecords.size(); i++) {
+            output[i][0] = financialRecords.get(i).getDate().toString();
+            output[i][1] = financialRecords.get(i).getFrom();
+            output[i][2] = String.valueOf(financialRecords.get(i).getAmount());
+        }
+
+        return output;
+    }
 }

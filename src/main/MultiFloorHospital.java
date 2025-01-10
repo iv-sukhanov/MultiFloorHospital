@@ -17,6 +17,7 @@ public class MultiFloorHospital extends Hospital implements HospitalProperties {
     private final HospitalFloorList hospitalFloorList = new HospitalFloorList(this, NUMBER_OF_FLOORS);
     private final PatientList patientList = new PatientList();
     private final HospitalPharmasyList hospitalPharmasyList = new HospitalPharmasyList(this);
+    private final HospitalFinancial_Accounts financialAccounts = new HospitalFinancial_Accounts(this, 0);
     
 
     private final Option[] options = {
@@ -25,6 +26,7 @@ public class MultiFloorHospital extends Hospital implements HospitalProperties {
         new EquipmentOption(equipmentList),
         new RoomsOption(hospitalFloorList),
         new HospitalPharmasyOption(hospitalPharmasyList),
+        new FinancialAccountsOption(financialAccounts)
     };
 
     static final int Y_SPACE_BETWEEN_BUTTONS = 10;
