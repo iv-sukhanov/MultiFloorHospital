@@ -4,6 +4,11 @@ import java.awt.*;
 import javax.swing.*;
 
 import main.entities.*;
+import main.gui.CenteredElementPanel;
+import main.gui.CenteredLabel;
+import main.gui.FillerPannel;
+import main.gui.HintTextField;
+import main.gui.NavigationButtonsPanel;
 import main.options.*;
 
 public class MultiFloorHospital extends Hospital implements HospitalProperties {
@@ -72,7 +77,8 @@ public class MultiFloorHospital extends Hospital implements HospitalProperties {
             buttonPanel.add(Box.createRigidArea(new Dimension(X_SPACE_BETWEEN_BUTTONS, Y_SPACE_BETWEEN_BUTTONS)));
         }
         
-        frame.add(buttonPanel, BorderLayout.CENTER);
+        JScrollPane scrollPane = new JScrollPane(buttonPanel);
+        frame.add(scrollPane, BorderLayout.CENTER);
         
         JButton exitButton = new JButton("EXIT");
         JPanel exitPanel = new JPanel();
@@ -96,6 +102,77 @@ public class MultiFloorHospital extends Hospital implements HospitalProperties {
     public static void main(String[] args) {
 
         MultiFloorHospital multiFloorHospital = new MultiFloorHospital();
-        multiFloorHospital.displayOptions();
+        multiFloorHospital.logIn(Toolkit.getDefaultToolkit().getScreenSize());
+    }
+
+    private void logIn(Dimension size) {
+
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        int frameWidth = (int) (screenSize.width * X_WINDOW_MULTIPLIER);
+        int frameHeight = (int) (screenSize.height * Y_WINDOW_MULTIPLIER);
+        size = new Dimension(frameWidth, frameHeight);
+
+        JFrame loginFrame = new JFrame("multi-floor hospital system");
+        loginFrame.setLayout(new BoxLayout(loginFrame.getContentPane(), BoxLayout.Y_AXIS));
+        loginFrame.setSize(size);
+        loginFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        CenteredElementPanel loginPanel = new CenteredElementPanel(
+            new HintTextField("Please, enter login"),
+            30,
+            loginFrame.getWidth(),
+            4,
+            new Dimension(Integer.MAX_VALUE, 20),
+            "Login: "
+        );
+
+        CenteredElementPanel passwordPanel = new CenteredElementPanel(
+            new JPasswordField(8),
+            30,
+            loginFrame.getWidth(),
+            4,
+            new Dimension(Integer.MAX_VALUE, 20),
+            "Password: "
+        );
+
+        NavigationButtonsPanel okPanel = new NavigationButtonsPanel(
+            new Dimension(Integer.MAX_VALUE, 20), 
+            e -> {
+                if (
+                    loginPanel.getText().equals(System.getenv("HOSPITAL_LOGIN")) &&
+                    passwordPanel.getText().equals(System.getenv("HOSPITAL_PASSWORD"))
+                ) {
+                    displayOptions();
+                    loginFrame.dispose();
+                } else {
+                    JOptionPane.showMessageDialog(loginFrame, "Wrong login or password");
+                }
+        });
+
+        loginPanel.addActionListener(
+            e -> {
+                okPanel.accept();
+            }
+        );
+
+        passwordPanel.addActionListener(
+            e -> {
+                okPanel.accept();
+            }   
+        );
+
+        loginFrame.add(Box.createVerticalStrut(30));
+        loginFrame.add(new CenteredLabel(
+            "Please, enter login and password: ", 
+            new Dimension(Integer.MAX_VALUE, 20)
+        ));
+        loginFrame.add(Box.createVerticalStrut(30));
+        loginFrame.add(loginPanel);
+        loginFrame.add(Box.createVerticalStrut(30));
+        loginFrame.add(passwordPanel);
+        loginFrame.add(Box.createVerticalStrut(30));
+        loginFrame.add(new FillerPannel());
+        loginFrame.add(okPanel);
+        loginFrame.setVisible(true);
     }
 }

@@ -1,6 +1,7 @@
 package main.gui;
 
 import java.awt.Dimension;
+import java.awt.event.ActionListener;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -53,5 +54,9 @@ public class CenteredElementPanel extends JPanel {
 
     public String getText() {
         return textField.getText();
+    }
+
+    public void addActionListener(ActionListener actionListener) {
+        this.textField.addActionListener(actionListener);
     }
 }
