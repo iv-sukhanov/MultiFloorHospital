@@ -2,7 +2,6 @@ package main.options;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
-import java.awt.Dimension;
 import java.time.ZoneId;
 import java.util.Calendar;
 
@@ -26,26 +25,42 @@ import main.gui.HintTextField;
 import main.gui.NavigationButtonsPanel;
 import main.gui.RadioButtonPanel;
 
+/**
+ * Represents the hospital staff option in the hospital management system.
+ */
 public class HospitalStaffOption extends Option {
 
     private final HospitalStaffList staffList;
     private final PatientList patientList;
 
+    /**
+     * Constructs a HospitalStaffOption object.
+     *
+     * @param staffList the list of hospital staff
+     * @param patientList the list of patients
+     */
     public HospitalStaffOption(HospitalStaffList staffList, PatientList patientList) {
-        super(
-            "HospitalStaffOption", 
-            new JButton("Hospital Staff")
-        );
+        super("HospitalStaffOption", new JButton("Hospital Staff"));
         this.staffList = staffList;
         this.patientList = patientList;
     }
 
+    /**
+     * Executes the hospital staff option.
+     *
+     * @param frame the main frame
+     */
     public void execute(JFrame frame) {
         frame.setVisible(false);
         listStaff(frame);
         frame.setVisible(true);
     }
 
+    /**
+     * Displays the list of hospital staff.
+     *
+     * @param mainFrame the main frame
+     */
     private void listStaff(JFrame mainFrame) {
 
         DependantFrame listStaffFrame = new DependantFrame(
@@ -75,7 +90,7 @@ public class HospitalStaffOption extends Option {
         listStaffFrame.add(tableScrollPane, BorderLayout.CENTER);
 
         NavigationButtonsPanel navigationButtonsPanel = new NavigationButtonsPanel(
-            new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT),
+            MAIN_FIELDS_SIZE,
             e -> {listStaffFrame.dispose();},
             e -> {
                 listStaffFrame.dispose();
@@ -84,26 +99,31 @@ public class HospitalStaffOption extends Option {
             },
             e -> {
                 int selectedRow = staffTable.getSelectedRow();
-                    if (selectedRow != -1) {
-                        int confirmed = JOptionPane.showConfirmDialog(listStaffFrame, 
-                            "Are you sure you want to delete " + (selectedRow + 1) + "th staff member?",
-                            "Delete Confirmation",
-                            JOptionPane.YES_NO_OPTION);
-        
-                        if (confirmed == JOptionPane.YES_OPTION) {
-                            staffList.remove(selectedRow);
-                            listStaffFrame.dispose();
-                            super.button.doClick();
-                        }
-                    } else {
-                        JOptionPane.showMessageDialog(listStaffFrame, "No staff member selected to delete.");
+                if (selectedRow != -1) {
+                    int confirmed = JOptionPane.showConfirmDialog(listStaffFrame, 
+                        "Are you sure you want to delete " + (selectedRow + 1) + "th staff member?",
+                        "Delete Confirmation",
+                        JOptionPane.YES_NO_OPTION);
+
+                    if (confirmed == JOptionPane.YES_OPTION) {
+                        staffList.remove(selectedRow);
+                        listStaffFrame.dispose();
+                        super.button.doClick();
                     }
+                } else {
+                    JOptionPane.showMessageDialog(listStaffFrame, "No staff member selected to delete.");
+                }
             }
         );
         listStaffFrame.add(navigationButtonsPanel, BorderLayout.SOUTH);
         listStaffFrame.setVisible(true);
     }
     
+    /**
+     * Displays the add staff form.
+     *
+     * @param mainFrame the main frame
+     */
     private void addStaff(JFrame mainFrame) {
         
         DependantFrame addStaffFrame = new DependantFrame(
@@ -111,20 +131,14 @@ public class HospitalStaffOption extends Option {
             "Add Staff"
         );
 
-        LabelPanel titlePanel = new LabelPanel(
-            "Please, enter the following information", 
-            new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT)
-        );
+        LabelPanel titlePanel = new LabelPanel("Please, enter the following information", MAIN_FIELDS_SIZE);
 
         CenteredTextFieldPanel namePanel = new CenteredTextFieldPanel(
-            new HintTextField(
-                "Please, enter the full name of the staff member",
-                new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT)
-            ),
+            new HintTextField("Please, enter the full name of the staff member", MAIN_FIELDS_SIZE),
             HORIZONTAL_MARGIN,
             addStaffFrame.getWidth(),
             STAFF_WIDTH_DIVISOR,
-            new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT),
+            MAIN_FIELDS_SIZE,
             "Full name: "
         );
 
@@ -132,45 +146,36 @@ public class HospitalStaffOption extends Option {
         calendar.add(Calendar.DAY_OF_MONTH, 1);
         DateSpinnerPanel dateOfBirthPanel = new DateSpinnerPanel(
             "Please, enter the date of birth of the staff member",
-            new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT),
+            MAIN_FIELDS_SIZE,
             HORIZONTAL_MARGIN,
             null,
             calendar.getTime()
         );
 
         CenteredTextFieldPanel idPanel = new CenteredTextFieldPanel(
-            new HintTextField(
-                "Please, enter the id number of the staff member",
-                new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT)
-            ),
+            new HintTextField("Please, enter the id number of the staff member", MAIN_FIELDS_SIZE),
             HORIZONTAL_MARGIN,
             addStaffFrame.getWidth(),
             STAFF_WIDTH_DIVISOR,
-            new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT),
-            "ID nubmer: "
+            MAIN_FIELDS_SIZE,
+            "ID number: "
         );
 
         CenteredTextFieldPanel telephonePanel = new CenteredTextFieldPanel(
-            new HintTextField(
-                "Please, enter the phone number of the staff member",
-                new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT)
-            ),
+            new HintTextField("Please, enter the phone number of the staff member", MAIN_FIELDS_SIZE),
             HORIZONTAL_MARGIN,
             addStaffFrame.getWidth(),
             STAFF_WIDTH_DIVISOR,
-            new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT),
-            "Phone nubmer: "
+            MAIN_FIELDS_SIZE,
+            "Phone number: "
         );
 
         CenteredTextFieldPanel emailPanel = new CenteredTextFieldPanel(
-            new HintTextField(
-                "Please, enter the email of the staff member",
-                new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT)
-            ),
+            new HintTextField("Please, enter the email of the staff member", MAIN_FIELDS_SIZE),
             HORIZONTAL_MARGIN,
             addStaffFrame.getWidth(),
             STAFF_WIDTH_DIVISOR,
-            new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT),
+            MAIN_FIELDS_SIZE,
             "Email: "
         );
 
@@ -178,19 +183,16 @@ public class HospitalStaffOption extends Option {
         ComboBoxPanel genderPanel = new ComboBoxPanel(
             "Please, select the gender of the staff member",
             options,
-            new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT),
+            MAIN_FIELDS_SIZE,
             HORIZONTAL_MARGIN
         );
 
         CenteredTextFieldPanel positionPanel = new CenteredTextFieldPanel(
-            new HintTextField(
-                "Please, enter the position of the staff member",
-                new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT)
-            ),
+            new HintTextField("Please, enter the position of the staff member", MAIN_FIELDS_SIZE),
             HORIZONTAL_MARGIN,
             addStaffFrame.getWidth(),
             STAFF_WIDTH_DIVISOR,
-            new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT),
+            MAIN_FIELDS_SIZE,
             "Position: "
         );
 
@@ -201,22 +203,22 @@ public class HospitalStaffOption extends Option {
             HORIZONTAL_MARGIN,
             addStaffFrame.getWidth(),
             STAFF_WIDTH_DIVISOR,
-            new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT)
+            MAIN_FIELDS_SIZE
         );
 
         String patients[] = patientList.getPatientNames();
-            RadioButtonPanel isAvailablePanel = new RadioButtonPanel(
+        RadioButtonPanel isAvailablePanel = new RadioButtonPanel(
             "Is busy right now",
             patients,
             false,
             HORIZONTAL_MARGIN,
             addStaffFrame.getWidth(),
             STAFF_WIDTH_DIVISOR,
-            new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT)
+            MAIN_FIELDS_SIZE
         );
 
         NavigationButtonsPanel navigationPanel = new NavigationButtonsPanel(
-            new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT),
+            MAIN_FIELDS_SIZE,
             e -> {addStaffFrame.dispose();},
             e -> {
                 try {
@@ -241,8 +243,7 @@ public class HospitalStaffOption extends Option {
                             null : 
                             patientList.getPatient(isAvailablePanel.getSelectedIndex())
                     ));
-                }
-                catch (IllegalArgumentException exception) {
+                } catch (IllegalArgumentException exception) {
                     JOptionPane.showMessageDialog(addStaffFrame, exception.getMessage());
                     return;
                 }

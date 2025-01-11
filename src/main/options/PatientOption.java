@@ -68,7 +68,7 @@ public class PatientOption extends Option {
         listPatientsFrame.add(tableScrollPane, BorderLayout.CENTER);
 
         NavigationButtonsPanel navigationButtonsPanel = new NavigationButtonsPanel(
-            new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT),
+            MAIN_FIELDS_SIZE,
             e -> {listPatientsFrame.dispose();},
             e -> {
                 listPatientsFrame.dispose();
@@ -110,18 +110,18 @@ public class PatientOption extends Option {
 
         LabelPanel titlePanel = new LabelPanel(
             "Please, enter the following information", 
-            new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT)
+            MAIN_FIELDS_SIZE
         );
 
         CenteredTextFieldPanel namePanel = new CenteredTextFieldPanel(
             new HintTextField(
                 "Please, enter the full name of the patient",
-                new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT)
+                MAIN_FIELDS_SIZE
             ),
             HORIZONTAL_MARGIN,
             addPatientFrame.getWidth(),
             PATIENT_WIDTH_DIVISOR,
-            new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT),
+            MAIN_FIELDS_SIZE,
             "Full name: "
         );
 
@@ -129,7 +129,7 @@ public class PatientOption extends Option {
         calendar.add(Calendar.DAY_OF_MONTH, 1);
         DateSpinnerPanel dateOfBirthPanel = new DateSpinnerPanel(
             "Please, enter the date of birth of the patient",
-            new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT),
+            MAIN_FIELDS_SIZE,
             HORIZONTAL_MARGIN,
             null,
             calendar.getTime()
@@ -138,48 +138,48 @@ public class PatientOption extends Option {
         CenteredTextFieldPanel idPanel = new CenteredTextFieldPanel(
             new HintTextField(
                 "Please, enter the id number of the patient",
-                new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT)
+                MAIN_FIELDS_SIZE
             ),
             HORIZONTAL_MARGIN,
             addPatientFrame.getWidth(),
             PATIENT_WIDTH_DIVISOR,
-            new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT),
+            MAIN_FIELDS_SIZE,
             "ID nubmer: "
         );
 
         CenteredTextFieldPanel telephonePanel = new CenteredTextFieldPanel(
             new HintTextField(
                 "Please, enter the phone number of the patient",
-                new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT)
+                MAIN_FIELDS_SIZE
             ),
             HORIZONTAL_MARGIN,
             addPatientFrame.getWidth(),
             PATIENT_WIDTH_DIVISOR,
-            new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT),
+            MAIN_FIELDS_SIZE,
             "Phone nubmer: "
         );
 
         CenteredTextFieldPanel emailPanel = new CenteredTextFieldPanel(
             new HintTextField(
                 "Please, enter the email of the patient",
-                new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT)
+                MAIN_FIELDS_SIZE
             ),
             HORIZONTAL_MARGIN,
             addPatientFrame.getWidth(),
             PATIENT_WIDTH_DIVISOR,
-            new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT),
+            MAIN_FIELDS_SIZE,
             "Email: "
         );
 
         CenteredTextFieldPanel diagnosisPanel = new CenteredTextFieldPanel(
             new HintTextField(
                 "Please, enter the diagnosis of the patient",
-                new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT)
+                MAIN_FIELDS_SIZE
             ),
             HORIZONTAL_MARGIN,
             addPatientFrame.getWidth(),
             PATIENT_WIDTH_DIVISOR,
-            new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT),
+            MAIN_FIELDS_SIZE,
             "Diagnosis: "
         );
 
@@ -187,7 +187,7 @@ public class PatientOption extends Option {
         ComboBoxPanel genderPanel = new ComboBoxPanel(
             "Please, select the gender of the patient",
             options,
-            new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT),
+            MAIN_FIELDS_SIZE,
             HORIZONTAL_MARGIN
         );
 
@@ -198,7 +198,7 @@ public class PatientOption extends Option {
             HORIZONTAL_MARGIN,
             addPatientFrame.getWidth(),
             PATIENT_WIDTH_DIVISOR,
-            new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT)
+            MAIN_FIELDS_SIZE
         );
 
         String doctors[] = hospitalStaffList.getStaffNames();
@@ -209,7 +209,7 @@ public class PatientOption extends Option {
             HORIZONTAL_MARGIN,
             addPatientFrame.getWidth(),
             PATIENT_WIDTH_DIVISOR,
-            new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT)
+            MAIN_FIELDS_SIZE
         );
         
         String[] equipment = getEquipmentNames();
@@ -220,11 +220,11 @@ public class PatientOption extends Option {
             HORIZONTAL_MARGIN,
             addPatientFrame.getWidth(),
             PATIENT_WIDTH_DIVISOR,
-            new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT)
+            MAIN_FIELDS_SIZE
         );
 
         BedSelectionPanel bedSelectionPanel = new BedSelectionPanel(
-            new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT),
+            MAIN_FIELDS_SIZE,
             "Please, select the bed for the patient: ",
             HORIZONTAL_MARGIN / 2,
             HORIZONTAL_MARGIN,
@@ -232,7 +232,7 @@ public class PatientOption extends Option {
         );
 
         NavigationButtonsPanel navigationPanel = new NavigationButtonsPanel(
-            new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT),
+            MAIN_FIELDS_SIZE,
             e -> {addPatientFrame.dispose();},
             e -> {
                 try {

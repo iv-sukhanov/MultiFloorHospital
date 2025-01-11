@@ -1,7 +1,6 @@
 package main.options;
 
 import java.awt.BorderLayout;
-import java.awt.Dimension;
 import java.awt.FlowLayout;
 
 import javax.swing.BorderFactory;
@@ -62,7 +61,7 @@ public class RoomsOption extends Option {
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         JButton backButton = new JButton("Back");
         buttonPanel.add(backButton);
-        buttonPanel.setMaximumSize(new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT));
+        buttonPanel.setMaximumSize(MAIN_FIELDS_SIZE);
         listFloorsFrame.add(buttonPanel, BorderLayout.SOUTH);
 
         mainList.addListSelectionListener(e -> {

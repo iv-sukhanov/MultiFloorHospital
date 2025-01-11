@@ -2,21 +2,10 @@ package main.options;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
-import java.awt.Dimension;
 import java.time.ZoneId;
 import java.util.Calendar;
 
-import javax.swing.BorderFactory;
-import javax.swing.Box;
-import javax.swing.DefaultListModel;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JList;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.ListSelectionModel;
+import javax.swing.*;
 
 import main.entities.HospitalPharmasy;
 import main.entities.HospitalPharmasyList;
@@ -28,23 +17,37 @@ import main.gui.FillerPannel;
 import main.gui.HintTextField;
 import main.gui.NavigationButtonsPanel;
 
+/**
+ * Represents the pharmacy option in the hospital management system.
+ */
 public class HospitalPharmasyOption extends Option {
 
     private final HospitalPharmasyList pharmasyList;
 
+    /**
+     * Constructs a HospitalPharmasyOption object.
+     *
+     * @param pharmasyList the list of pharmacy items
+     */
     public HospitalPharmasyOption(HospitalPharmasyList pharmasyList) {
-        super(
-            "Pharmasy",
-            new JButton("Pharmasy")
-        );
-
+        super("Pharmasy", new JButton("Pharmasy"));
         this.pharmasyList = pharmasyList;
     }
 
+    /**
+     * Executes the pharmacy option.
+     *
+     * @param frame the main frame
+     */
     public void execute(JFrame frame) {
         listPharmasy(frame);
     }
 
+    /**
+     * Displays the list of pharmacy items.
+     *
+     * @param mainFrame the main frame
+     */
     private void listPharmasy(JFrame mainFrame) {
         
         DependantFrame listPharmasyFrame = new DependantFrame(
@@ -62,7 +65,7 @@ public class HospitalPharmasyOption extends Option {
         listPharmasyFrame.add(listScrollPane, BorderLayout.CENTER);
 
         NavigationButtonsPanel navigationPanel = new NavigationButtonsPanel(
-            new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT), 
+            MAIN_FIELDS_SIZE, 
             e -> {listPharmasyFrame.dispose();}, 
             e -> {
                 listPharmasyFrame.dispose();
@@ -71,20 +74,20 @@ public class HospitalPharmasyOption extends Option {
             },
             e -> {
                 String selection = mainList.getSelectedValue();
-                    if (selection != null) {
-                        int confirmed = JOptionPane.showConfirmDialog(listPharmasyFrame, 
-                            "Are you sure you want to delete " + selection + " ?",
-                            "Delete Confirmation",
-                            JOptionPane.YES_NO_OPTION);
-        
-                        if (confirmed == JOptionPane.YES_OPTION) {
-                            pharmasyList.remove(selection);
-                            listPharmasyFrame.dispose();
-                            super.button.doClick();
-                        }
-                    } else {
-                        JOptionPane.showMessageDialog(listPharmasyFrame, "No item selected to delete.");
+                if (selection != null) {
+                    int confirmed = JOptionPane.showConfirmDialog(listPharmasyFrame, 
+                        "Are you sure you want to delete " + selection + " ?",
+                        "Delete Confirmation",
+                        JOptionPane.YES_NO_OPTION);
+
+                    if (confirmed == JOptionPane.YES_OPTION) {
+                        pharmasyList.remove(selection);
+                        listPharmasyFrame.dispose();
+                        super.button.doClick();
                     }
+                } else {
+                    JOptionPane.showMessageDialog(listPharmasyFrame, "No item selected to delete.");
+                }
             },
             e -> {
                 String selection = mainList.getSelectedValue();
@@ -106,52 +109,43 @@ public class HospitalPharmasyOption extends Option {
         );
         listPharmasyFrame.add(navigationPanel, BorderLayout.SOUTH);
 
-
-
         listPharmasyFrame.setVisible(true);
     }
 
+    /**
+     * Displays the add pharmacy item form.
+     *
+     * @param mainFrame the main frame
+     */
     private void addPharmasy(JFrame mainFrame) {
-        DependantFrame addPharmasyFrame = new DependantFrame(
-            mainFrame,
-            "Add Pharmasy"
-        );
+        DependantFrame addPharmasyFrame = new DependantFrame(mainFrame, "Add Pharmasy");
 
-        LabelPanel promptPanel = new LabelPanel(
-            "Please enter the following information:",
-            new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT)
-        );
+        LabelPanel promptPanel = new LabelPanel("Please enter the following information:", MAIN_FIELDS_SIZE);
 
         CenteredTextFieldPanel namePanel = new CenteredTextFieldPanel(
-            new HintTextField(
-                "Enter the name of the item",
-                new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT)
-            ), 
+            new HintTextField("Enter the name of the item", MAIN_FIELDS_SIZE), 
             HORIZONTAL_MARGIN, 
-            new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT)
+            MAIN_FIELDS_SIZE
         );
 
         CenteredTextFieldPanel pricePanel = new CenteredTextFieldPanel(
-            new HintTextField(
-                "Enter the price of the item",
-                new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT)
-            ), 
+            new HintTextField("Enter the price of the item", MAIN_FIELDS_SIZE), 
             HORIZONTAL_MARGIN, 
-            new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT)
+            MAIN_FIELDS_SIZE
         );
 
         Calendar calendar = Calendar.getInstance();
         calendar.add(Calendar.DAY_OF_MONTH, -1);
         DateSpinnerPanel datePanel = new DateSpinnerPanel(
             "Enter the expiration date:",
-            new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT),
+            MAIN_FIELDS_SIZE,
             HORIZONTAL_MARGIN,
             calendar.getTime(),
             null
         );
 
         NavigationButtonsPanel navigationPanel = new NavigationButtonsPanel(
-            new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT), 
+            MAIN_FIELDS_SIZE, 
             e -> {addPharmasyFrame.dispose();}, 
             e -> {
                 try {
@@ -165,12 +159,10 @@ public class HospitalPharmasyOption extends Option {
                             datePanel.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate()
                         )
                     );
-                }
-                catch (NumberFormatException ex) {
+                } catch (NumberFormatException ex) {
                     JOptionPane.showMessageDialog(addPharmasyFrame, "Please enter a valid price.");
                     return;
-                }
-                catch (IllegalArgumentException ex) {
+                } catch (IllegalArgumentException ex) {
                     JOptionPane.showMessageDialog(addPharmasyFrame, ex.getMessage());
                     return;
                 }
@@ -197,6 +189,11 @@ public class HospitalPharmasyOption extends Option {
         addPharmasyFrame.setVisible(true);
     }
     
+    /**
+     * Fills the list model with pharmacy item names.
+     *
+     * @param model the list model to fill
+     */
     private void fillModel(DefaultListModel<String> model) {
         for (String pharmasy : pharmasyList.getPharmasyNames()) {
             model.addElement(pharmasy);
