@@ -7,12 +7,20 @@ import java.awt.event.FocusListener;
 
 import javax.swing.JTextField;
 
+/**
+ * Represents a text field with a hint that disappears when focused.
+ */
 public class HintTextField extends JTextField {
     
     private boolean showingHint;
     private final Color hintColor = Color.GRAY;
     private final Color textColor = Color.BLACK;
-    
+
+    /**
+     * Constructs a HintTextField object with a specified hint.
+     *
+     * @param hint the hint to display
+     */
     public HintTextField(String hint) {
         super("");
         setForeground(hintColor);
@@ -39,6 +47,12 @@ public class HintTextField extends JTextField {
         });
     }
 
+    /**
+     * Constructs a HintTextField object with a specified hint and size.
+     *
+     * @param hint the hint to display
+     * @param size the maximum size of the text field
+     */
     public HintTextField(String hint, Dimension size) {
         this(hint);
         setMaximumSize(size);

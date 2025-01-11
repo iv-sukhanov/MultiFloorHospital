@@ -13,13 +13,24 @@ import main.entities.HospitalBed;
 import main.entities.HospitalFloorList;
 import main.entities.HospitalRoom;
 
+/**
+ * Represents a panel for selecting floor, room and bed in a hospital.
+ */
 public class BedSelectionPanel extends JPanel {
 
     private final JComboBox<String> floorComboBox;
     private final JComboBox<String> roomComboBox;
     private final JComboBox<String> bedComboBox;
 
-
+    /**
+     * Constructs a BedSelectionPanel object.
+     *
+     * @param size the max size of the panel
+     * @param prompt the prompt to display
+     * @param optionsMargin the margin between options
+     * @param horizontalMargin the horizontal margin
+     * @param hospitalFloorList the list of hospital floors
+     */
     public BedSelectionPanel(Dimension size, String prompt, int optionsMargin, int horizontalMargin, HospitalFloorList hospitalFloorList) {
         setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
         setMaximumSize(size);
@@ -72,6 +83,12 @@ public class BedSelectionPanel extends JPanel {
         add(Box.createHorizontalStrut(horizontalMargin));
     }
 
+    /**
+     * Returns the selected bed.
+     *
+     * @param hospitalFloorList the list of hospital floors
+     * @return the selected bed, or null if no bed is selected
+     */
     public HospitalBed getSelectedBed(HospitalFloorList hospitalFloorList) {
         int floorIndex = floorComboBox.getSelectedIndex();
         int roomIndex = roomComboBox.getSelectedIndex();
@@ -84,6 +101,12 @@ public class BedSelectionPanel extends JPanel {
         return hospitalFloorList.get(floorIndex).getRoom(roomIndex).getBed(bedIndex);
     }
 
+    /**
+     * Returns the selected room.
+     *
+     * @param hospitalFloorList the list of hospital floors
+     * @return the selected room, or null if no room is selected
+     */
     public HospitalRoom getSelectedRoom(HospitalFloorList hospitalFloorList) {
         int floorIndex = floorComboBox.getSelectedIndex();
         int roomIndex = roomComboBox.getSelectedIndex();

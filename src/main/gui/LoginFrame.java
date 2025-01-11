@@ -27,7 +27,7 @@ public class LoginFrame extends JFrame {
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     
-        CenteredElementPanel loginPanel = new CenteredElementPanel(
+        CenteredTextFieldPanel loginPanel = new CenteredTextFieldPanel(
             new HintTextField("Please, enter login"),
             30,
             getWidth(),
@@ -36,7 +36,7 @@ public class LoginFrame extends JFrame {
             "Login: "
         );
 
-        CenteredElementPanel passwordPanel = new CenteredElementPanel(
+        CenteredTextFieldPanel passwordPanel = new CenteredTextFieldPanel(
             new JPasswordField(8),
             30,
             getWidth(),

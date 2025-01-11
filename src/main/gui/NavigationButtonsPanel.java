@@ -9,11 +9,21 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+/**
+ * Represents a panel with navigation buttons.
+ */
 public class NavigationButtonsPanel extends JPanel {
 
     private final JButton acceptButton;
     private static final Dimension BUTTON_SIZE = new Dimension(100, 20);
 
+    /**
+     * Constructs a NavigationButtonsPanel object with back and confirm buttons.
+     *
+     * @param size the size of the panel
+     * @param back the action listener for the back button
+     * @param confirm the action listener for the confirm button
+     */
     public NavigationButtonsPanel(Dimension size, ActionListener back, ActionListener confirm) {
         JButton backButton = new JButton("Back");
         backButton.setBackground(Color.YELLOW);
@@ -37,6 +47,14 @@ public class NavigationButtonsPanel extends JPanel {
         add(acceptButton);
     }
 
+    /**
+     * Constructs a NavigationButtonsPanel object with back, add, and delete buttons.
+     *
+     * @param size the size of the panel
+     * @param back the action listener for the back button
+     * @param add the action listener for the add button
+     * @param delete the action listener for the delete button
+     */
     public NavigationButtonsPanel(Dimension size, ActionListener back, ActionListener add, ActionListener delete) {
         setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
         setMaximumSize(size);
@@ -64,6 +82,15 @@ public class NavigationButtonsPanel extends JPanel {
         add(rightButtonPanel);
     }
 
+    /**
+     * Constructs a NavigationButtonsPanel object with back, add, delete, and details buttons.
+     *
+     * @param size the size of the panel
+     * @param back the action listener for the back button
+     * @param add the action listener for the add button
+     * @param delete the action listener for the delete button
+     * @param details the action listener for the details button
+     */
     public NavigationButtonsPanel(Dimension size, ActionListener back, ActionListener add, ActionListener delete, ActionListener details) {
         setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
         setMaximumSize(size);
@@ -94,6 +121,12 @@ public class NavigationButtonsPanel extends JPanel {
         add(rightButtonPanel);
     }
 
+    /**
+     * Constructs a NavigationButtonsPanel object with an OK button.
+     *
+     * @param size the size of the panel
+     * @param ok the action listener for the OK button
+     */
     public NavigationButtonsPanel(Dimension size, ActionListener ok) {
         acceptButton = new JButton("OK");
 
@@ -107,6 +140,9 @@ public class NavigationButtonsPanel extends JPanel {
         add(acceptButton);
     }
 
+    /**
+     * Simulates a click on the accept button.
+     */
     public void accept() {
         if (acceptButton == null) {
             return;

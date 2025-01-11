@@ -17,7 +17,7 @@ import javax.swing.JTable;
 import main.entities.HospitalStaff;
 import main.entities.HospitalStaffList;
 import main.entities.PatientList;
-import main.gui.CenteredElementPanel;
+import main.gui.CenteredTextFieldPanel;
 import main.gui.LabelPanel;
 import main.gui.ComboBoxPanel;
 import main.gui.DateSpinnerPanel;
@@ -116,7 +116,7 @@ public class HospitalStaffOption extends Option {
             new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT)
         );
 
-        CenteredElementPanel namePanel = new CenteredElementPanel(
+        CenteredTextFieldPanel namePanel = new CenteredTextFieldPanel(
             new HintTextField(
                 "Please, enter the full name of the staff member",
                 new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT)
@@ -138,7 +138,7 @@ public class HospitalStaffOption extends Option {
             calendar.getTime()
         );
 
-        CenteredElementPanel idPanel = new CenteredElementPanel(
+        CenteredTextFieldPanel idPanel = new CenteredTextFieldPanel(
             new HintTextField(
                 "Please, enter the id number of the staff member",
                 new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT)
@@ -150,7 +150,7 @@ public class HospitalStaffOption extends Option {
             "ID nubmer: "
         );
 
-        CenteredElementPanel telephonePanel = new CenteredElementPanel(
+        CenteredTextFieldPanel telephonePanel = new CenteredTextFieldPanel(
             new HintTextField(
                 "Please, enter the phone number of the staff member",
                 new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT)
@@ -162,7 +162,7 @@ public class HospitalStaffOption extends Option {
             "Phone nubmer: "
         );
 
-        CenteredElementPanel emailPanel = new CenteredElementPanel(
+        CenteredTextFieldPanel emailPanel = new CenteredTextFieldPanel(
             new HintTextField(
                 "Please, enter the email of the staff member",
                 new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT)
@@ -182,7 +182,7 @@ public class HospitalStaffOption extends Option {
             HORIZONTAL_MARGIN
         );
 
-        CenteredElementPanel positionPanel = new CenteredElementPanel(
+        CenteredTextFieldPanel positionPanel = new CenteredTextFieldPanel(
             new HintTextField(
                 "Please, enter the position of the staff member",
                 new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT)

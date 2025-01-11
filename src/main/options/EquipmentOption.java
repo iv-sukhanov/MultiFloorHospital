@@ -24,7 +24,7 @@ import javax.swing.table.DefaultTableModel;
 
 import main.entities.HospitalEquipmentList;
 import main.entities.HospitalEquipment;
-import main.gui.CenteredElementPanel;
+import main.gui.CenteredTextFieldPanel;
 import main.gui.LabelPanel;
 import main.gui.DateSpinnerPanel;
 import main.gui.DependantFrame;
@@ -135,7 +135,7 @@ public class EquipmentOption extends Option {
             new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT)
         );
 
-        CenteredElementPanel namePanel = new CenteredElementPanel(
+        CenteredTextFieldPanel namePanel = new CenteredTextFieldPanel(
             new HintTextField(
                 "Enter the name of the equipment",
                 new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT)
@@ -144,7 +144,7 @@ public class EquipmentOption extends Option {
             new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT)
         );
 
-        CenteredElementPanel manufacturerPanel = new CenteredElementPanel(
+        CenteredTextFieldPanel manufacturerPanel = new CenteredTextFieldPanel(
             new HintTextField(
                 "Enter the manufacturer of the equipment",
                 new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT)

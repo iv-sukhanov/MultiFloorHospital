@@ -20,7 +20,7 @@ import javax.swing.ListSelectionModel;
 
 import main.entities.HospitalPharmasy;
 import main.entities.HospitalPharmasyList;
-import main.gui.CenteredElementPanel;
+import main.gui.CenteredTextFieldPanel;
 import main.gui.LabelPanel;
 import main.gui.DateSpinnerPanel;
 import main.gui.DependantFrame;
@@ -122,7 +122,7 @@ public class HospitalPharmasyOption extends Option {
             new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT)
         );
 
-        CenteredElementPanel namePanel = new CenteredElementPanel(
+        CenteredTextFieldPanel namePanel = new CenteredTextFieldPanel(
             new HintTextField(
                 "Enter the name of the item",
                 new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT)
@@ -131,7 +131,7 @@ public class HospitalPharmasyOption extends Option {
             new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT)
         );
 
-        CenteredElementPanel pricePanel = new CenteredElementPanel(
+        CenteredTextFieldPanel pricePanel = new CenteredTextFieldPanel(
             new HintTextField(
                 "Enter the price of the item",
                 new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT)

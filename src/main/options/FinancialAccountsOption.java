@@ -11,7 +11,7 @@ import javax.swing.*;
 
 import main.entities.FinancialRecord;
 import main.entities.HospitalFinancial_Accounts;
-import main.gui.CenteredElementPanel;
+import main.gui.CenteredTextFieldPanel;
 import main.gui.LabelPanel;
 import main.gui.DateSpinnerPanel;
 import main.gui.DependantFrame;
@@ -88,7 +88,7 @@ public class FinancialAccountsOption extends Option {
             new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT)
         );
 
-        CenteredElementPanel fromPanel = new CenteredElementPanel(
+        CenteredTextFieldPanel fromPanel = new CenteredTextFieldPanel(
             new HintTextField(
                 "Enter the source of the foundation",
                 new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT)
@@ -97,7 +97,7 @@ public class FinancialAccountsOption extends Option {
             new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT)
         );
 
-        CenteredElementPanel amountPanel = new CenteredElementPanel(
+        CenteredTextFieldPanel amountPanel = new CenteredTextFieldPanel(
             new HintTextField(
                 "Enter the amount",
                 new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT)

@@ -113,7 +113,7 @@ public class PatientOption extends Option {
             new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT)
         );
 
-        CenteredElementPanel namePanel = new CenteredElementPanel(
+        CenteredTextFieldPanel namePanel = new CenteredTextFieldPanel(
             new HintTextField(
                 "Please, enter the full name of the patient",
                 new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT)
@@ -135,7 +135,7 @@ public class PatientOption extends Option {
             calendar.getTime()
             );
 
-        CenteredElementPanel idPanel = new CenteredElementPanel(
+        CenteredTextFieldPanel idPanel = new CenteredTextFieldPanel(
             new HintTextField(
                 "Please, enter the id number of the patient",
                 new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT)
@@ -147,7 +147,7 @@ public class PatientOption extends Option {
             "ID nubmer: "
         );
 
-        CenteredElementPanel telephonePanel = new CenteredElementPanel(
+        CenteredTextFieldPanel telephonePanel = new CenteredTextFieldPanel(
             new HintTextField(
                 "Please, enter the phone number of the patient",
                 new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT)
@@ -159,7 +159,7 @@ public class PatientOption extends Option {
             "Phone nubmer: "
         );
 
-        CenteredElementPanel emailPanel = new CenteredElementPanel(
+        CenteredTextFieldPanel emailPanel = new CenteredTextFieldPanel(
             new HintTextField(
                 "Please, enter the email of the patient",
                 new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT)
@@ -171,7 +171,7 @@ public class PatientOption extends Option {
             "Email: "
         );
 
-        CenteredElementPanel diagnosisPanel = new CenteredElementPanel(
+        CenteredTextFieldPanel diagnosisPanel = new CenteredTextFieldPanel(
             new HintTextField(
                 "Please, enter the diagnosis of the patient",
                 new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT)
