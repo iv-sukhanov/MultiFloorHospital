@@ -160,12 +160,14 @@ public class EquipmentOption extends Option {
             new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT)
         );
 
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.DAY_OF_MONTH, 1);
         DateSpinnerPanel datePanel = new DateSpinnerPanel(
             "Enter the last maintenance date:",
             new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT),
             HORIZONTAL_MARGIN,
             null,
-            Calendar.getInstance().getTime()
+            calendar.getTime()
         );
 
         NavigationButtonsPanel navigationPanel = new NavigationButtonsPanel(

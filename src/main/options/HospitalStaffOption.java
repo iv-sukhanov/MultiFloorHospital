@@ -128,12 +128,14 @@ public class HospitalStaffOption extends Option {
             "Full name: "
         );
 
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.DAY_OF_MONTH, 1);
         DateSpinnerPanel dateOfBirthPanel = new DateSpinnerPanel(
             "Please, enter the date of birth of the staff member",
             new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT),
             HORIZONTAL_MARGIN,
             null,
-            Calendar.getInstance().getTime()
+            calendar.getTime()
         );
 
         CenteredElementPanel idPanel = new CenteredElementPanel(

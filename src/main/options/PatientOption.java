@@ -125,13 +125,15 @@ public class PatientOption extends Option {
             "Full name: "
         );
 
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.DAY_OF_MONTH, 1);
         DateSpinnerPanel dateOfBirthPanel = new DateSpinnerPanel(
             "Please, enter the date of birth of the patient",
             new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT),
             HORIZONTAL_MARGIN,
             null,
-            Calendar.getInstance().getTime()
-        );
+            calendar.getTime()
+            );
 
         CenteredElementPanel idPanel = new CenteredElementPanel(
             new HintTextField(
