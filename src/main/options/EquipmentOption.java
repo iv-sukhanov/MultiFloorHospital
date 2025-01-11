@@ -195,6 +195,7 @@ public class EquipmentOption extends Option {
             }
         );
 
+        namePanel.setNextComponent(manufacturerPanel);
         JPanel elementsToDisplay[] = {
             promptPanel,
             namePanel,
@@ -211,8 +212,6 @@ public class EquipmentOption extends Option {
             equipmentFrame.add(panel);
         }      
 
-        equipmentFrame.setLocationRelativeTo(mainFrame);
-        //TODO transfer focus from the text fields
         equipmentFrame.setVisible(true);
     }
     

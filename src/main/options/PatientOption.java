@@ -266,6 +266,11 @@ public class PatientOption extends Option {
             }
         );
 
+        namePanel.setNextComponent(idPanel);
+        idPanel.setNextComponent(telephonePanel);
+        telephonePanel.setNextComponent(emailPanel);
+        emailPanel.setNextComponent(diagnosisPanel);
+
         JPanel elementsToDisplay[] = {
             titlePanel,
             namePanel,

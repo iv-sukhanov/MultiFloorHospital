@@ -178,6 +178,7 @@ public class HospitalPharmasyOption extends Option {
             }
         );
 
+        namePanel.setNextComponent(pricePanel);
         JPanel elementsToDisplay[] = {
             promptPanel,
             namePanel,

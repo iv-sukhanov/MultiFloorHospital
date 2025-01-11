@@ -250,6 +250,11 @@ public class HospitalStaffOption extends Option {
             }
         );
 
+        namePanel.setNextComponent(idPanel);
+        idPanel.setNextComponent(telephonePanel);
+        telephonePanel.setNextComponent(emailPanel);
+        emailPanel.setNextComponent(positionPanel);
+
         JPanel elementsToDisplay[] = {
             titlePanel,
             namePanel,

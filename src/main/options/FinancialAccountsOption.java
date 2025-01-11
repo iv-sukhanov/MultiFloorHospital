@@ -136,7 +136,8 @@ public class FinancialAccountsOption extends Option {
                 addRecordFrame.dispose();
         }
         );
-
+        
+        fromPanel.setNextComponent(amountPanel);
         JPanel elementsToDisplay[] = {
             promptPanel,
             fromPanel,
