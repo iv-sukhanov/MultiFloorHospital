@@ -21,7 +21,7 @@ import javax.swing.ListSelectionModel;
 import main.entities.HospitalPharmasy;
 import main.entities.HospitalPharmasyList;
 import main.gui.CenteredElementPanel;
-import main.gui.CenteredLabel;
+import main.gui.LabelPanel;
 import main.gui.DateSpinnerPanel;
 import main.gui.DependantFrame;
 import main.gui.FillerPannel;
@@ -117,7 +117,7 @@ public class HospitalPharmasyOption extends Option {
             "Add Pharmasy"
         );
 
-        CenteredLabel promptPanel = new CenteredLabel(
+        LabelPanel promptPanel = new LabelPanel(
             "Please enter the following information:",
             new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT)
         );
@@ -165,7 +165,6 @@ public class HospitalPharmasyOption extends Option {
                             datePanel.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate()
                         )
                     );
-                    addPharmasyFrame.dispose();
                 }
                 catch (NumberFormatException ex) {
                     JOptionPane.showMessageDialog(addPharmasyFrame, "Please enter a valid price.");

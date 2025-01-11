@@ -108,7 +108,7 @@ public class PatientOption extends Option {
         JPanel addPatientPanel = new JPanel();
         addPatientPanel.setLayout(new BoxLayout(addPatientPanel, BoxLayout.Y_AXIS));
 
-        CenteredLabel titlePanel = new CenteredLabel(
+        LabelPanel titlePanel = new LabelPanel(
             "Please, enter the following information", 
             new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT)
         );

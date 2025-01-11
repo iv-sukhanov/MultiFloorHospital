@@ -23,12 +23,17 @@ public class HospitalFinancial_Accounts extends Hospital {
     public String[][] getDetails() {
         
         String[][] output = new String[financialRecords.size()][3];
-        for (int i = 0; i < financialRecords.size(); i++) {
+        for (int i = financialRecords.size() - 1; i >= 0; i--) {
             output[i][0] = financialRecords.get(i).getDate().toString();
             output[i][1] = financialRecords.get(i).getFrom();
             output[i][2] = String.valueOf(financialRecords.get(i).getAmount());
         }
 
         return output;
+    }
+
+    public void addRecord(FinancialRecord record) {
+        balance += record.getAmount();
+        financialRecords.add(record);
     }
 }

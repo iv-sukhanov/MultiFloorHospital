@@ -9,6 +9,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 
 public class LoginFrame extends JFrame {
+
     public LoginFrame(Dimension size, Runnable okAction) {
         super("multi-floor hospital system");
         setLayout(new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS));
@@ -62,7 +63,7 @@ public class LoginFrame extends JFrame {
         );
 
         add(Box.createVerticalStrut(30));
-        add(new CenteredLabel(
+        add(new LabelPanel(
             "Please, enter login and password: ", 
             new Dimension(Integer.MAX_VALUE, 20)
         ));

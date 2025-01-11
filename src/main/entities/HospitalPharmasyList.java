@@ -51,10 +51,13 @@ public class HospitalPharmasyList extends Hospital {
         List<HospitalPharmasy> currentList = pharmasyMap.get(name);
         String[][] details = new String[currentList.size()][4];
         for (int i = 0; i < currentList.size(); i++) {
+
+            HospitalPharmasy currentPharmasy = currentList.get(i);
+
             details[i][0] = String.valueOf(i + 1);
-            details[i][1] = currentList.get(i).getName();
-            details[i][2] = String.valueOf(currentList.get(i).getPrice());
-            details[i][3] = currentList.get(i).getExpirationDate().toString();
+            details[i][1] = currentPharmasy.getName();
+            details[i][2] = currentPharmasy.getPrice() == 0 ? "free" : String.valueOf(currentPharmasy.getPrice());
+            details[i][3] = currentPharmasy.getExpirationDate().toString();
         }
         
         return details;

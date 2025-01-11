@@ -25,7 +25,7 @@ import javax.swing.table.DefaultTableModel;
 import main.entities.HospitalEquipmentList;
 import main.entities.HospitalEquipment;
 import main.gui.CenteredElementPanel;
-import main.gui.CenteredLabel;
+import main.gui.LabelPanel;
 import main.gui.DateSpinnerPanel;
 import main.gui.DependantFrame;
 import main.gui.FillerPannel;
@@ -130,7 +130,7 @@ public class EquipmentOption extends Option {
             "Add Equipment" 
         );
 
-        CenteredLabel promptPanel = new CenteredLabel(
+        LabelPanel promptPanel = new LabelPanel(
             "Please enter the following information:",
             new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT)
         );

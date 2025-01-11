@@ -3,13 +3,16 @@ package main.options;
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.time.ZoneId;
 import java.util.Calendar;
 
 import javax.swing.*;
 
+import main.entities.FinancialRecord;
 import main.entities.HospitalFinancial_Accounts;
 import main.gui.CenteredElementPanel;
-import main.gui.CenteredLabel;
+import main.gui.LabelPanel;
 import main.gui.DateSpinnerPanel;
 import main.gui.DependantFrame;
 import main.gui.FillerPannel;
@@ -41,9 +44,11 @@ public class FinancialAccountsOption extends Option {
         );
 
 
-        accountFrame.add(new CenteredLabel(
-            "Currnet balance is " + accounts.getBalance() + "$", 
-            new Dimension(Integer.MAX_VALUE, 30)
+        accountFrame.add(new LabelPanel(
+            "Currnet balance is " + accounts.getBalance() + "$" + 
+            (accounts.getBalance() < 0 ? ". Ooooouuuups... You are in debt ;(" : ""), 
+            new Dimension(Integer.MAX_VALUE, 30),
+            FlowLayout.LEFT
         ), BorderLayout.NORTH);
 
         String[] columns = {
@@ -59,7 +64,11 @@ public class FinancialAccountsOption extends Option {
         NavigationButtonsPanel navigationPanel = new NavigationButtonsPanel(
             new Dimension(Integer.MAX_VALUE, 20), 
             e -> {accountFrame.dispose();},
-            e -> {addRecord(mainFrame);},
+            e -> {
+                addRecord(mainFrame);
+                accountFrame.dispose();
+                super.button.doClick();
+            },
             e -> {accountFrame.dispose();}
         );
         accountFrame.add(navigationPanel, BorderLayout.SOUTH);
@@ -74,7 +83,7 @@ public class FinancialAccountsOption extends Option {
             "Add Financial Record"
         );
 
-        CenteredLabel promptPanel = new CenteredLabel(
+        LabelPanel promptPanel = new LabelPanel(
             "Please enter the following information:",
             new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT)
         );
@@ -110,7 +119,22 @@ public class FinancialAccountsOption extends Option {
         NavigationButtonsPanel navigationPanel = new NavigationButtonsPanel(
             new Dimension(Integer.MAX_VALUE, 30), 
             e -> {addRecordFrame.dispose();},
-            e -> {addRecordFrame.dispose();}
+            e -> {
+                try {
+                    accounts.addRecord(
+                        new FinancialRecord(
+                            fromPanel.getText().equals("Enter the source of the foundation") ? 
+                                "Unknown" : 
+                                fromPanel.getText(), 
+                            Double.parseDouble(amountPanel.getText()), 
+                            datePanel.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate()
+                        ));
+                } catch (NumberFormatException exception) {
+                    JOptionPane.showMessageDialog(addRecordFrame, "Please enter a valid number.");
+                    return;
+                }
+                addRecordFrame.dispose();
+        }
         );
 
         JPanel elementsToDisplay[] = {

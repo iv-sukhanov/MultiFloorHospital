@@ -18,7 +18,7 @@ import main.entities.HospitalStaff;
 import main.entities.HospitalStaffList;
 import main.entities.PatientList;
 import main.gui.CenteredElementPanel;
-import main.gui.CenteredLabel;
+import main.gui.LabelPanel;
 import main.gui.ComboBoxPanel;
 import main.gui.DateSpinnerPanel;
 import main.gui.DependantFrame;
@@ -111,7 +111,7 @@ public class HospitalStaffOption extends Option {
             "Add Staff"
         );
 
-        CenteredLabel titlePanel = new CenteredLabel(
+        LabelPanel titlePanel = new LabelPanel(
             "Please, enter the following information", 
             new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT)
         );
