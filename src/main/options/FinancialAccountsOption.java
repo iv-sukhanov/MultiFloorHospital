@@ -7,7 +7,6 @@ import java.util.Calendar;
 
 import javax.swing.*;
 
-import main.entities.Hospital;
 import main.entities.HospitalFinancial_Accounts;
 import main.gui.CenteredElementPanel;
 import main.gui.CenteredLabel;
@@ -98,12 +97,14 @@ public class FinancialAccountsOption extends Option {
             new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT)
         );
 
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.DAY_OF_MONTH, 1);
         DateSpinnerPanel datePanel = new DateSpinnerPanel(
             "Enter the expiration date:",
             new Dimension(Integer.MAX_VALUE, TEXT_FIELDS_HIGHT),
             HORIZONTAL_MARGIN,
             null,
-            Calendar.getInstance().getTime()
+            calendar.getTime()
         );
 
         NavigationButtonsPanel navigationPanel = new NavigationButtonsPanel(

@@ -59,4 +59,8 @@ public class CenteredElementPanel extends JPanel {
     public void addActionListener(ActionListener actionListener) {
         this.textField.addActionListener(actionListener);
     }
+
+    public boolean requestFocusInWindow() {
+        return textField.requestFocusInWindow();
+    }
 }
