@@ -6,6 +6,9 @@ import java.util.List;
 import java.util.Map;
 
 public class HospitalEquipmentList extends Hospital {
+
+    private static final long serialVersionUID = 1L;
+
     private final Map<String, List<HospitalEquipment>> equipmentMap = new HashMap<>();
     
     public HospitalEquipmentList(Hospital hospital) {

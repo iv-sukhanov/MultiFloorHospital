@@ -1,8 +1,12 @@
 package main.entities;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class FinancialRecord {
+public class FinancialRecord implements Serializable {
+    
+    private static final long serialVersionUID = 1L;
+    
     private String from;
     private double amount;
     private LocalDate date;

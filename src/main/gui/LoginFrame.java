@@ -10,6 +10,16 @@ import javax.swing.JPasswordField;
 
 public class LoginFrame extends JFrame {
 
+
+    private static final String expectedLogin = System.getenv("HOSPITAL_LOGIN") == null ? 
+        "login" : 
+        System.getenv("HOSPITAL_LOGIN");
+    
+    private static final String expectedPassword = System.getenv("HOSPITAL_PASSWORD") == null ? 
+        "password" : 
+        System.getenv("HOSPITAL_PASSWORD");
+    
+
     public LoginFrame(Dimension size, Runnable okAction) {
         super("multi-floor hospital system");
         setLayout(new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS));
@@ -39,8 +49,8 @@ public class LoginFrame extends JFrame {
             new Dimension(Integer.MAX_VALUE, 20), 
             e -> {
                 if (
-                    loginPanel.getText().equals(System.getenv("HOSPITAL_LOGIN")) &&
-                    passwordPanel.getText().equals(System.getenv("HOSPITAL_PASSWORD"))
+                    loginPanel.getText().equals(expectedLogin) &&
+                    passwordPanel.getText().equals(expectedPassword)
                 ) {
                     okAction.run();
                     this.dispose();

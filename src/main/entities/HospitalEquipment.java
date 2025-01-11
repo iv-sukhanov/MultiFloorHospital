@@ -4,6 +4,8 @@ import java.time.LocalDate;
 
 public class HospitalEquipment extends Hospital{
     
+    private static final long serialVersionUID = 1L;
+
     private static int idCounter = 0;
 
     private String name;

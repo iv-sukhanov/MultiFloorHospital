@@ -1,9 +1,13 @@
 package main.entities;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.Period;
 
-public abstract class Person {
+public abstract class Person implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
     private String name;
     private int age;
     private LocalDate dateOfBirth;

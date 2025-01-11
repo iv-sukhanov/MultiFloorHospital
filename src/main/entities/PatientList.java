@@ -1,9 +1,11 @@
 package main.entities;
 
+import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
 
-public class PatientList {
+public class PatientList implements Serializable {
+    private static final long serialVersionUID = 1L;
     private final List<Patient> patients = new LinkedList<>();
 
     public void addPatient(Patient patient) {
