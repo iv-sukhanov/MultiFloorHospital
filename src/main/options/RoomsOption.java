@@ -17,9 +17,17 @@ import javax.swing.ListSelectionModel;
 import main.entities.HospitalFloorList;
 import main.gui.DependantFrame;
 
+/**
+ * Represents the rooms option in the hospital management system.
+ */
 public class RoomsOption extends Option {
     private final HospitalFloorList hospitalFloorList;
     
+    /**
+     * Constructs a RoomsOption object.
+     *
+     * @param hospitalFloorList the list of hospital floors
+     */
     public RoomsOption(HospitalFloorList hospitalFloorList) {
         super(
             "RoomsOption",
@@ -28,12 +36,22 @@ public class RoomsOption extends Option {
         this.hospitalFloorList = hospitalFloorList;
     }
 
+    /**
+     * Executes the rooms option.
+     *
+     * @param frame the main frame
+     */
     public void execute(JFrame frame) {
         frame.setVisible(false);
         listFloors(frame);
         frame.setVisible(true);
     }
 
+    /**
+     * Displays the list of floors and rooms.
+     *
+     * @param frame the main frame
+     */
     private void listFloors(JFrame frame) {
         DependantFrame listFloorsFrame = new DependantFrame(
             frame, 
@@ -95,12 +113,23 @@ public class RoomsOption extends Option {
         listFloorsFrame.setVisible(true);
     }
 
+    /**
+     * Fills the floor list model with floor names.
+     *
+     * @param listModel the list model to fill
+     */
     private void fillFloorModel(DefaultListModel<String> listModel) {
         for (int i = 0; i < hospitalFloorList.size(); i++) {
             listModel.addElement("Floor " + (i + 1));
         }
     }
 
+    /**
+     * Fills the room list model with room names for the specified floor.
+     *
+     * @param listModel the list model to fill
+     * @param floorNumber the floor number
+     */
     private void fillRoomsModel(DefaultListModel<String> listModel, int floorNumber) {
         listModel.clear();
         listModel.addAll(hospitalFloorList.get(floorNumber).getRoomNames());

@@ -8,8 +8,10 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 
+/**
+ * Represents the login frame for the MultiFloorHospital application.
+ */
 public class LoginFrame extends JFrame {
-
 
     private static final String expectedLogin = System.getenv("HOSPITAL_LOGIN") == null ? 
         "login" : 
@@ -19,7 +21,12 @@ public class LoginFrame extends JFrame {
         "password" : 
         System.getenv("HOSPITAL_PASSWORD");
     
-
+    /**
+     * Constructs a LoginFrame object.
+     *
+     * @param size the size of the frame
+     * @param okAction the action to perform when login is successful
+     */
     public LoginFrame(Dimension size, Runnable okAction) {
         super("multi-floor hospital system");
         setLayout(new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS));

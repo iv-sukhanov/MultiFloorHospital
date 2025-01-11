@@ -13,6 +13,9 @@ import main.entities.Patient;
 import main.entities.PatientList;
 import main.gui.*;
 
+/**
+ * Represents the patient option in the hospital management system.
+ */
 public class PatientOption extends Option {
 
     private final HospitalStaffList hospitalStaffList; 
@@ -20,6 +23,14 @@ public class PatientOption extends Option {
     private final HospitalFloorList hospitalFloorList;
     private final PatientList patientList;
     
+    /**
+     * Constructs a PatientOption object.
+     *
+     * @param patientList the list of patients
+     * @param hospitalStaffList the list of hospital staff
+     * @param equipmentList the list of hospital equipment
+     * @param hospitalFloorList the list of hospital floors
+     */
     public PatientOption(PatientList patientList, HospitalStaffList hospitalStaffList, HospitalEquipmentList equipmentList, HospitalFloorList hospitalFloorList) {
         super(
             "PatientOption", 
@@ -32,12 +43,22 @@ public class PatientOption extends Option {
         this.hospitalFloorList = hospitalFloorList;
     }
 
+    /**
+     * Executes the patient option.
+     *
+     * @param frame the main frame
+     */
     public void execute(JFrame frame) {
         frame.setVisible(false);
         listPatients(frame);
         frame.setVisible(true);
     }
 
+    /**
+     * Displays the list of patients.
+     *
+     * @param mainFrame the main frame
+     */
     private void listPatients(JFrame mainFrame) {
         DependantFrame listPatientsFrame = new DependantFrame(
             mainFrame, 
@@ -77,47 +98,42 @@ public class PatientOption extends Option {
             },
             e -> {
                 int selectedRow = patientsTable.getSelectedRow();
-                    if (selectedRow != -1) {
-                        int confirmed = JOptionPane.showConfirmDialog(listPatientsFrame, 
-                            "Are you sure you want to delete " + (selectedRow + 1)  + "th patient?",
-                            "Delete Confirmation",
-                            JOptionPane.YES_NO_OPTION
-                        );
-        
-                        if (confirmed == JOptionPane.YES_OPTION) {
-                            patientList.removePatient(selectedRow);
-                            listPatientsFrame.dispose();
-                            super.button.doClick();
-                        }
-                    } else {
-                        JOptionPane.showMessageDialog(listPatientsFrame, "No patient selected to delete.");
+                if (selectedRow != -1) {
+                    int confirmed = JOptionPane.showConfirmDialog(listPatientsFrame, 
+                        "Are you sure you want to delete " + (selectedRow + 1)  + "th patient?",
+                        "Delete Confirmation",
+                        JOptionPane.YES_NO_OPTION
+                    );
+
+                    if (confirmed == JOptionPane.YES_OPTION) {
+                        patientList.removePatient(selectedRow);
+                        listPatientsFrame.dispose();
+                        super.button.doClick();
                     }
+                } else {
+                    JOptionPane.showMessageDialog(listPatientsFrame, "No patient selected to delete.");
+                }
             }
         );
         listPatientsFrame.add(navigationButtonsPanel, BorderLayout.SOUTH);
         listPatientsFrame.setVisible(true);
     }
 
+    /**
+     * Displays the add patient form.
+     *
+     * @param mainFrame the main frame
+     */
     public void addPatient(JFrame mainFrame) {
-        DependantFrame addPatientFrame = new DependantFrame(
-            mainFrame, 
-            "Add Patient",
-            new BorderLayout()
-        );
+        DependantFrame addPatientFrame = new DependantFrame(mainFrame, "Add Patient", new BorderLayout());
 
         JPanel addPatientPanel = new JPanel();
         addPatientPanel.setLayout(new BoxLayout(addPatientPanel, BoxLayout.Y_AXIS));
 
-        LabelPanel titlePanel = new LabelPanel(
-            "Please, enter the following information", 
-            MAIN_FIELDS_SIZE
-        );
+        LabelPanel titlePanel = new LabelPanel("Please, enter the following information", MAIN_FIELDS_SIZE);
 
         CenteredTextFieldPanel namePanel = new CenteredTextFieldPanel(
-            new HintTextField(
-                "Please, enter the full name of the patient",
-                MAIN_FIELDS_SIZE
-            ),
+            new HintTextField("Please, enter the full name of the patient", MAIN_FIELDS_SIZE),
             HORIZONTAL_MARGIN,
             addPatientFrame.getWidth(),
             PATIENT_WIDTH_DIVISOR,
@@ -133,37 +149,28 @@ public class PatientOption extends Option {
             HORIZONTAL_MARGIN,
             null,
             calendar.getTime()
-            );
+        );
 
         CenteredTextFieldPanel idPanel = new CenteredTextFieldPanel(
-            new HintTextField(
-                "Please, enter the id number of the patient",
-                MAIN_FIELDS_SIZE
-            ),
+            new HintTextField("Please, enter the id number of the patient", MAIN_FIELDS_SIZE),
             HORIZONTAL_MARGIN,
             addPatientFrame.getWidth(),
             PATIENT_WIDTH_DIVISOR,
             MAIN_FIELDS_SIZE,
-            "ID nubmer: "
+            "ID number: "
         );
 
         CenteredTextFieldPanel telephonePanel = new CenteredTextFieldPanel(
-            new HintTextField(
-                "Please, enter the phone number of the patient",
-                MAIN_FIELDS_SIZE
-            ),
+            new HintTextField("Please, enter the phone number of the patient", MAIN_FIELDS_SIZE),
             HORIZONTAL_MARGIN,
             addPatientFrame.getWidth(),
             PATIENT_WIDTH_DIVISOR,
             MAIN_FIELDS_SIZE,
-            "Phone nubmer: "
+            "Phone number: "
         );
 
         CenteredTextFieldPanel emailPanel = new CenteredTextFieldPanel(
-            new HintTextField(
-                "Please, enter the email of the patient",
-                MAIN_FIELDS_SIZE
-            ),
+            new HintTextField("Please, enter the email of the patient", MAIN_FIELDS_SIZE),
             HORIZONTAL_MARGIN,
             addPatientFrame.getWidth(),
             PATIENT_WIDTH_DIVISOR,
@@ -172,10 +179,7 @@ public class PatientOption extends Option {
         );
 
         CenteredTextFieldPanel diagnosisPanel = new CenteredTextFieldPanel(
-            new HintTextField(
-                "Please, enter the diagnosis of the patient",
-                MAIN_FIELDS_SIZE
-            ),
+            new HintTextField("Please, enter the diagnosis of the patient", MAIN_FIELDS_SIZE),
             HORIZONTAL_MARGIN,
             addPatientFrame.getWidth(),
             PATIENT_WIDTH_DIVISOR,
@@ -257,8 +261,7 @@ public class PatientOption extends Option {
                         bedSelectionPanel.getSelectedBed(hospitalFloorList),
                         equipmentList.getFirstUnused(equipmentNeeded.getSelectedItem())
                     ));
-                }
-                catch (IllegalArgumentException exception) {
+                } catch (IllegalArgumentException exception) {
                     JOptionPane.showMessageDialog(addPatientFrame, exception.getMessage());
                     return;
                 }
@@ -298,6 +301,11 @@ public class PatientOption extends Option {
         addPatientFrame.setVisible(true);
     }
 
+    /**
+     * Returns the names of all equipment items.
+     *
+     * @return an array of equipment item names
+     */
     private String[] getEquipmentNames() {
         List<String> equipmentNames = equipmentList.getNames();
         return equipmentNames.toArray(new String[equipmentNames.size()]);
