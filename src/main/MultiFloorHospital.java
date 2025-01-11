@@ -23,7 +23,7 @@ public class MultiFloorHospital extends Hospital implements HospitalProperties {
     private final HospitalFloorList hospitalFloorList = new HospitalFloorList(this, NUMBER_OF_FLOORS);
     private final PatientList patientList = new PatientList();
     private final HospitalPharmasyList hospitalPharmasyList = new HospitalPharmasyList(this);
-    private final HospitalFinancial_Accounts financialAccounts = new HospitalFinancial_Accounts(this, 0);
+    private final HospitalFinancial_Accounts financialAccounts = new HospitalFinancial_Accounts(this, INITIAL_BALANCE);
     
 
     private transient Option[] options;
@@ -39,13 +39,18 @@ public class MultiFloorHospital extends Hospital implements HospitalProperties {
         };
     }
 
-    private static final int Y_SPACE_BETWEEN_BUTTONS = 10;
-    private static final int X_SPACE_BETWEEN_BUTTONS = 0;
-    private static final int X_BUTTONS_MARGINS = 40;
-    private static final int BUTTONS_HIGHT = 40;
     private static final double X_WINDOW_MULTIPLIER = 0.5;
     private static final double Y_WINDOW_MULTIPLIER = 0.5;
+
     private static final double Y_LABEL_MULTIPLIER = 0.3;
+
+    private static final int Y_SPACE_BETWEEN_BUTTONS = 10;
+    private static final int X_SPACE_BETWEEN_BUTTONS = 0;
+
+    private static final int X_BUTTONS_MARGINS = 40;
+    private static final int BUTTONS_HIGHT = 40;
+
+    private static final double INITIAL_BALANCE = 0;
 
     public MultiFloorHospital() {
         super(HOSPITAL_NAME, HOSPITAL_ADDRESS, HOSPITAL_PHONE, HOSPITAL_EMAIL);
@@ -119,20 +124,17 @@ public class MultiFloorHospital extends Hospital implements HospitalProperties {
         
 
     public static void main(String[] args) {
-
-        MultiFloorHospital multiFloorHospital = MultiFloorHospital.loadData();
-        multiFloorHospital.logIn(Toolkit.getDefaultToolkit().getScreenSize());
+        MultiFloorHospital.getInstance().run();
     }
 
-    private void logIn(Dimension size) {
+    private void run() {
 
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        int frameWidth = (int) (screenSize.width / 4);
-        int frameHeight = (int) (screenSize.height / 4);
-        size = new Dimension(frameWidth, frameHeight);
+        int frameWidth = (int) (screenSize.width * X_WINDOW_MULTIPLIER);
+        int frameHeight = (int) (screenSize.height * Y_WINDOW_MULTIPLIER);
 
         LoginFrame loginFrame = new LoginFrame(
-            size, 
+            new Dimension(frameWidth, frameHeight), 
             () -> displayOptions() 
         );
         
@@ -140,16 +142,99 @@ public class MultiFloorHospital extends Hospital implements HospitalProperties {
     }
 
     private void saveData() {
-        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(FILENAME))) {
-            oos.writeObject(this);
-            System.out.println("Data successfully saved to " + FILENAME);
-        } catch (IOException e) {
-            System.err.println("Error saving data: " + e.getMessage());
+
+        Object[] options = {"Default", "Cusom", "Clear"};
+        int choice = JOptionPane.showOptionDialog(null,
+                "Do you want to use default file name or custom one to save the data?",
+                "File name",
+                JOptionPane.DEFAULT_OPTION,
+                JOptionPane.INFORMATION_MESSAGE,
+                null,
+                options,
+                options[0]
+            );
+        
+        if (choice == 0) {
+            saveData(FILENAME);
+        } else if (choice == 1) {
+
+            String userInput = JOptionPane.showInputDialog("Enter a filename:");
+            
+            while (userInput != null && !userInput.matches("^[a-zA-Z0-9._-]+$")) {
+                JOptionPane.showMessageDialog(null, "Invalid filename. Please use only letters, numbers, dots, underscores and dashes.");
+                userInput = JOptionPane.showInputDialog("Enter a filename:");
+            }
+            
+            if (userInput == null) {
+                return;
+            }
+            
+            saveData(userInput + ".dat");
+        } else if (choice == 2) {
+            return;
         }
     }
 
-    public static MultiFloorHospital loadData() {
-        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(FILENAME))) {
+    private void saveData(String filename) {
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filename))) {
+            oos.writeObject(this);
+            JOptionPane.showMessageDialog(null, "Data successfully saved to " + filename);
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(null, "Error occured saving the data to " + filename);
+        }
+    }
+
+    public static MultiFloorHospital getInstance() {
+        Object[] loadOptions = {"Yes", "No"};
+        int loadChoice = JOptionPane.showOptionDialog(null,
+                "Do you want to load the data?",
+                "Load data",
+                JOptionPane.DEFAULT_OPTION,
+                JOptionPane.INFORMATION_MESSAGE,
+                null,
+                loadOptions,
+                loadOptions[0]
+            );
+        
+        if (loadChoice != 0) {
+            return new MultiFloorHospital();
+        }
+        
+        Object[] filenameOptions = {"Default", "Cusom", "Clear"};
+        int filenameChoice = JOptionPane.showOptionDialog(null,
+                "Do you want to use default file name or custom one to load the data?",
+                "File name",
+                JOptionPane.DEFAULT_OPTION,
+                JOptionPane.INFORMATION_MESSAGE,
+                null,
+                filenameOptions,
+                filenameOptions[0]
+            );
+        
+        if (filenameChoice == 0) {
+            return loadData(FILENAME);
+        } else if (filenameChoice == 1) {
+
+            String userInput = JOptionPane.showInputDialog("Enter a filename:");
+            
+            while (userInput != null && !userInput.matches("^[a-zA-Z0-9._-]+$")) {
+                JOptionPane.showMessageDialog(null, "Invalid filename. Please use only letters, numbers, dots, underscores and dashes.");
+                userInput = JOptionPane.showInputDialog("Enter a filename:");
+            }
+            
+            if (userInput == null) {
+                return new MultiFloorHospital();
+            }
+            
+            return loadData(userInput + ".dat");
+        
+        }
+
+        return new MultiFloorHospital();
+    }
+
+    public static MultiFloorHospital loadData(String filename) {
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filename))) {
             return (MultiFloorHospital) ois.readObject();
         } catch (IOException | ClassNotFoundException e) {
             System.err.println("Error loading data: " + e.getMessage());
