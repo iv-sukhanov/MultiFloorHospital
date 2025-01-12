@@ -21,7 +21,8 @@ public class MultiFloorHospital extends Hospital implements HospitalProperties {
 
     private static final long serialVersionUID = 1L;
 
-    private static final String FILENAME = "hospital.dat";
+    private static final String FILENAME = "hospital.bak";
+    private static final String FILE_EXTENSION = ".bak";
 
     private static final double X_WINDOW_MULTIPLIER = 0.5;
     private static final double Y_WINDOW_MULTIPLIER = 0.5;
@@ -101,7 +102,7 @@ public class MultiFloorHospital extends Hospital implements HospitalProperties {
             if (userInput == null) {
                 return;
             }
-            saveData(userInput + ".dat");
+            saveData(userInput + FILE_EXTENSION);
         } else if (choice == 2) {
             return;
         }
@@ -164,7 +165,7 @@ public class MultiFloorHospital extends Hospital implements HospitalProperties {
             if (userInput == null) {
                 return new MultiFloorHospital();
             }
-            return loadData(userInput + ".dat");
+            return loadData(userInput + FILE_EXTENSION);
         }
         return new MultiFloorHospital();
     }
