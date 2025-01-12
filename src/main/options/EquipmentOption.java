@@ -20,7 +20,7 @@ import main.gui.*;
  */
 public class EquipmentOption extends Option {
 
-    private HospitalEquipmentList equipmentList;
+    private final HospitalEquipmentList equipmentList;
 
     /**
      * Constructs an EquipmentOption object.

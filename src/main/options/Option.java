@@ -9,6 +9,7 @@ import javax.swing.JFrame;
  * Represents an abstract option in the hospital management system.
  */
 public abstract class Option {
+    
     private String name;
     protected JButton button;
 

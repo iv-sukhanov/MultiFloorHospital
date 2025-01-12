@@ -42,9 +42,7 @@ public class RoomsOption extends Option {
      * @param frame the main frame
      */
     public void execute(JFrame frame) {
-        frame.setVisible(false);
         listFloors(frame);
-        frame.setVisible(true);
     }
 
     /**
