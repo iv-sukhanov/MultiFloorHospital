@@ -7,6 +7,7 @@ import java.util.List;
  * Represents a list of hospital staff members.
  */
 public class HospitalStaffList extends Hospital {
+    
     private final List<HospitalStaff> staffList = new LinkedList<>();
 
     /**

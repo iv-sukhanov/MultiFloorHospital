@@ -241,7 +241,7 @@ public class HospitalStaffOption extends Option {
                         !isAvailablePanel.isSelected(), 
                         isAvailablePanel.getSelectedIndex() == -1 ? 
                             null : 
-                            patientList.getPatient(isAvailablePanel.getSelectedIndex())
+                            patientList.get(isAvailablePanel.getSelectedIndex())
                     ));
                 } catch (IllegalArgumentException exception) {
                     JOptionPane.showMessageDialog(addStaffFrame, exception.getMessage());

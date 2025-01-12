@@ -106,7 +106,7 @@ public class PatientOption extends Option {
                     );
 
                     if (confirmed == JOptionPane.YES_OPTION) {
-                        patientList.removePatient(selectedRow);
+                        patientList.remove(selectedRow);
                         listPatientsFrame.dispose();
                         super.button.doClick();
                     }

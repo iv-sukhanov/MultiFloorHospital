@@ -58,7 +58,7 @@ public class MultiFloorHospital extends Hospital implements HospitalProperties {
     /**
      * Runs the application by displaying the login frame.
      */
-    private void run() {
+    public void run() {
         LoginFrame loginFrame = new LoginFrame(
             FRAME_SIZE, 
             () -> displayOptions() 
@@ -70,7 +70,7 @@ public class MultiFloorHospital extends Hospital implements HospitalProperties {
     /**
      * Displays the main menu options.
      */
-    public void displayOptions() {
+    private void displayOptions() {
         initOptions();
         MainMenuFrame mainFrame = new MainMenuFrame(options, FRAME_SIZE, () -> saveData());
         mainFrame.setVisible(true);
@@ -176,7 +176,7 @@ public class MultiFloorHospital extends Hospital implements HospitalProperties {
      * @param filename the filename to load data from
      * @return an instance of MultiFloorHospital
      */
-    public static MultiFloorHospital loadData(String filename) {
+    private static MultiFloorHospital loadData(String filename) {
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filename))) {
             return (MultiFloorHospital) ois.readObject();
         } catch (IOException | ClassNotFoundException e) {

@@ -48,7 +48,7 @@ public class PatientList implements Serializable {
      * @param index the index of the patient
      * @return the patient at the specified index, or null if the index is out of range
      */
-    public Patient getPatient(int index) {
+    public Patient get(int index) {
         if (index < 0 || index >= patients.size()) {
             return null;
         }
@@ -61,7 +61,7 @@ public class PatientList implements Serializable {
      * @param index the index of the patient to remove
      * @return true if the patient was removed, false otherwise
      */
-    public boolean removePatient(int index) {
+    public boolean remove(int index) {
         if (index < 0 || index >= patients.size()) {
             return false;
         }

@@ -23,17 +23,6 @@ public class HospitalEquipmentList extends Hospital {
     }
 
     /**
-     * Constructs a new HospitalEquipmentList with the specified details.
-     * @param name the name of the hospital.
-     * @param address the address of the hospital.
-     * @param phoneNumber the phone number of the hospital.
-     * @param email the email of the hospital.
-     */
-    public HospitalEquipmentList(String name, String address, String phoneNumber, String email) {
-        super(name, address, phoneNumber, email);
-    }
-
-    /**
      * Gets the number of different types of equipment in the list.
      * @return the number of different types of equipment.
      */

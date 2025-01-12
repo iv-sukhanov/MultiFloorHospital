@@ -10,18 +10,18 @@ public abstract class Hospital implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    private String name;
-    private String address;
-    private String phoneNumber;
-    private String email;
+    private String hospitalName;
+    private String hospitalAddress;
+    private String hospitalPhoneNumber;
+    private String hospitalEmail;
      
     /**
      * Gets the name of the hospital.
      * 
      * @return the name of the hospital
      */
-    public String getName() {
-        return name;
+    public String getHospitalName() {
+        return hospitalName;
     }
 
     /**
@@ -29,8 +29,8 @@ public abstract class Hospital implements Serializable {
      * 
      * @return the address of the hospital
      */
-    public String getAddress() {
-        return address;
+    public String getHospitalAddress() {
+        return hospitalAddress;
     }
 
     /**
@@ -38,8 +38,8 @@ public abstract class Hospital implements Serializable {
      * 
      * @return the phone number of the hospital
      */
-    public String getPhoneNumber() {
-        return phoneNumber;
+    public String getHospitalPhoneNumber() {
+        return hospitalPhoneNumber;
     }
 
     /**
@@ -47,8 +47,8 @@ public abstract class Hospital implements Serializable {
      * 
      * @return the email of the hospital
      */
-    public String getEmail() {
-        return email;
+    public String getHospitalEmail() {
+        return hospitalEmail;
     }
 
     /**
@@ -60,10 +60,10 @@ public abstract class Hospital implements Serializable {
      * @param email the email of the hospital
      */
     public Hospital(String name, String address, String phoneNumber, String email) {
-        this.name = name;
-        this.address = address;
-        this.phoneNumber = phoneNumber;
-        this.email = email;
+        this.hospitalName = name;
+        this.hospitalAddress = address;
+        this.hospitalPhoneNumber = phoneNumber;
+        this.hospitalEmail = email;
     }
 
     /**
@@ -72,9 +72,9 @@ public abstract class Hospital implements Serializable {
      * @param hospital the hospital to copy details from
      */
     public Hospital(Hospital hospital) {
-        this.name = hospital.getName();
-        this.address = hospital.getAddress();
-        this.phoneNumber = hospital.getPhoneNumber();
-        this.email = hospital.getEmail();
+        this.hospitalName = hospital.getHospitalName();
+        this.hospitalAddress = hospital.getHospitalAddress();
+        this.hospitalPhoneNumber = hospital.getHospitalPhoneNumber();
+        this.hospitalEmail = hospital.getHospitalEmail();
     }
 }
