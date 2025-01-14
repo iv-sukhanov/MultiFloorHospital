@@ -2,7 +2,7 @@ include .env/.dev
 export
 
 run:
-	java -cp ./build main.MultiFloorHospital
+	java -cp ./build main.Main
 
 test:
 	java -cp ./build ForTests

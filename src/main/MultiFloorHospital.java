@@ -47,15 +47,6 @@ public class MultiFloorHospital extends Hospital implements HospitalProperties {
     }
 
     /**
-     * The main method to run the application.
-     *
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        MultiFloorHospital.getInstance().run();
-    }
-
-    /**
      * Runs the application by displaying the login frame.
      */
     public void run() {
