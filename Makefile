@@ -1,11 +1,5 @@
-include .env/.dev
+include .env/.env
 export
-
-# run:
-# 	java -cp ./build main.Main
-
-test:
-	java -cp ./build ForTests
 
 compile:
 	./compile.bat

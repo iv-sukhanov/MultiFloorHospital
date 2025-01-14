@@ -49,9 +49,7 @@ public class PatientOption extends Option {
      * @param frame the main frame
      */
     public void execute(JFrame frame) {
-        frame.setVisible(false);
         listPatients(frame);
-        frame.setVisible(true);
     }
 
     /**

@@ -65,7 +65,7 @@ public class BedSelectionPanel extends JPanel {
         roomComboBox.addActionListener(e -> {
             bedComboBox.removeAllItems();
             int floorIndex = floorComboBox.getSelectedIndex();
-            int roomIndex = roomComboBox.getSelectedIndex();
+            int roomIndex = getRoomIndex();
 
             if (floorIndex == -1 || roomIndex == -1) {
                 return;
@@ -90,10 +90,11 @@ public class BedSelectionPanel extends JPanel {
      * @return the selected bed, or null if no bed is selected
      */
     public HospitalBed getSelectedBed(HospitalFloorList hospitalFloorList) {
-        int floorIndex = floorComboBox.getSelectedIndex();
-        int roomIndex = roomComboBox.getSelectedIndex();
-        int bedIndex = bedComboBox.getSelectedIndex();
 
+        int floorIndex = floorComboBox.getSelectedIndex();
+        int roomIndex = getRoomIndex();
+        int bedIndex = getBedIndex();
+        
         if (floorIndex == -1 || roomIndex == -1 || bedIndex == -1) {
             return null;
         }
@@ -108,14 +109,33 @@ public class BedSelectionPanel extends JPanel {
      * @return the selected room, or null if no room is selected
      */
     public HospitalRoom getSelectedRoom(HospitalFloorList hospitalFloorList) {
+        
         int floorIndex = floorComboBox.getSelectedIndex();
-        int roomIndex = roomComboBox.getSelectedIndex();
-        int bedIndex = bedComboBox.getSelectedIndex();
-
+        int roomIndex = getRoomIndex();
+        int bedIndex = getBedIndex();
+        
         if (floorIndex == -1 || roomIndex == -1 || bedIndex == -1) {
             return null;
         }
-
+        
         return hospitalFloorList.get(floorIndex).getRoom(roomIndex);
+    }
+
+    private int getRoomIndex() {
+
+        if (roomComboBox.getSelectedIndex() == -1) {
+            return -1;
+        }
+
+        return Integer.valueOf(((String) roomComboBox.getSelectedItem()).split(" ")[1].substring(1)) - 1;
+    }
+
+    private int getBedIndex() {
+
+        if (bedComboBox.getSelectedIndex() == -1) {
+            return -1;
+        }
+
+        return Integer.valueOf(((String) bedComboBox.getSelectedItem()).split(" ")[1]) - 1;
     }
 }
