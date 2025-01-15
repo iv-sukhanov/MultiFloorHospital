@@ -137,7 +137,10 @@ public class EquipmentOption extends Option {
                 MAIN_FIELDS_SIZE
             ), 
             HORIZONTAL_MARGIN, 
-            MAIN_FIELDS_SIZE
+            mainFrame.getWidth(),
+            PATIENT_WIDTH_DIVISOR,
+            MAIN_FIELDS_SIZE,
+            "Name: "
         );
 
         CenteredTextFieldPanel manufacturerPanel = new CenteredTextFieldPanel(
@@ -146,7 +149,10 @@ public class EquipmentOption extends Option {
                 MAIN_FIELDS_SIZE
             ), 
             HORIZONTAL_MARGIN, 
-            MAIN_FIELDS_SIZE
+            mainFrame.getWidth(),
+            PATIENT_WIDTH_DIVISOR,
+            MAIN_FIELDS_SIZE,
+            "Manufacturer: "
         );
 
         RadioButtonPanel radioPanel = new RadioButtonPanel(

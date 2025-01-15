@@ -125,13 +125,19 @@ public class HospitalPharmasyOption extends Option {
         CenteredTextFieldPanel namePanel = new CenteredTextFieldPanel(
             new HintTextField("Enter the name of the item", MAIN_FIELDS_SIZE), 
             HORIZONTAL_MARGIN, 
-            MAIN_FIELDS_SIZE
+            mainFrame.getWidth(),
+            PATIENT_WIDTH_DIVISOR,
+            MAIN_FIELDS_SIZE,
+            "Name: "
         );
 
         CenteredTextFieldPanel pricePanel = new CenteredTextFieldPanel(
             new HintTextField("Enter the price of the item", MAIN_FIELDS_SIZE), 
-            HORIZONTAL_MARGIN, 
-            MAIN_FIELDS_SIZE
+            HORIZONTAL_MARGIN,
+            mainFrame.getWidth(),
+            PATIENT_WIDTH_DIVISOR,
+            MAIN_FIELDS_SIZE,
+            "Price: "
         );
 
         Calendar calendar = Calendar.getInstance();

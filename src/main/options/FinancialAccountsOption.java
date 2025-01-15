@@ -112,11 +112,14 @@ public class FinancialAccountsOption extends Option {
 
         CenteredTextFieldPanel fromPanel = new CenteredTextFieldPanel(
             new HintTextField(
-                "Enter the source of the foundation",
+                "Enter the sender/receiver",
                 MAIN_FIELDS_SIZE
             ), 
             HORIZONTAL_MARGIN, 
-            MAIN_FIELDS_SIZE
+            mainFrame.getWidth(),
+            PATIENT_WIDTH_DIVISOR,
+            MAIN_FIELDS_SIZE,
+            "Sender/Receiver: "
         );
 
         CenteredTextFieldPanel amountPanel = new CenteredTextFieldPanel(
@@ -125,13 +128,16 @@ public class FinancialAccountsOption extends Option {
                 MAIN_FIELDS_SIZE
             ), 
             HORIZONTAL_MARGIN, 
-            MAIN_FIELDS_SIZE
+            mainFrame.getWidth(),
+            PATIENT_WIDTH_DIVISOR,
+            MAIN_FIELDS_SIZE,
+            "Amount: "
         );
 
         Calendar calendar = Calendar.getInstance();
         calendar.add(Calendar.DAY_OF_MONTH, 1);
         DateSpinnerPanel datePanel = new DateSpinnerPanel(
-            "Enter the expiration date:",
+            "Enter date of the operation",
             MAIN_FIELDS_SIZE,
             HORIZONTAL_MARGIN,
             null,
