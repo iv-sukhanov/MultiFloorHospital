@@ -21,7 +21,7 @@ public class MultiFloorHospital extends Hospital implements HospitalProperties {
 
     private static final long serialVersionUID = 1L;
 
-    private static final String FILENAME = "hospital.bak";
+    private static final String FILENAME = "HospitalManagementSystem.bak";
     private static final String FILE_EXTENSION = ".bak";
 
     private static final double X_WINDOW_MULTIPLIER = 0.5;
