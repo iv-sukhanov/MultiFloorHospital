@@ -50,7 +50,10 @@ public class HospitalStaffList extends Hospital {
         if (index < 0 || index >= staffList.size()) {
             return false;
         }
-        staffList.remove(index);
+        HospitalStaff removedStaff = staffList.remove(index);
+        if (removedStaff != null) {
+            removedStaff.clean();
+        }
         return true;
     }
 
@@ -92,6 +95,23 @@ public class HospitalStaffList extends Hospital {
         return staffList.get(index);
     }
 
+    public HospitalStaff getAvailable(int index) {
+        if (index < 0 || index >= staffList.size()) {
+            return null;
+        }
+
+        for (HospitalStaff staff : staffList) {
+            if (staff.isAvailable()) {
+                if (index == 0) {
+                    return staff;
+                }
+                index--;
+            }
+        }
+
+        return staffList.get(index);
+    }
+
     /**
      * Returns the names of all staff members in the list.
      *
@@ -103,5 +123,15 @@ public class HospitalStaffList extends Hospital {
             staffNames[i] = staffList.get(i).getName();
         }
         return staffNames;
+    }
+
+    public String[] getAvailableStaffNames() {
+        List<String> availableStaffNames = new LinkedList<>();
+        for (HospitalStaff staff : staffList) {
+            if (staff.isAvailable()) {
+                availableStaffNames.add(staff.getName());
+            }
+        }
+        return availableStaffNames.toArray(new String[0]);
     }
 }

@@ -105,4 +105,8 @@ public class HospitalStaff extends Person {
         }
         setPatient(patient);
     }
+
+    public void clean() {
+        patient.setAssignedDoctor(null);
+    }
 }

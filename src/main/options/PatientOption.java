@@ -203,7 +203,7 @@ public class PatientOption extends Option {
             MAIN_FIELDS_SIZE
         );
 
-        String doctors[] = hospitalStaffList.getStaffNames();
+        String doctors[] = hospitalStaffList.getAvailableStaffNames();
         RadioButtonPanel doctorAssigned = new RadioButtonPanel(
             "A doctor(s) is(are) assigned to this patient",
             doctors,
@@ -254,7 +254,7 @@ public class PatientOption extends Option {
                         diagnosisPanel.getText().equals("Please, enter the diagnosis of the patient") ?
                             null :
                             diagnosisPanel.getText(),
-                        hospitalStaffList.get(doctorAssigned.getSelectedIndex()),
+                        hospitalStaffList.getAvailable(doctorAssigned.getSelectedIndex()),
                         bedSelectionPanel.getSelectedRoom(hospitalFloorList),
                         bedSelectionPanel.getSelectedBed(hospitalFloorList),
                         equipmentList.getFirstUnused(equipmentNeeded.getSelectedItem())

@@ -42,6 +42,16 @@ public class PatientList implements Serializable {
         return patientNames;
     }
 
+    public String[] getAvailablePatientNames() {
+        List<String> availablePatientNames = new LinkedList<>();
+        for (Patient patient : patients) {
+            if (patient.getAssignedDoctor() == null) {
+                availablePatientNames.add(patient.getName());
+            }
+        }
+        return availablePatientNames.toArray(new String[0]);
+    }
+
     /**
      * Returns the patient at the specified index.
      *
@@ -53,6 +63,23 @@ public class PatientList implements Serializable {
             return null;
         }
         return patients.get(index);
+    }
+
+    public Patient getAvailable(int index) {
+        if (index < 0 || index >= patients.size()) {
+            return null;
+        }
+
+        for (Patient patient : patients) {
+            if (patient.getAssignedDoctor() == null) {
+                if (index == 0) {
+                    return patient;
+                }
+                index--;
+            }
+        }
+        
+        return null;
     }
 
     /**

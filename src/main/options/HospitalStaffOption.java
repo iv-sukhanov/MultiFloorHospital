@@ -206,7 +206,7 @@ public class HospitalStaffOption extends Option {
             MAIN_FIELDS_SIZE
         );
 
-        String patients[] = patientList.getPatientNames();
+        String patients[] = patientList.getAvailablePatientNames();
         RadioButtonPanel isAvailablePanel = new RadioButtonPanel(
             "Is busy right now",
             patients,
@@ -241,7 +241,7 @@ public class HospitalStaffOption extends Option {
                         !isAvailablePanel.isSelected(), 
                         isAvailablePanel.getSelectedIndex() == -1 ? 
                             null : 
-                            patientList.get(isAvailablePanel.getSelectedIndex())
+                            patientList.getAvailable(isAvailablePanel.getSelectedIndex())
                     ));
                 } catch (IllegalArgumentException exception) {
                     JOptionPane.showMessageDialog(addStaffFrame, exception.getMessage());
