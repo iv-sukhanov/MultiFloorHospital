@@ -51,9 +51,7 @@ public class HospitalStaffOption extends Option {
      * @param frame the main frame
      */
     public void execute(JFrame frame) {
-        frame.setVisible(false);
         listStaff(frame);
-        frame.setVisible(true);
     }
 
     /**

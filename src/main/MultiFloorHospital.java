@@ -134,7 +134,7 @@ public class MultiFloorHospital extends Hospital implements HospitalProperties {
             return new MultiFloorHospital();
         }
         
-        Object[] filenameOptions = {"Default", "Custom", "Clear"};
+        Object[] filenameOptions = {"Default", "Custom", "Cancel"};
         int filenameChoice = JOptionPane.showOptionDialog(null,
                 "Do you want to use default file name or custom one to load the data?",
                 "File name",
@@ -171,7 +171,7 @@ public class MultiFloorHospital extends Hospital implements HospitalProperties {
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filename))) {
             return (MultiFloorHospital) ois.readObject();
         } catch (IOException | ClassNotFoundException e) {
-            System.err.println("Error loading data: " + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Error occurred loading the data: " + e.getMessage());
         }
         return new MultiFloorHospital();
     }
