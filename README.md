@@ -5,7 +5,7 @@ An object oriented programming university project that simulates the behavior of
 ## Table of Contents
 1. [Introduction](#introduction)
 2. [Overview](#overview)
-3. [Set-up](#setup)
+3. [Set-up](#set-up)
 4. [Usage](#usage)
 5. [UML Diagram](#diagram)
 
