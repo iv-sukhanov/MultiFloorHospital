@@ -87,6 +87,12 @@ public class HospitalRoom extends Hospital {
         return beds.get(bedNumber);
     }
 
+    /**
+     * Retrieves an available bed from the list of beds based on the specified index.
+     *
+     * @param bedIndex the index of the available bed to retrieve
+     * @return the available HospitalBed at the specified index, or null if no such bed exists
+     */
     public HospitalBed getAvailableBed(int bedIndex) {
         
         int availableBedIndex = 0;

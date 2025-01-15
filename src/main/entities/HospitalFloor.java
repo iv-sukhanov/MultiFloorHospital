@@ -75,6 +75,12 @@ public class HospitalFloor extends Hospital implements HospitalProperties {
         return rooms.get(roomNumber);
     }
 
+    /**
+     * Retrieves an available room based on the specified room index.
+     *
+     * @param roomIndex the index of the available room to retrieve
+     * @return the HospitalRoom object if available, or null if no such room exists
+     */
     public HospitalRoom getAvailableRoom(int roomIndex) {
         
         int availableRoomIndex = 0;

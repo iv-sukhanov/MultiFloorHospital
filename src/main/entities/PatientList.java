@@ -42,6 +42,11 @@ public class PatientList implements Serializable {
         return patientNames;
     }
 
+    /**
+     * Retrieves the names of patients who do not have an assigned doctor.
+     *
+     * @return an array of strings containing the names of patients without an assigned doctor.
+     */
     public String[] getAvailablePatientNames() {
         List<String> availablePatientNames = new LinkedList<>();
         for (Patient patient : patients) {
@@ -65,6 +70,14 @@ public class PatientList implements Serializable {
         return patients.get(index);
     }
 
+    /**
+     * Retrieves available patient (i.e., a patient who does not have an assigned doctor)
+     * at the specified index from the list of patients.
+     *
+     * @param index the index of the available patient to retrieve
+     * @return the available patient at the specified index, or null if the index is out of bounds
+     *         or no available patient is found at the specified index
+     */
     public Patient getAvailable(int index) {
         if (index < 0 || index >= patients.size()) {
             return null;

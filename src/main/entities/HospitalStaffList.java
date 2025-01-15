@@ -95,6 +95,14 @@ public class HospitalStaffList extends Hospital {
         return staffList.get(index);
     }
 
+    /**
+     * Retrieves an available HospitalStaff member at the specified index.
+     * 
+     * @param index the index of the available staff member to retrieve.
+     *              Must be a non-negative integer less than the size of the staff list.
+     * @return the available HospitalStaff member at the specified index, or null if the index is out of bounds
+     *         or no available staff member is found.
+     */
     public HospitalStaff getAvailable(int index) {
         if (index < 0 || index >= staffList.size()) {
             return null;

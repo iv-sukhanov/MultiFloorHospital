@@ -106,6 +106,9 @@ public class HospitalStaff extends Person {
         setPatient(patient);
     }
 
+    /**
+     * Cleans up the hospital staff's assignment by setting the assigned doctor of the patient to null.
+     */
     public void clean() {
         patient.setAssignedDoctor(null);
     }
