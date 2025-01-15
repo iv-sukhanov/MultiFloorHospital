@@ -1,5 +1,6 @@
 package main.entities;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -38,7 +39,7 @@ public class HospitalRoom extends Hospital {
     HospitalRoom(Hospital hospital, String roomNumber, int numberOfBeds) {
         super(hospital);
         this.roomNumber = roomNumber;
-        this.beds = new LinkedList<>();
+        this.beds = new ArrayList<>(numberOfBeds);
         for (int i = 0; i < numberOfBeds; i++) {
             beds.add(new HospitalBed(hospital, i + 1));
         }
@@ -84,5 +85,20 @@ public class HospitalRoom extends Hospital {
      */
     public HospitalBed getBed(int bedNumber) {
         return beds.get(bedNumber);
+    }
+
+    public HospitalBed getAvailableBed(int bedIndex) {
+        
+        int availableBedIndex = 0;
+        for (int i = 0; i < beds.size(); i++) {
+            if (beds.get(i).isAvailable()) {
+                if (availableBedIndex == bedIndex) {
+                    return beds.get(i);
+                }
+                availableBedIndex++;
+            }
+        }
+
+        return null;
     }
 }

@@ -65,13 +65,13 @@ public class BedSelectionPanel extends JPanel {
         roomComboBox.addActionListener(e -> {
             bedComboBox.removeAllItems();
             int floorIndex = floorComboBox.getSelectedIndex();
-            int roomIndex = getRoomIndex();
+            int roomIndex = roomComboBox.getSelectedIndex();
 
             if (floorIndex == -1 || roomIndex == -1) {
                 return;
             }
 
-            for (String bed : hospitalFloorList.get(floorIndex).getRoom(roomIndex).getAvailableBeds()) {
+            for (String bed : hospitalFloorList.get(floorIndex).getAvailableRoom(roomIndex).getAvailableBeds()) {
                 bedComboBox.addItem(bed);
             }
         });
@@ -92,14 +92,14 @@ public class BedSelectionPanel extends JPanel {
     public HospitalBed getSelectedBed(HospitalFloorList hospitalFloorList) {
 
         int floorIndex = floorComboBox.getSelectedIndex();
-        int roomIndex = getRoomIndex();
-        int bedIndex = getBedIndex();
+        int roomIndex = roomComboBox.getSelectedIndex();
+        int bedIndex = bedComboBox.getSelectedIndex();
         
         if (floorIndex == -1 || roomIndex == -1 || bedIndex == -1) {
             return null;
         }
 
-        return hospitalFloorList.get(floorIndex).getRoom(roomIndex).getBed(bedIndex);
+        return hospitalFloorList.get(floorIndex).getAvailableRoom(roomIndex).getAvailableBed(bedIndex);
     }
 
     /**
@@ -111,31 +111,13 @@ public class BedSelectionPanel extends JPanel {
     public HospitalRoom getSelectedRoom(HospitalFloorList hospitalFloorList) {
         
         int floorIndex = floorComboBox.getSelectedIndex();
-        int roomIndex = getRoomIndex();
-        int bedIndex = getBedIndex();
+        int roomIndex = roomComboBox.getSelectedIndex();
+        int bedIndex = bedComboBox.getSelectedIndex();
         
         if (floorIndex == -1 || roomIndex == -1 || bedIndex == -1) {
             return null;
         }
         
-        return hospitalFloorList.get(floorIndex).getRoom(roomIndex);
-    }
-
-    private int getRoomIndex() {
-
-        if (roomComboBox.getSelectedIndex() == -1) {
-            return -1;
-        }
-
-        return Integer.valueOf(((String) roomComboBox.getSelectedItem()).split(" ")[1].substring(1)) - 1;
-    }
-
-    private int getBedIndex() {
-
-        if (bedComboBox.getSelectedIndex() == -1) {
-            return -1;
-        }
-
-        return Integer.valueOf(((String) bedComboBox.getSelectedItem()).split(" ")[1]) - 1;
+        return hospitalFloorList.get(floorIndex).getAvailableRoom(roomIndex);
     }
 }
